@@ -22,11 +22,11 @@ paths:
       responses:
         "201":
           description: Created
-  /customers/{customerID}:
+  /customers/{id}:
     get:
       summary: Return a customer by ID.
       parameters:
-        - name: customerID
+        - name: id
           in: path
           required: true
           description: Unique ID of customer.
@@ -36,13 +36,13 @@ paths:
         "200":
           description: OK
         "400":
-          description: The specified user ID is invalid (NaN)
+          description: The specified customer ID is invalid (NaN)
         "404":
-          description: A user with the specified ID was not found.
+          description: A customer with the specified ID was not found.
     put:
       summary: Modify an existing customer.
       parameters:
-        - name: customerID
+        - name: id
           in: path
           required: true
           description: Unique ID of customer.
@@ -52,13 +52,13 @@ paths:
         "200":
           description: OK
         "400":
-          description: The specified user ID is invalid (NaN)
+          description: The specified customer ID is invalid (NaN)
         "404":
-          description: A user with the specified ID was not found.
+          description: A customer with the specified ID was not found.
     delete:
       summary: Remove a customer.
       parameters:
-        - name: customerID
+        - name: id
           in: path
           required: true
           description: Unique ID of customer.
@@ -68,18 +68,105 @@ paths:
         "200":
           description: OK
         "400":
-          description: The specified user ID is invalid (NaN)
+          description: The specified customer ID is invalid (NaN)
         "404":
-          description: A user with the specified ID was not found.
+          description: A customer with the specified ID was not found.
   /orders:
     get:
-      summary: Returns a list of orders.
+      summary: Returns a list of all orders.
       responses:
         "200":
           description: A JSON array of orders.
+    post:
+      summary: Creates a new order.
+      responses:
+        "201":
+          description: Created
+  /orders/{id}:
+    get:
+      summary: Return an order by ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique ID of an order.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: The specified order ID is invalid (NaN)
+        "404":
+          description: An order with the specified ID was not found.
+    put:
+      summary: Modify an existing order.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique ID of an order.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: The specified order ID is invalid (NaN)
+        "404":
+          description: An order with the specified ID was not found.
+    delete:
+      summary: Delete a draft order.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique ID of an order.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: The specified order ID is invalid (NaN)
+        "404":
+          description: An order with the specified ID was not found.
   /products:
     get:
       summary: Returns a list of products.
       responses:
         "200":
           description: A JSON array of products.
+  /products/{id}:
+    get:
+      summary: Get a specific product.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique ID of a product.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: The specified product ID is invalid (NaN)
+        "404":
+          description: A product with the specified ID was not found
+    put:
+      summary: Modify a product.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique ID of a product.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: The specified product ID is invalid (NaN)
+        "404":
+          description: A product with the specified ID was not found.
