@@ -5,8 +5,9 @@ We want to increase the productivity of our customer service representatives (CS
 # Instruction for File and Branch Organization
 1. Each team has their own branch within this Repo. Work within your teams branch and commit to that branch.
 2. If you want to create a new branch, create it under your team's branch and include your team name within that branch name (ie: front-end-test, which would be a branch of the front-end branch).
-3. Have DevSecOps team approve all pull requests into main.
-4. If you have any questions please contact the DevSecOps Team.
+3. Folders have been set up for each team, try your best to work within your teams folders.
+4. Have DevSecOps team approve all pull requests into main.
+5. If you have any questions please contact the DevSecOps Team.
 
 <br/>
 
