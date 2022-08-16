@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: Order Tracker API
+  description: |-
+    This is an API for the EIC Cohort 6 Order Tracking Capstone project.
+    
+    Some useful links:
+    - [The Order Tracker repository](https://github.com/EICPCohort6/capstone-order-tracking)
+    - [The Capstone Project assignment](https://github.com/EICPCohort6/capstone-details)
+  version: 1.0.0
+servers:
+  - url: https://FILLER.com/
+paths:
+  /customers:
+    get: 
+      summary: Returns a list of customers.
+      responses:
+        '200': #status code
+          description: A JSON array of customers
+    
