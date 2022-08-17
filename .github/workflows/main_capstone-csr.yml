@@ -10,11 +10,6 @@ on:
   workflow_dispatch:
 
 
-defaults:
-  run:
-    shell: bash
-    working-directory: ./FrontEnd/front-end
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,8 +32,8 @@ jobs:
 
       - name: zip artifact for deployment
         run: |
-        cd ./FrontEnd/front-end/
-        zip release.zip ./* -r
+          cd ./FrontEnd/front-end/
+          zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
