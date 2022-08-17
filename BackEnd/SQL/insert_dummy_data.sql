@@ -80,30 +80,30 @@ VALUES
 ---------------------------------
 INSERT INTO capstone.products (product_id, product_SKU, product_price, product_name, product_quantity, product_description)
 VALUES
-(1, 123456, 7.99, "Soap", 100, "Single bar of lavendar-scented soap"),
-(2, 234567, 49.99, "Fishing Pole", 5, "6 foot fishing pole meant for deep-sea fishing"),
-(3, 345678, 23.99, "Striped Sweater", 20, "Women's fleece sweater with red and blue stripes"),
-(4, 456789, 249.99, "Lightsaber", 2, "Metallic lightsaber body (kyber crystal not included)"),
-(5, 135791, 4.99, "Candy Bar", 200, "Semi-sweet chocolate bar"),
-(6, 246802, 49.99, "Jeans", 25, "Men's blue jeans"),
-(7, 147036, 14.99, "Hat", 25, "Women's orange beanie");
+(1, 123456, 7.99,   "Soap",            100, "Single bar of lavendar-scented soap"),
+(2, 234567, 49.99,  "Fishing Pole",    5,   "6 foot fishing pole meant for deep-sea fishing"),
+(3, 345678, 23.99,  "Striped Sweater", 20,  "Women's fleece sweater with red and blue stripes"),
+(4, 456789, 249.99, "Lightsaber",      2,   "Metallic lightsaber body (kyber crystal not included)"),
+(5, 135791, 4.99,   "Candy Bar",       200, "Semi-sweet chocolate bar"),
+(6, 246802, 49.99,  "Jeans",           25,  "Men's blue jeans"),
+(7, 147036, 14.99,  "Hat",             25,  "Women's orange beanie");
 
 ---------------------------------
 -- CUSTOMERS
 ---------------------------------
 INSERT INTO capstone.customers
-	(customer_id, first_name, middle_name, last_name, phone_number, email, customer_notes, street_number, unit_number, street_name, city, state, country, zipcode) 
+	(customer_id, first_name, middle_name, last_name, phone_number, email, customer_notes, date_of_birth, street_number, unit_number, street_name, city, state, country, zipcode) 
 		values 
-			(1, 'Zara', 'El', 'Alaoui', '781-816-0325', 'zara_elalaoui@tjx.com', 'No Notes', '21', 'Apt 2A', 'Smith Street', 'Boston', 'MA', 'US', '02125'),
-            (2, 'Keith', 'KC', 'Simmons', '816-781-0322', 'keith_simmons@tjx.com', 'No Notes', '551', 'Apt 6B', 'Chelsea Street', 'Boston', 'MA', 'US', '02125'),
-            (3, 'Connor', 'CF', 'French', '781-816-0654', 'connor_french@tjx.com', 'No Orders', '10', 'Unit 1', 'Everett Street', 'Revere', 'MA', 'US', '02151'),
-            (4, 'Todd', 'TO', 'Oliver', '617-219-8765', 'todd_oliver@tjx.com', 'ASAP shipping', '78', 'Unit C', 'Luke Road', 'Everett', 'MA', 'US', '02149'),
-            (5, 'Erica', 'EK', 'Kelley', '556-456-0989', 'erica_kelley@tjx.com', 'None', '101', 'Apt 663', 'Davis Square', 'Somerville', 'MA', 'US', '02129'),
-            (6, 'Soley', 'Graham', 'Clinton', '214-816-7854', 'soley_clinton@tjx.com', 'No notes for now', '334', 'Unit 56', 'Francis Street', 'Cambridge', 'MA', 'US', '02114'),
-            (7, 'Brian', 'BC', 'Culbert', '816-781-6170', 'brian_culbert@tjx.com', 'Notes...', '65', 'Unit 45', 'Revere Beach Parkway', 'Medford', 'MA', 'US', '02145'),
-            (8, 'Sara', 'SA', 'Anwer','617-567-8990', 'sara_anwer@tjx.com', 'Always ship before noon', '90', 'Apt 14', 'Beach Street', 'Arlignton', 'MA', 'US', '02474'),
-            (9, 'John', 'JP', 'Paxton', '781-543-2367', 'john_paxton@tjx.com', 'Call before shipping', '87', 'Apt 16', '1st Street', 'Lynn', 'MA', 'US', '01901'),
-            (10, 'Adam', 'AA', 'Audet', '214-567-5432', 'adam_audet@tjx.com', 'Add a secondary phone number', '883', 'Apt 6A', 'Adams Street', 'Swampscott', 'MA', 'US', '01907');
+			(1, 'Zara', 'El', 'Alaoui', '781-816-0325', 'zara_elalaoui@tjx.com', 'No Notes', '2000-04-05', '21', 'Apt 2A', 'Smith Street', 'Boston', 'MA', 'US', '02125'),
+            (2, 'Keith', 'KC', 'Simmons', '816-781-0322', 'keith_simmons@tjx.com', 'No Notes', '2001-02-04', '551', 'Apt 6B', 'Chelsea Street', 'Boston', 'MA', 'US', '02125'),
+            (3, 'Connor', 'CF', 'French', '781-816-0654', 'connor_french@tjx.com', 'No Orders', '1969-04-05',  '10', 'Unit 1', 'Everett Street', 'Revere', 'MA', 'US', '02151'),
+            (4, 'Todd', 'TO', 'Oliver', '617-219-8765', 'todd_oliver@tjx.com', 'ASAP shipping', '1942-02-01', '78', 'Unit C', 'Luke Road', 'Everett', 'MA', 'US', '02149'),
+            (5, 'Erica', 'EK', 'Kelley', '556-456-0989', 'erica_kelley@tjx.com', 'None', '1960-05-13', '101', 'Apt 663', 'Davis Square', 'Somerville', 'MA', 'US', '02129'),
+            (6, 'Soley', 'Graham', 'Clinton', '214-816-7854', 'soley_clinton@tjx.com', 'No notes for now', '1980-01-09', '334', 'Unit 56', 'Francis Street', 'Cambridge', 'MA', 'US', '02114'),
+            (7, 'Brian', 'BC', 'Culbert', '816-781-6170', 'brian_culbert@tjx.com', 'Notes...', '1999-09-09', '65', 'Unit 45', 'Revere Beach Parkway', 'Medford', 'MA', 'US', '02145'),
+            (8, 'Sara', 'SA', 'Anwer','617-567-8990', 'sara_anwer@tjx.com', 'Always ship before noon', '1989-08-08', '90', 'Apt 14', 'Beach Street', 'Arlignton', 'MA', 'US', '02474'),
+            (9, 'John', 'JP', 'Paxton', '781-543-2367', 'john_paxton@tjx.com', 'Call before shipping', '1979-07-07', '87', 'Apt 16', '1st Street', 'Lynn', 'MA', 'US', '01901'),
+            (10, 'Adam', 'AA', 'Audet', '214-567-5432', 'adam_audet@tjx.com', 'Add a secondary phone number', '1969-06-06', '883', 'Apt 6A', 'Adams Street', 'Swampscott', 'MA', 'US', '01907');
   
 ---------------------------------
 -- STATUS
