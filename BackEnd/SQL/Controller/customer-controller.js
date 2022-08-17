@@ -1,6 +1,7 @@
-let { Customers } = require("../models/customer");
-const connection = require("../connection");
-const Op = connection.Op;
+const database = require("../connection");
+
+const Customers = database.customers;
+const Op = database.Sequelize.Op;
 
 //create a new customer
 exports.create = (req, res) => {
@@ -43,11 +44,12 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Tutorials from the database.
+// Retrieve all customers from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
 
-  let condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+  // planning to make this dynamic for all fields that appear in query strings, just last_name for now
+  const last_name = req.query.last_name;
+  let condition = last_name ? { last_name: { [Op.like]: `%${last_name}%` } } : null;
 
   Customers.findAll({ where: condition })
     .then((data) => {
@@ -81,12 +83,3 @@ exports.findOne = (req, res) => {
       });
     });
 };
-
-// // Update a Tutorial by the id in the request
-// exports.update = (req, res) => {
-
-// };
-// // Delete a Tutorial with the specified id in the request
-// exports.delete = (req, res) => {};
-// // Delete all Tutorials from the database.
-// exports.deleteAll = (req, res) => {};

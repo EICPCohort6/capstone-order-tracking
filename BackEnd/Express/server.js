@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const connection = require("../SQL/connection");
+const database = require("../SQL/connection");
 
 const app = express();
 
@@ -15,9 +15,9 @@ app.use(express.urlencoded({ extended: true }));
 //init sequelize and run sync
 (async function () {
   try {
-    await connection.sync({
+    await database.connection.sync({
       logging: console.log,
-      force: true, // use this to resync database in development, otherwise leave when production
+      force: false,
     });
     console.log("Successful connection");
   } catch (err) {
@@ -25,16 +25,7 @@ app.use(express.urlencoded({ extended: true }));
   }
 })();
 
-// test endpoint
-/*
-app.get("/", (req, res) => {
-  res.json({
-    message: "Backend of capstone order tracking is up and running!",
-  });
-});
-*/
-
-//include route
+//include routes
 require("../SQL/Routes/customer-routes")(app);
 
 // set port, listen for requests
