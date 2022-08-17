@@ -4,7 +4,7 @@
   "description": "We want to increase the productivity of our customer service representatives (CSR). This app allow them to perform various store related operations including creating order, products, and customers as well as view and track an orders progress.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./Test/dummyTest.js"
   },
   "repository": {
     "type": "git",
