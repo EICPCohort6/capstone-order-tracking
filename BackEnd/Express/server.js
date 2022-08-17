@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const sequelize = require("../SQL/connection");
+const connection = require("../SQL/connection");
 
 const app = express();
 
@@ -13,8 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //init sequelize and run sync
-const connection = require(sequelize);
-
 (async function () {
   try {
     await connection.sync({
