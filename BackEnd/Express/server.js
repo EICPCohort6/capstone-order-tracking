@@ -25,7 +25,16 @@ app.use(express.urlencoded({ extended: true }));
   }
 })();
 
-//include routes
+// test endpoint
+
+app.get("/", (req, res) => {
+  res.json({
+    message: "Backend of capstone order tracking is up and running!",
+  });
+});
+
+
+//include route
 require("../SQL/Routes/customer-routes")(app);
 
 // set port, listen for requests
