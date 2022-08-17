@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const sequelize = require("../SQL/connection");
 
 const app = express();
 
