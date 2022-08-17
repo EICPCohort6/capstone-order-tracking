@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/EICPCohort6/capstone-order-tracking/issues"
   },
-  "homepage": "https://github.com/EICPCohort6/capstone-order-tracking#readme"
+  "homepage": "https://github.com/EICPCohort6/capstone-order-tracking#readme",
+  "dependencies": {
+    "cowsay": "^1.5.0"
+  }
+
 }
