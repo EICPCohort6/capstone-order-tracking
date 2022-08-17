@@ -71,11 +71,11 @@ paths:
           description: The specified customer ID is invalid (NaN)
         "404":
           description: A customer with the specified ID was not found.
-  /customers/{lName}:
+  /customers/{last_name}:
     get:
       summary: Return a customer by last name.
       parameters:
-        - name: lName
+        - name: last_name
           in: path
           required: true
           description: Last name of customer.
