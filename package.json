@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/EICPCohort6/capstone-order-tracking#readme",
   "dependencies": {
-    "cowsay": "^1.5.0"
+    "cowsay": "^1.5.0",
+    "mocha": "^10.0.0"
   }
-
 }
