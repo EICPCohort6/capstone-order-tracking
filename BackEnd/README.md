@@ -26,3 +26,5 @@
 *Until we are all set up with JIRA, we will be using this README to keep track of current progress.*
 
 Alexis, 8/16: Initialized node project within BackEnd directory so all packages can be accesed from sub folders. Set up skeleton for web server in express directory. 
+
+Alexis, 8/17: GET customers and GET customers with specified last name endpoints are working at `https://localhost:8080/api/customers` and `https://localhost:8080/api/customers?last_name="<last name here>"`, respectively. 
