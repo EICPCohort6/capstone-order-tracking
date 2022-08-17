@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
 */
 
 //include route
-require("../Routes/customer-routes")(app);
+require("../SQL/Routes/customer-routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
