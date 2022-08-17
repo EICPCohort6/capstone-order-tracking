@@ -1,10 +1,13 @@
+import React from "react";
 import "./App.css";
-import MainPage from "./pages/mainPage";
 
 function App() {
   return (
-      <MainPage />
-    
+    <div className="App">
+      <header className="App-header">
+        <h2>Getting started with React testing library</h2>
+      </header>
+    </div>
   );
 }
 
