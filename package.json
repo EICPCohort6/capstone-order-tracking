@@ -1,0 +1,19 @@
+{
+  "name": "capstone-order-tracking",
+  "version": "1.0.0",
+  "description": "We want to increase the productivity of our customer service representatives (CSR). This app allow them to perform various store related operations including creating order, products, and customers as well as view and track an orders progress.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EICPCohort6/capstone-order-tracking.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EICPCohort6/capstone-order-tracking/issues"
+  },
+  "homepage": "https://github.com/EICPCohort6/capstone-order-tracking#readme"
+}
