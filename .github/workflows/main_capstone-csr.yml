@@ -10,15 +10,17 @@ on:
   workflow_dispatch:
 
 
-defaults:
-  run:
-    shell: bash
-    working-directory: ./FrontEnd/front-end
+
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
+    defaults:
+      run:
+       shell: bash
+       working-directory: ./FrontEnd/front-end
+       
     steps:
       - uses: actions/checkout@v2
 
