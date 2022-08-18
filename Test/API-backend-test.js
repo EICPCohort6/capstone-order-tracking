@@ -51,7 +51,7 @@ describe('GET /api/customers', function() {
             //.query('last_name=Paxton')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
-            .expect(200, [ { //brackets because since last name isn't unique, API 
+            .expect(200, [ { //brackets because since last name isn't unique, API
                 //returns a list instead of a single object like with ID
                 customer_id: 9,
                 first_name: 'John',
@@ -70,6 +70,42 @@ describe('GET /api/customers', function() {
             } ], done);
     });
 });
+
+describe('GET /api/orders/1', function() {
+    it('should get order with ID 1', function(done) {
+        request(app)
+            .get('/api/orders/1')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, {
+                order_id: 1,
+                customer_id: 1,
+                order_status_code: 2,
+                datetime_order_placed: '2022-08-10T01:44:00.000Z',
+                total_order_price: 14.99,
+                order_notes: 'no notes'
+            }, done);
+    });
+})
+
+describe('POST /api/orders', function() {
+    it('should create a new customer', function(done) {
+        let order = {
+            customer_id: 1,
+            order_status_code: 2,
+            datetime_order_placed: '2022-08-10 01:44:00',
+            total_order_price: 14.99,
+            order_notes: 'no notes'
+        }
+
+        request(app)
+            .post('/api/orders')
+            .send(order)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, done)
+    })
+})
     // it('customer ID "hello" returns 400 bad request', function(done) {
     //     request(app)
     //         .get(`/api/customers/"hello"`)
