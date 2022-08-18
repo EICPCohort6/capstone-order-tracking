@@ -6,7 +6,7 @@ const NavigationBar = () => {
   return (
     <>
       <Container className="p-0">
-        <img style={{ width: "100%" }} src="/assets/placeholder_template.jpg" />
+        <img style={{ width: "100%" }} src="/assets/placeholder_template.jpg" alt=""/>
 
         <Row className="px-4">
           <Col xs="12" md="4" noGutters>
@@ -15,6 +15,7 @@ const NavigationBar = () => {
               width="100%"
               height="100%"
               className="User-image"
+              alt=""
             />
           </Col>
           <Col xs="12" md="8" className="User-name p-2">
