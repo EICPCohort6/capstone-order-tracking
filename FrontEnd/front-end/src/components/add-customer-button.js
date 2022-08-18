@@ -12,12 +12,7 @@ function AddCustomerButton(args) {
       <Button color="danger" onClick={toggle}>
         Add New Customer
       </Button>
-      <Modal
-        isOpen={modal}
-        toggle={toggle}
-        className="Customer-form"
-        fullscreen
-      >
+      <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Create New Customer</ModalHeader>
         <ModalBody>
           <CustomerForm />

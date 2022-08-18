@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const NavigationBar = () => {
   return (
     <>
-      <Container className="p-0">
+      <Container className="Header-logo p-0">
         <img
           style={{ width: "100%" }}
           src="/assets/TJX.jpg"

@@ -43,21 +43,21 @@ const CustomerForm = () => {
             <Input id="exampleCity" name="city" />
           </FormGroup>
         </Col>
-        <Col md={4}>
+        <Col md={6}>
           <FormGroup>
             <Label for="exampleState">State</Label>
             <Input id="exampleState" name="state" />
           </FormGroup>
         </Col>
-        <Col md={2}>
+      </Row>
+      <Row>
+        <Col md={4}>
           <FormGroup>
             <Label for="exampleZip">Zip</Label>
             <Input id="exampleZip" name="zip" />
           </FormGroup>
         </Col>
-      </Row>
-      <Row>
-        <Col md={6}>
+        <Col md={8}>
           <FormGroup>
             <Label for="Email Address">Email Address</Label>
             <Input
@@ -67,13 +67,15 @@ const CustomerForm = () => {
             />
           </FormGroup>
         </Col>
-        <Col md={4}>
+      </Row>
+      <Row>
+        <Col md={6}>
           <FormGroup>
             <Label for="phoneNumber">Phone Number</Label>
             <Input id="phoneNumber" name="phoneNumber" />
           </FormGroup>
         </Col>
-        <Col md={2}>
+        <Col md={6}>
           <FormGroup>
             <Label for="dateOfBirth">Date of Birth</Label>
             <Input
