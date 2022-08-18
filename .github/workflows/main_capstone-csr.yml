@@ -4,9 +4,10 @@
 name: Build and deploy Node.js app to Azure Web App - capstone-csr
 
 on:
-  push:
-    branches:
-      - main
+#  push:
+#    branches:
+#  - main
+  
   workflow_dispatch:
 
 jobs:
