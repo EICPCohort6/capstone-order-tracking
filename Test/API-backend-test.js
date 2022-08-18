@@ -1,3 +1,4 @@
+
 const request = require('supertest');
 const assert = require('assert');
 const express = require('express');
@@ -68,14 +69,10 @@ describe('GET /api/customers', function() {
                 zipcode: '01901'
             } ], done);
     });
-
+});
     // it('customer ID "hello" returns 400 bad request', function(done) {
     //     request(app)
     //         .get(`/api/customers/"hello"`)
     //         .set('Accept', 'application/json')
     //         .expect(400, done)
     // });
-
-});
-
-
