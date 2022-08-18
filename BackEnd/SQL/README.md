@@ -72,7 +72,7 @@ To support the order tracking application, we built the following database struc
     - <b>Order_notes:</b> A key of <b>varchar</b> datatype that holds values for order notes. 
   </pre>
   
-  - **Products:**
+- **Products:**
   - Contains information about products.
   <pre>
     - <b>Product_id:</b> A primary key of <b>int</b> datatype that represents a unique ID for each product. 
