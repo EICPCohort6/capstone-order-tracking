@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Container, Col } from "reactstrap";
-
+import OrdersPage from "./ordersPage";
 const MainPage = () => {
   return (
     <>
@@ -12,7 +12,9 @@ const MainPage = () => {
           </Col>
           <Col xs="8">
             <h1>BASE CONTENT HERE</h1>
+            <OrdersPage/>
           </Col>
+
         </Row>
       </Container>
     </>
