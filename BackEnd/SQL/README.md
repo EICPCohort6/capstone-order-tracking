@@ -71,3 +71,40 @@ To support the order tracking application, we built the following database struc
     - <b>Total_order_price:</b> A non nullable key of <b>float</b> datatype that holds values for the total price of orders. 
     - <b>Order_notes:</b> A key of <b>varchar</b> datatype that holds values for order notes. 
   </pre>
+  
+  - **Products:**
+  - Contains information about products.
+  <pre>
+    - <b>Product_id:</b> A primary key of <b>int</b> datatype that represents a unique ID for each product. 
+    - <b>Product_SKU:</b> A non nullable key of <b>int</b> datatype that hold values for the SKU code of each product. 
+    - <b>Product_price:</b> A non nullable key of <b>float</b> datatype that hold values for the prices of products. 
+    - <b>Product_name:</b> A non nullable key of <b>varchar</b> datatype that hold values for the names of products. 
+    - <b>Product_quantity:</b> A non nullable key of <b>int</b> datatype that hold values for the quantity of products available. 
+    - <b>Product_description:</b> A key of <b>varchar</b> datatype that hold values for the descriptions of products. 
+    - <b>Product_image_url:</b> A key of <b>varchar</b> datatype that hold values for the URL of images of products. 
+  </pre>
+
+- **Status:**
+  - Contains information about status of orders.
+  <pre>
+    - <b>Order_status_code:</b> A primary key of <b>int</b> datatype that represents a unique status code for each status. 
+    - <b>Status_name:</b> A non nullable key of <b>varchar</b> datatype that holds values of status names. 
+  </pre>
+
+- **Customers_connect_csr:**
+  - Connecting table between customers table and customer service representatives table.
+  <pre>
+    - <b>Customers_connect_csr_id:</b> A primary key of <b>int</b> datatype that represents a unique ID for each connection between customers table and csr table. 
+    - <b>Customer_id:</b> A foreign key from <b>customers</b> table of <b>int</b> datatype that represents a unique ID for each customer.
+    - <b>Csr_id:</b> A foreign key from <b>csr</b> table of <b>int</b> datatype that represents a unique ID for customer service representative. 
+    - <b>Ccc_timestamp: </b> A non nullable key of <b>datetime</b> datatype that hold values for the timestamp of when a customer service representative provides service to a customer. 
+  </pre>
+
+- **Products_connect_orders:**
+  - Connecting table between products table and orders table.
+  <pre> 
+    - <b>Products_connect_orders_id:</b> A primary key of <b>int</b> datatype that represents a unique ID for each connection between products table and orders table. 
+    - <b>Order_id:</b> A foreign key from <b>orders</b> table of <b>int</b> datatype that represents a unique ID for each order.
+    - <b>Product_id:</b> A foreign key from <b>products</b> table of <b>int</b> datatype that represents a unique ID for each product.
+    - <b>Order_quantity:</b> A non nullable key of <b>int</b> datatype that hold values for the quantity of products in each order. 
+  </pre>
