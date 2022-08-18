@@ -25,3 +25,21 @@ In the **Backend** folder, there is the **SQL** folder in which there are 3 file
     - HTML                # HTML files
     - JS                  # JS files
 </pre>
+
+## Database Dictionary: 
+
+To support the order tracking application, we built the following database structure: 
+
+- CSR: Customer Service Representative table. 
+  - Contains information about customer service representatives 
+  <pre>
+    - Csr_id: A primary key of **int** datatype that represents a unique ID for each customer service representative. 
+    - First_name: A non nullable key of **varchar** datatype that holds values for the first names of customer service representatives.
+    - Middle_name: A key of **varchar** datatype that holds values for the middle names of customer service representatives.
+    - Last_name: A non nullable key of **varchar** datatype that holds values for the middle names of customer service representatives.
+    - Phone_number: A non nullable key of **varchar** datatype that holds values for the phone numbers of customer service representatives.
+    - Email: A non nullable key of **varchar** datatype that holds values for the emails of customer service representatives. 
+  </pre>
+
+- Customers: 
+  - Contains information about customers. 
