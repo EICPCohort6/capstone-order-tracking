@@ -28,3 +28,22 @@
 Alexis, 8/16: Initialized node project within BackEnd directory so all packages can be accesed from sub folders. Set up skeleton for web server in express directory. 
 
 Alexis, 8/17: GET customers and GET customers with specified last name endpoints are working at `https://localhost:8080/api/customers` and `https://localhost:8080/api/customers?last_name="<last name here>"`, respectively. 
+
+Alexis, 8/18: The following endpoints are working:
+
+```
+GET all customers https://localhost:8080/api/customers
+
+GET customer by id https://localhost:8080/api/customers/<id>
+
+GET customer by last name https://localhost:8080/api/customers?last_name="<last name>"
+
+GET all orders https://localhost:8080/api/orders
+
+GET order by id https://localhost:8080/api/orders/<id>
+
+POST order https://localhost:8080/api/orders
+
+DELETE order https://localhost:8080/api/orders
+```
+Began writing unit tests for customer endpoints.
