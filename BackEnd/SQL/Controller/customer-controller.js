@@ -15,7 +15,7 @@ exports.create = (req, res) => {
 
   // if validaiton is successful, create customer
   const newCustomer = {
-    customer_id: req.body.customer_id,
+    // customer_id: req.body.customer_id,
     first_name: req.body.first_name,
     middle_name: req.body.middle_name,
     last_name: req.body.last_name,
@@ -46,10 +46,11 @@ exports.create = (req, res) => {
 
 // Retrieve all customers from the database.
 exports.findAll = (req, res) => {
-
   // planning to make this dynamic for all fields that appear in query strings, just last_name for now
   const last_name = req.query.last_name;
-  let condition = last_name ? { last_name: { [Op.like]: `%${last_name}%` } } : null;
+  let condition = last_name
+    ? { last_name: { [Op.like]: `%${last_name}%` } }
+    : null;
 
   Customers.findAll({ where: condition })
     .then((data) => {
@@ -80,6 +81,53 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message: "Error retrieving customer with id =" + id,
+      });
+    });
+};
+
+// Update a single Customer with an id
+exports.update = (req, res) => {
+  const id = req.params.id;
+  Customers.update(req.body, {
+    where: { id: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Customer was updated successfully.",
+        });
+      } else {
+        res.send({
+          message: `Cannot update Customer with id=${id}. Maybe Customer was not found or req.body is empty!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error updating Customer with id=" + id,
+      });
+    });
+};
+
+exports.delete = (req, res) => {
+  const id = req.params.id;
+  Customers.destroy({
+    where: { id: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Customer was deleted successfully!",
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Customer with id=${id}. Maybe Customer was not found!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not delete Customer with id=" + id,
       });
     });
 };
