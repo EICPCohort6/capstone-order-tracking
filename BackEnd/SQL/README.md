@@ -33,12 +33,12 @@ To support the order tracking application, we built the following database struc
 - CSR: Customer Service Representative table. 
   - Contains information about customer service representatives 
   <pre>
-    - **Csr_id:** A primary key of **int** datatype that represents a unique ID for each customer service representative. 
-    - **First_name:** A non nullable key of **varchar** datatype that holds values for the first names of customer service representatives.
-    - **Middle_name:** A key of **varchar** datatype that holds values for the middle names of customer service representatives.
-    - **Last_name:** A non nullable key of **varchar** datatype that holds values for the middle names of customer service representatives.
-    - **Phone_number:** A non nullable key of **varchar** datatype that holds values for the phone numbers of customer service representatives.
-    - **Email:** A non nullable key of **varchar** datatype that holds values for the emails of customer service representatives. 
+    - <b>Csr_id:</b> A primary key of **int** datatype that represents a unique ID for each customer service representative. 
+    - <b>First_name:</b> A non nullable key of **varchar** datatype that holds values for the first names of customer service representatives.
+    - <b>Middle_name:</b> A key of **varchar** datatype that holds values for the middle names of customer service representatives.
+    - <b>Last_name:</b> A non nullable key of **varchar** datatype that holds values for the middle names of customer service representatives.
+    - <b>Phone_number:</b> A non nullable key of **varchar** datatype that holds values for the phone numbers of customer service representatives.
+    - <b>Email:</b> A non nullable key of **varchar** datatype that holds values for the emails of customer service representatives. 
   </pre>
 
 - Customers: 
