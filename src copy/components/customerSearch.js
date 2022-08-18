@@ -71,33 +71,23 @@ const DropDownSelected = (props) => {
     </UncontrolledDropdown>
   );
 };
-const apiCall = (event, getData, setTableData, searchCondition, text) => {
-  event.preventDefault();
-  const info = { searchCondition, text };
-  getData(info).then((result) => setTableData(DUMMY_TABLE_DATA));
+const apiCall = (getData, setTableData) => {
+  //getData.then( settabledata)
+  setTableData(DUMMY_TABLE_DATA);
 };
 const Search = (props) => {
   const { getData, setTableData } = props;
   const [searchCondition, setSearchCondition] = useState("Last Name");
-  const [text, setText] = useState("");
 
   return (
-    <form
-      onSubmit={(event) =>
-        apiCall(event, getData, setTableData, searchCondition, text)
-      }
-    >
+    <form>
       <InputGroup>
-        <Input
-          placeholder="Search"
-          onChange={(event) => setText(event.target.value)}
-          value={text}
-        />
+        <Input placeholder="Search" />
         <DropDownSelected
           searchCondition={searchCondition}
           setSearchCondition={setSearchCondition}
         />
-        <Button type="submit">Search</Button>
+        <Button onClick={() => apiCall(getData, setTableData)}>Search</Button>
       </InputGroup>
     </form>
   );
