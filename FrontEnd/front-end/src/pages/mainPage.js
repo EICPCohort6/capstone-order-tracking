@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { Row, Container, Col } from "reactstrap";
+import NavigationBar from "../components/navigation";
 
 const MainPage = () => {
   return (
@@ -8,10 +9,10 @@ const MainPage = () => {
       <h1>header/logo</h1>
       <Container fluid>
         <Row>
-          <Col xs="2">
-            <h1>NAVBAR HERE</h1>
+          <Col xs="2" className="Navbar-background" style={{ height: "100vh" }}>
+            <NavigationBar />
           </Col>
-          <Col xs="10" md="8">
+          <Col xs="10" md="8" className="p-3">
             <Outlet />
           </Col>
         </Row>

@@ -12,6 +12,7 @@ CREATE TABLE `customers` (
   `phone_number` varchar(255),
   `email` varchar(255) NOT NULL,
   `customer_notes` varchar(255),
+  `date_of_birth` date NOT NULL,
   `street_number` int NOT NULL,
   `unit_number` varchar(255),
   `street_name` varchar(255) NOT NULL,
@@ -36,7 +37,8 @@ CREATE TABLE `products` (
   `product_price` float NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `product_quantity` int NOT NULL,
-  `product_description` varchar(255)
+  `product_description` varchar(255),
+  `product_image_url` varchar(255)
 );
 
 CREATE TABLE `CSR` (
