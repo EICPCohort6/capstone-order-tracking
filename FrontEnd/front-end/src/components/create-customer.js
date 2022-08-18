@@ -88,7 +88,6 @@ const CustomerForm = () => {
         <Label for="customerNotes">Customer Notes</Label>
         <Input id="customerNotes" name="customerNotes" />
       </FormGroup>
-      <Button>Submit</Button>
     </Form>
   );
 };
