@@ -1,13 +1,22 @@
-import React from "react";
+
 import "./App.css";
+import MainPage from "./pages/mainPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CustomerPage from "./pages/customersPage";
+import OrderPage from "./pages/ordersPage";
+import NoPage from "./pages/noPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h2>Getting started with React testing library</h2>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />}>
+          <Route index element={<CustomerPage />} />
+          <Route path="order" element={<OrderPage />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
