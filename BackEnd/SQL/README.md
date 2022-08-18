@@ -12,6 +12,7 @@ To create the database locally, do the following:
 
 In the **Backend** folder, there is the **SQL** folder in which there are 3 files. One to create the tables, one to insert the mock data and one that contains test queries as the following:
 
+<pre>
 - BackEnd                 # Backend files 
   - Express              
   - Node              
@@ -23,3 +24,4 @@ In the **Backend** folder, there is the **SQL** folder in which there are 3 file
     - CSS                 # CSS files 
     - HTML                # HTML files
     - JS                  # JS files
+</pre>
