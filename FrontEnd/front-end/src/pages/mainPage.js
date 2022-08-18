@@ -1,17 +1,17 @@
 import React from "react";
 import { Row, Container, Col } from "reactstrap";
 import CustomerForm from "../components/create-customer";
+import NavigationBar from "../components/navigation";
 
 const MainPage = () => {
   return (
     <>
-      <h1>header/logo</h1>
-      <Container fluid>
-        <Row>
-          <Col xs="3">
-            <h1>NAVBAR HERE</h1>
+      <Container fluid className="p-0">
+        <Row h noGutters>
+          <Col xs="2" className="Navbar-background" style={{ height: "100vh" }}>
+            <NavigationBar />
           </Col>
-          <Col xs="6">
+          <Col xs="10" style={{ height: "100vh" }} className="p-4">
             <CustomerForm />
           </Col>
         </Row>
