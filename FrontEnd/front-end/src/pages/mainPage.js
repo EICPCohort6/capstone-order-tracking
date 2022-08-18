@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { Row, Container, Col } from "reactstrap";
-import CustomerPage from "./customersPage";
 
 const MainPage = () => {
   return (

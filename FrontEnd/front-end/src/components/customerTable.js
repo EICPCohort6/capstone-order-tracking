@@ -9,46 +9,14 @@ const TABLE_HEADERS = [
   "Phone Number",
   "Email",
 ];
-const DUMMY_TABLE_DATA = [
-  {
-    id: 0,
-    firstName: "John",
-    middleName: "-",
-    lastName: "Bob",
-    phoneNumber: "12312435245",
-    email: "john@bob.com",
-  },
-  {
-    id: 1,
-    firstName: "Josh",
-    middleName: "Middle",
-    lastName: "Something",
-    phoneNumber: "23443543634",
-    email: "Josh@bob.com",
-  },
-  {
-    id: 2,
-    firstName: "Ryan",
-    middleName: "Simba",
-    lastName: "Last",
-    phoneNumber: "12125636345345",
-    email: "Ryan@bob.com",
-  },
-  {
-    id: 3,
-    firstName: "Kat",
-    middleName: "-",
-    lastName: "Someone",
-    phoneNumber: "1231245345",
-    email: "john@bob.com",
-  },
-];
 
 const CustomerTable = (props) => {
+  const { tableData } = props;
+
   const mappedHeaders = TABLE_HEADERS.map((header, index) => {
     return <th key={index}>{header}</th>;
   });
-  const mappedRows = DUMMY_TABLE_DATA.map((person, index) => {
+  const mappedRows = tableData.map((person, index) => {
     return (
       <tr key={index}>
         <th scope="row">{person.id}</th>
@@ -69,4 +37,13 @@ const CustomerTable = (props) => {
   );
 };
 
-export default CustomerTable;
+const CustomerTableDisplay = (props) => {
+  const { tableData } = props;
+  return tableData === "empty" ? (
+    <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>
+  ) : (
+    <CustomerTable tableData={tableData} />
+  );
+};
+
+export default CustomerTableDisplay;
