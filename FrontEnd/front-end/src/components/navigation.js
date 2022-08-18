@@ -1,13 +1,13 @@
 import React from "react";
 import { Row, Container, Col, Nav, NavItem, NavLink } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const NavigationBar = () => {
   return (
     <>
       <Container className="p-0">
-        <Row xs="1" noGutters>
-          <img src="/assets/placeholder_template.jpg" />
-        </Row>
+        <img style={{ width: "100%" }} src="/assets/placeholder_template.jpg" />
+
         <Row className="px-4">
           <Col xs="12" md="4" noGutters>
             <img
@@ -29,10 +29,10 @@ const NavigationBar = () => {
               </NavLink>
             </NavItem>
             <NavItem className="p-1">
-              <NavLink href="#">Customers</NavLink>
+              <Link to={"/"}>Customers</Link>
             </NavItem>
             <NavItem className="p-1">
-              <NavLink href="#">Products</NavLink>
+              <Link to={"order"}>Orders</Link>
             </NavItem>
           </Nav>
         </Row>
