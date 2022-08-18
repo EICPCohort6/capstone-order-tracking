@@ -30,16 +30,44 @@ In the **Backend** folder, there is the **SQL** folder in which there are 3 file
 
 To support the order tracking application, we built the following database structure: 
 
-- CSR: Customer Service Representative table. 
+- **CSR: Customer Service Representative table.**
   - Contains information about customer service representatives 
   <pre>
-    - <b>Csr_id:</b> A primary key of **int** datatype that represents a unique ID for each customer service representative. 
-    - <b>First_name:</b> A non nullable key of **varchar** datatype that holds values for the first names of customer service representatives.
-    - <b>Middle_name:</b> A key of **varchar** datatype that holds values for the middle names of customer service representatives.
-    - <b>Last_name:</b> A non nullable key of **varchar** datatype that holds values for the middle names of customer service representatives.
-    - <b>Phone_number:</b> A non nullable key of **varchar** datatype that holds values for the phone numbers of customer service representatives.
-    - <b>Email:</b> A non nullable key of **varchar** datatype that holds values for the emails of customer service representatives. 
+    - <b>Csr_id:</b> A primary key of <b>int</b> datatype that represents a unique ID for each customer service representative. 
+    - <b>First_name:</b> A non nullable key of <b>varchar</b> datatype that holds values for the first names of customer service representatives.
+    - <b>Middle_name:</b> A key of <b>varchar</b> datatype that holds values for the middle names of customer service representatives.
+    - <b>Last_name:</b> A non nullable key of <b>varchar</b> datatype that holds values for the middle names of customer service representatives.
+    - <b>Phone_number:</b> A non nullable key of <b>varchar</b> datatype that holds values for the phone numbers of customer service representatives.
+    - <b>Email:</b> A non nullable key of <b>varchar</b> datatype that holds values for the emails of customer service representatives. 
   </pre>
 
-- Customers: 
+- **Customers:**
   - Contains information about customers. 
+  <pre>
+    - <b>Customer_id:</b> A primary key of <b>int</b> datatype that represents a unique ID for each customer. 
+    - <b>First_name:</b> A non nullable key of <b>varchar</b> datatype that holds values for the first names of customers. 
+    - <b>Middle_name:</b> A key of <b>varchar</b> datatype that holds values for the middle names of customers. 
+    - <b>Last_name:</b> A non nullable key of <b>varchar</b> datatype that holds values for the middle names of customers. 
+    - <b>Phone_number:</b> A key of <b>varchar</b> datatype that holds values for the phone numbers of customers. 
+    - <b>Email:</b> A non nullable key of <b>varchar</b> datatype that holds values for the emails of customers. 
+    - <b>Customer_notes:</b> A key of <b>varchar</b> datatype that holds values for customer notes. 
+    - <b>Date_of_birth:</b> A key of <b>varchar</b> datatype that holds values for date of birth of customers. 
+    - <b>Street_number:</b> A non nullable key of <b>int</b> datatype that holds values for street numbers for the address. 
+    - <b>Unit_number:</b> A key of <b>varchar</b> datatype that holds values for unit numbers. 
+    - <b>Street_name:</b> A non nullable key of <b>varchar</b> datatype that holds values for street names. 
+    - <b>City:</b> A non nullable key of <b>varchar</b> datatype that holds values for city names. 
+    - <b>State:</b> A non nullable key of <b>varchar</b> datatype that holds values for state names.
+    - <b>Country:</b> A non nullable key of <b>varchar</b> datatype that holds values for country names.
+    - <b>Zipcode:</b> A non nullable key of <b>varchar</b> datatype that holds values for zipcodes. 
+  </pre>
+
+- **Orders:**
+  - Contains information about orders.
+  <pre>
+    - <b>Order_id:</b> A primary key of <b>int</b> datatype that represents a unique ID for each order.
+    - <b>Customer_id:</b> A foreign key from <b>customers</b> table of <b>int</b> datatype that represents a unique ID for each customer.
+    - <b>Order_status_code:</b> A non nullable key of <b>int</b> datatype that represents the status of an order. 
+    - <b>Datetime_order_placed:</b> A non nullable key of <b>datetime</b> datatype that holds values for datetimes of when orders are being placed. 
+    - <b>Total_order_price:</b> A non nullable key of <b>float</b> datatype that holds values for the total price of orders. 
+    - <b>Order_notes:</b> A key of <b>varchar</b> datatype that holds values for order notes. 
+  </pre>
