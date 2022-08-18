@@ -36,7 +36,7 @@ jobs:
           app-name: 'capstone-csr'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B19E41D3ED5D4908B123F716FBEFA3E3 }}
-          package: ./FrontEmd/front
+          package: ./FrontEnd/front
 
  
      
