@@ -11,16 +11,15 @@ To create the database locally, do the following:
 ## Folder and File Structure:
 
 In the **Backend** folder, there is the **SQL** folder in which there are 3 files. One to create the tables, one to insert the mock data and one that contains test queries as the following:
-.
-├── BackEnd                 # Backend files \\
-│   ├── Express              \\
-│   ├── Node              
-│   ├── SQL                 # Contains database files
-    │   ├── capstone-project.sql                 # Contains Data Definition Language of the database
-    │   ├── capstone-query-tests.sql             # Contains tests queries
-    │   ├── insert_dummy_data.sql                # Contains dummy data. 
-├── FrontEnd                # Frontend files
-│   ├── CSS                 # CSS files 
-│   ├── HTML                # HTML files
-│   ├── JS                  # JS files
-└── ...
+
+- BackEnd                 # Backend files 
+  - Express              
+  - Node              
+  - SQL                   # Contains database files
+    - capstone-project.sql                 # Contains Data Definition Language of the database
+    - capstone-query-tests.sql             # Contains tests queries
+    - insert_dummy_data.sql                # Contains dummy data. 
+- FrontEnd                # Frontend files
+    - CSS                 # CSS files 
+    - HTML                # HTML files
+    - JS                  # JS files
