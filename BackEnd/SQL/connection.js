@@ -22,9 +22,14 @@ const database = {
 
   // Link models with database connection here
   customers: require("./models/customer.js")(connection, Sequelize),
-  orders: require("./models/orders")(connection, Sequelize),
-
-  customers.hasMany(orders)
+  orders: require("./models/orders.js")(connection, Sequelize),
 };
+
+//database.customers.hasMany(database.orders,  {  foreignKey: "customer_id", as: "orders" });
+database.customers.hasMany(database.orders, { foreignKey: "customer_id", as: "orders" });
+database.orders.belongsTo(database.customers, {
+  foreignKey: "customer_id",
+  as: "customers"
+});
 
 module.exports = database;

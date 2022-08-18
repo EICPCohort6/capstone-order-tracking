@@ -9,6 +9,7 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+        field: "customer_id"
       },
       first_name: {
         type: DataTypes.STRING,
