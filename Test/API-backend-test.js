@@ -21,7 +21,7 @@ describe('GET /api/customers', function() {
             .expect(404, done);
     });
 
-    it('customer ID 1 first_name is Zara', function(done) {
+    it('should get customer with ID 1', function(done) {
         request(app)
             .get('/api/customers/1')
             .set('Accept', 'application/json')
@@ -42,6 +42,31 @@ describe('GET /api/customers', function() {
                 country: 'US',
                 zipcode: '02125'
             }, done);
+    });
+
+    it('should get customer with last name Paxton', function(done) {
+        request(app)
+            .get('/api/customers?last_name=Paxton')
+            //.query('last_name=Paxton')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, [ { //brackets because since last name isn't unique, API 
+                //returns a list instead of a single object like with ID
+                customer_id: 9,
+                first_name: 'John',
+                middle_name: 'JP',
+                last_name: 'Paxton',
+                phone_number: '781-543-2367',
+                email: 'john_paxton@tjx.com',
+                customer_notes: 'Call before shipping',
+                street_number: 87,
+                unit_number: 'Apt 16',
+                street_name: '1st Street',
+                city: 'Lynn',
+                state: 'MA',
+                country: 'US',
+                zipcode: '01901'
+            } ], done);
     });
 
     // it('customer ID "hello" returns 400 bad request', function(done) {
