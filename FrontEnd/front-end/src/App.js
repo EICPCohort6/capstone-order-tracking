@@ -1,6 +1,8 @@
+
 import "./App.css";
+import React from "react";
 import MainPage from "./pages/mainPage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CustomerPage from "./pages/customersPage";
 import OrderPage from "./pages/ordersPage";
 import NoPage from "./pages/noPage";
