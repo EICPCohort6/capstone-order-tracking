@@ -35,9 +35,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     {
       createdAt: false,
-      updatedAt: false,
-      underscored: true,
-    }
+      updatedAt: false    }
   );
   
   return product;
