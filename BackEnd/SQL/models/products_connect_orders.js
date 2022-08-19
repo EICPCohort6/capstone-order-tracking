@@ -11,23 +11,20 @@ module.exports = (sequelize, Sequelize) => {
       },
       order_id: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
         allowNull: false,
         references: {
-            model: Order,
-            key: "order_id",
-          },
+          model: Order,
+          key: "order_id",
+        },
       },
       product_id: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
         allowNull: false,
       },
       order_quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-    
     },
     {
       createdAt: false,
@@ -35,7 +32,6 @@ module.exports = (sequelize, Sequelize) => {
       underscored: true,
     }
   );
-  
-  return product;
 
+  return products_connect_csr;
 };

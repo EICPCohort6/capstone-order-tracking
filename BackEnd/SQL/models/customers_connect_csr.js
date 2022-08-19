@@ -20,13 +20,15 @@ module.exports = (sequelize, Sequelize) => {
       },
       csr_id: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+        // TODO
+        // Add reference to csr_id from CSR table
       },
       ccc_timestamp: {
-        type: DataTypes.DATE
-      }
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
     },
     {
       createdAt: false,
@@ -34,7 +36,6 @@ module.exports = (sequelize, Sequelize) => {
       underscored: true,
     }
   );
-  
-  return product;
 
+  return customers_connect_csr;
 };
