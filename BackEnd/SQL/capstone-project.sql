@@ -19,7 +19,7 @@ CREATE TABLE `customers` (
   `city` varchar(255) NOT NULL,
   `state` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
-  `zipcode` int NOT NULL
+  `zipcode` varchar(255) NOT NULL
 );
 
 CREATE TABLE `orders` (
