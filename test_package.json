@@ -4,7 +4,7 @@
   "description": "We want to increase the productivity of our customer service representatives (CSR). This app allow them to perform various store related operations including creating order, products, and customers as well as view and track an orders progress.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha ./Test/dummyTest.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/EICPCohort6/capstone-order-tracking#readme",
   "dependencies": {
-    "cowsay": "^1.5.0"
+    "cowsay": "^1.5.0",
+    "mocha": "^10.0.0"
   }
-
 }
