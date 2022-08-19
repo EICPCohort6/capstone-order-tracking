@@ -3,7 +3,6 @@ const database = require("../connection");
 const Orders = database.orders;
 const Op = database.Sequelize.Op;
 
-
 ///////////// Helper Functions /////////////////
 
 function findByPKFunc(req, res, id) {
@@ -23,7 +22,7 @@ function findByPKFunc(req, res, id) {
       });
     });
 
-    return res;
+  return res;
 }
 
 //create a new order
@@ -48,7 +47,7 @@ exports.create = (req, res) => {
 
   Orders.create(newOrder)
     .then((data) => {
-      res.send(data);
+      res.status(201).send(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -62,7 +61,6 @@ exports.create = (req, res) => {
 
 //REVIEW THIS FUNCTION FOR ORDERS
 exports.findAll = (req, res) => {
- 
   Orders.findAll()
     .then((data) => {
       res.send(data);
@@ -105,25 +103,25 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-  const id = req.params.id; 
+  const id = req.params.id;
 
-    Orders.destroy({
-      where: { order_id: id, order_status_code: 1 },
-    })
-      .then((num) => {
-        if (num == 1) {
-          res.send({
-            message: "Order was deleted successfully!",
-          });
-        } else {
-          res.send({
-            message: `Cannot delete Order with id=${id}. Order was not found, or status code is not 'draft'.`,
-          });
-        }
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message: err,
+  Orders.destroy({
+    where: { order_id: id, order_status_code: 1 },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Order was deleted successfully!",
         });
+      } else {
+        res.send({
+          message: `Cannot delete Order with id=${id}. Order was not found, or status code is not 'draft'.`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err,
       });
+    });
 };

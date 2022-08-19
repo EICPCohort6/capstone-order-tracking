@@ -1,38 +1,35 @@
 const { DataTypes } = require("sequelize");
-let Customer = require("./customer");
 
 module.exports = (sequelize, Sequelize) => {
-  const order = sequelize.define(
-    "order",
+  const product = sequelize.define(
+    "product",
     {
-      order_id: {
+      product_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
       },
-      customer_id: {
+      product_SKU: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: Customer,
-          key: "customer_id",
-        },
       },
-      order_status_code: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: "order_status_code"
-      },
-      datetime_order_placed: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      total_order_price: {
+      product_price: {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
-      order_notes: {
+      product_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      product_quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      product_description: {
+        type: DataTypes.STRING,
+      },
+      product_image_url: {
         type: DataTypes.STRING,
       },
     },
@@ -42,6 +39,7 @@ module.exports = (sequelize, Sequelize) => {
       underscored: true,
     }
   );
+  
+  return product;
 
-  return order;
 };
