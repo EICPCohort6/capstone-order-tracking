@@ -31,20 +31,20 @@ describe("GET /api/customers", function () {
         200,
         {
           customer_id: 1,
-          first_name: 'Zara',
-          middle_name: 'El',
-          last_name: 'Alaoui',
-          phone_number: '781-816-0325',
-          email: 'zara_elalaoui@tjx.com',
-          customer_notes: 'No Notes',
-          date_of_birth: '2000-04-05',
+          first_name: "Zara",
+          middle_name: "El",
+          last_name: "Alaoui",
+          phone_number: "781-816-0325",
+          email: "zara_elalaoui@tjx.com",
+          customer_notes: "No Notes",
+          date_of_birth: "2000-04-05",
           street_number: 21,
-          unit_number: 'Apt 2A',
-          street_name: 'Smith Street',
-          city: 'Boston',
-          state: 'MA',
-          country: 'US',
-          zipcode: '02125'
+          unit_number: "Apt 2A",
+          street_name: "Smith Street",
+          city: "Boston",
+          state: "MA",
+          country: "US",
+          zipcode: "02125",
         },
         done
       );
@@ -64,20 +64,20 @@ describe("GET /api/customers", function () {
             //brackets because since last name isn't unique, API
             //returns a list instead of a single object like with ID
             customer_id: 9,
-            first_name: 'John',
-            middle_name: 'JP',
-            last_name: 'Paxton',
-            phone_number: '781-543-2367',
-            email: 'john_paxton@tjx.com',
-            customer_notes: 'Call before shipping',
-            date_of_birth: '1979-07-07',
+            first_name: "John",
+            middle_name: "JP",
+            last_name: "Paxton",
+            phone_number: "781-543-2367",
+            email: "john_paxton@tjx.com",
+            customer_notes: "Call before shipping",
+            date_of_birth: "1979-07-07",
             street_number: 87,
-            unit_number: 'Apt 16',
-            street_name: '1st Street',
-            city: 'Lynn',
-            state: 'MA',
-            country: 'US',
-            zipcode: '01901'
+            unit_number: "Apt 16",
+            street_name: "1st Street",
+            city: "Lynn",
+            state: "MA",
+            country: "US",
+            zipcode: "01901",
           },
         ],
         done
@@ -146,8 +146,8 @@ describe("Delete /api/orders/1", function () {
   });
 });
 
-describe("testing product enpoints", function() {
-  it("gets all products", function(done) {
+describe("testing product enpoints", function () {
+  it("gets all products", function (done) {
     request(app)
       .get("/api/products")
       .set("Accept", "application/json")
@@ -155,7 +155,7 @@ describe("testing product enpoints", function() {
       .expect(200, done);
   });
 
-  it("gets product by ID", function(done) {
+  it("gets product by ID", function (done) {
     request(app)
       .get("/api/products/1")
       .set("Accept", "application/json")
@@ -163,19 +163,81 @@ describe("testing product enpoints", function() {
       .expect(200, done);
   });
 
-  it("updates product by ID", function(done) {
+  it("updates product by ID", function (done) {
     let product = {
       //product_id:1,
-      product_SKU:123456,
-      product_price:7.99,
-      product_name:"Dove Soap",
-      product_quantity:100,
-      product_description:"Single bar of lavendar-scented soap",
-      product_image_url:null
+      product_SKU: 123456,
+      product_price: 7.99,
+      product_name: "Dove Soap",
+      product_quantity: 100,
+      product_description: "Single bar of lavendar-scented soap",
+      product_image_url: null,
     };
     request(app)
       .put("/api/products/1")
-      .send({product})
+      .send({ product })
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
+});
+
+describe("POST /api/customers", function () {
+  it("should create a new customer", function (done) {
+    let customer = {
+      first_name: "David",
+      middle_name: "John",
+      last_name: "Pax",
+      phone_number: "617-543-2458",
+      email: "David_Pax@tjx.com",
+      customer_notes: "Don't call number",
+      street_number: 43,
+      unit_number: "Apt 12",
+      street_name: "42nd Street",
+      city: "York",
+      state: "NY",
+      country: "US",
+      zipcode: "17403",
+    };
+    request(app)
+      .post("/api/orders")
+      .send(customer)
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
+});
+
+describe("Delete /api/customers/1", function () {
+  it("deletes customer with id 1", function (done) {
+    request(app)
+      .delete("/api/customers/1")
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
+});
+
+describe("Put /api/customers", function () {
+  it("updates customer with id 1", function (done) {
+    let customer = {
+      first_name: "David",
+      middle_name: "John",
+      last_name: "Pax",
+      phone_number: "617-543-2458",
+      email: "David_Pax@tjx.com",
+      customer_notes: "Don't call number",
+      street_number: 43,
+      unit_number: "Apt 12",
+      street_name: "42nd Street",
+      city: "York",
+      state: "NY",
+      country: "US",
+      zipcode: "17403",
+    };
+    request(app)
+      .put("/api/customers/1")
+      .send({ customer })
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200, done);
