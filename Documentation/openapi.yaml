@@ -35,8 +35,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified customer ID is invalid (NaN)
+        "500":
+          description: Could not get customer with the specified ID.
         "404":
           description: A customer with the specified ID was not found.
     put:
@@ -51,8 +51,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified customer ID is invalid (NaN)
+        "500":
+          description: Could not update customer with the specified ID.
         "404":
           description: A customer with the specified ID was not found.
     delete:
@@ -67,8 +67,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified customer ID is invalid (NaN)
+        "500":
+          description: Could not delete customer with specified ID.
         "404":
           description: A customer with the specified ID was not found.
   /customers/{last_name}:
@@ -84,8 +84,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified customer last name is invalid (Not a string)
+        "500":
+          description: Could not get customer with specified last name.
         "404":
           description: A customer with the specified last name was not found.
   /orders:
@@ -112,8 +112,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified order ID is invalid (NaN)
+        "500":
+          description: Could not get order with specified ID.
         "404":
           description: An order with the specified ID was not found.
     put:
@@ -128,8 +128,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified order ID is invalid (NaN)
+        "500":
+          description: Could not update order with specified ID.
         "404":
           description: An order with the specified ID was not found.
     delete:
@@ -144,8 +144,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified order ID is invalid (NaN)
+        "500":
+          description: Could not delete order with specified ID.
         "404":
           description: An order with the specified ID was not found.
   /products:
@@ -167,8 +167,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified product ID is invalid (NaN)
+        "500":
+          description: Could not get product with specified ID.
         "404":
           description: A product with the specified ID was not found
     put:
@@ -183,7 +183,7 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified product ID is invalid (NaN)
+        "500":
+          description: Could not update product with specified ID.
         "404":
           description: A product with the specified ID was not found.
