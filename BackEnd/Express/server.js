@@ -11,7 +11,7 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cors());
-app.options("http://localhost:3000", cors());
+// app.options("http://localhost:3000", cors()); // not needed apparently?
 app.use(express.urlencoded({ extended: true }));
 
 //init sequelize and run sync

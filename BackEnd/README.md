@@ -30,7 +30,11 @@ _Until we are all set up with JIRA, we will be using this README to keep track o
 
 Alexis, 8/16: Initialized node project within BackEnd directory so all packages can be accesed from sub folders. Set up skeleton for web server in express directory.
 
+Uzi & Abdur, 8/16: Configured server, database and sequelize on the back end with server running
+
 Alexis, 8/17: GET customers and GET customers with specified last name endpoints are working at `https://localhost:8080/api/customers` and `https://localhost:8080/api/customers?last_name="<last name here>"`, respectively.
+
+Uzi, 8/17: Defined routes and controller for CRUD operations based on API Endpoints
 
 Alexis, 8/18: The following endpoints are working:
 
@@ -51,3 +55,7 @@ DELETE order http://localhost:8080/api/orders
 ```
 
 Began writing unit tests for customer endpoints.
+
+Abdur, 19/08: Completed products model and routes for corresponding API endpoints
+
+Uzi, 19/08: Consulted with Front-end team to test retrieval of data using API, fixed errors and implemented additional configuration on server, result: retrieval successful
