@@ -36,4 +36,6 @@ database.orders.belongsTo(database.customers, {
   as: "customers",
 });
 
+// need to define relationships for orders and products
+
 module.exports = database;

@@ -29,6 +29,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       total_order_price: {
         type: DataTypes.FLOAT,
+        allowNull: false,
       },
       order_notes: {
         type: DataTypes.STRING,
