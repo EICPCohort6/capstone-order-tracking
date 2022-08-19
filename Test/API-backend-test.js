@@ -243,3 +243,22 @@ describe("Put /api/customers", function () {
       .expect(200, done);
   });
 });
+
+describe('PUT /api/orders/:id', function() {
+  it('Updates and order with id of 1', function(done) {
+    let order = {
+      customer_id: 1,
+      order_status_code: 2,
+      datetime_order_placed: "2022-08-10 01:44:00",
+      total_order_price: 14.99,
+      order_notes: "no notes",
+    }
+
+    request(app)
+      .put('/api/orders/1')
+      .send({order})
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  })
+})
