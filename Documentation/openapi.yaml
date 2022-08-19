@@ -3,7 +3,6 @@ info:
   title: Order Tracker API
   description: |-
     This is an API for the EIC Cohort 6 Order Tracking Capstone project.
-
     Some useful links:
     - [The Order Tracker repository](https://github.com/EICPCohort6/capstone-order-tracking)
     - [The Capstone Project assignment](https://github.com/EICPCohort6/capstone-details)
@@ -71,11 +70,12 @@ paths:
           description: The specified customer ID is invalid (NaN)
         "404":
           description: A customer with the specified ID was not found.
-  /customers/{lName}:
+
+  /customers/{last_name}:
     get:
       summary: Return a customer by last name.
       parameters:
-        - name: lName
+        - name: last_name
           in: path
           required: true
           description: Last name of customer.
