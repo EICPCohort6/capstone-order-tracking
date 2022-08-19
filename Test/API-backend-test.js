@@ -11,6 +11,7 @@ describe("GET /api/customers", function () {
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200, done);
+    //done();
   });
 
   it("responds with 404 not found", function (done) {
@@ -46,6 +47,7 @@ describe("GET /api/customers", function () {
         },
         done
       );
+    //done();
   });
 
   it("should get customer with last name Paxton", function (done) {
@@ -78,65 +80,90 @@ describe("GET /api/customers", function () {
         ],
         done
       );
+    //done();
   });
 });
 
-describe("GET /api/orders/1", function () {
-  it("should get order with ID 1", function (done) {
-    request(app)
-      .get("/api/orders/1")
-      .set("Accept", "application/json")
-      .expect("Content-Type", /json/)
-      .expect(
-        200,
-        {
-          order_id: 1,
-          customer_id: 1,
-          order_status_code: 2,
-          datetime_order_placed: "2022-08-10T01:44:00.000Z",
-          total_order_price: 14.99,
-          order_notes: "no notes",
-        },
-        done
-      );
-  });
-});
+// describe("GET /api/orders/1", function () {
+//   it("should get order with ID 1", function (done) {
+//     request(app)
+//       .get("/api/orders/1")
+//       .set("Accept", "application/json")
+//       .expect("Content-Type", /json/)
+//       .expect(
+//         200,
+//         {
+//           order_id: 1,
+//           customer_id: 1,
+//           order_status_code: 2,
+//           datetime_order_placed: "2022-08-10T01:44:00.000Z",
+//           total_order_price: 14.99,
+//           order_notes: "no notes",
+//         },
+//         done
+//       );
+//   });
+// });
 
-describe("POST /api/orders", function () {
-  it("should create a new customer", function (done) {
-    let order = {
-      customer_id: 1,
-      order_status_code: 2,
-      datetime_order_placed: "2022-08-10 01:44:00",
-      total_order_price: 14.99,
-      order_notes: "no notes",
-    };
+// describe("POST /api/orders", function () {
+//   it("should create a new customer", function (done) {
+//     let order = {
+//       customer_id: 1,
+//       order_status_code: 2,
+//       datetime_order_placed: "2022-08-10 01:44:00",
+//       total_order_price: 14.99,
+//       order_notes: "no notes",
+//     };
 
-    request(app)
-      .post("/api/orders")
-      .send(order)
-      .set("Accept", "application/json")
-      .expect("Content-Type", /json/)
-      .expect(200, done);
-  });
-});
+//     request(app)
+//       .post("/api/orders")
+//       .send(order)
+//       .set("Accept", "application/json")
+//       .expect("Content-Type", /json/)
+//       .expect(200, done);
+//   });
+// });
 
-describe("GET /api/orders", function () {
-  it("Returns all orders", function (done) {
-    request(app)
-      .get("/api/orders")
-      .set("Accept", "application/json")
-      .expect("Content-Type", /json/)
-      .expect(200, done);
-  });
-});
+// describe("GET /api/orders", function () {
+//   it("Returns all orders", function (done) {
+//     request(app)
+//       .get("/api/orders")
+//       .set("Accept", "application/json")
+//       .expect("Content-Type", /json/)
+//       .expect(200, done);
+//   });
+// });
 
-describe("Delete /api/orders/1", function () {
-  it("deletes order with id 1", function (done) {
-    request(app)
-      .delete("/api/orders/1")
-      .set("Accept", "application/json")
-      .expect("Content-Type", /json/)
-      .expect(200, done);
-  });
-});
+// describe("Delete /api/orders/1", function () {
+//   it("deletes order with id 1", function (done) {
+//     request(app)
+//       .delete("/api/orders/1")
+//       .set("Accept", "application/json")
+//       .expect("Content-Type", /json/)
+//       .expect(200, done);
+//   });
+// });
+
+// describe("testing product enpoints", function() {
+//   it("gets all products", function(done) {
+//     request(app)
+//       .get("/api/products")
+//       .set("Accept", "application/json")
+//       .expect("Content-Type", /json/)
+//       .expect(200, done);
+//   });
+
+//   it("gets product by ID", function(done) {
+//     request(app)
+//       .get("/api/products/1")
+//       .set("Accept", "application/json")
+//       .expect("Content-Type", /json/)
+//       .expect(200, done);
+//   });
+
+//   // it("updates product by ID", function(done) {
+//   //   request(app)
+//   //     .put("/api/products/1")
+
+//   // })
+// });
