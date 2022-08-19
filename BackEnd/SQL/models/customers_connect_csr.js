@@ -1,11 +1,10 @@
 const { DataTypes } = require("sequelize");
-let Customer = require("./customer");
 
 module.exports = (sequelize, Sequelize) => {
-  const order = sequelize.define(
-    "order",
+  const customers_connect_csr = sequelize.define(
+    "customers_connect_csr",
     {
-      order_id: {
+      customers_connect_csr_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
@@ -19,21 +18,15 @@ module.exports = (sequelize, Sequelize) => {
           key: "customer_id",
         },
       },
-      order_status_code: {
+      csr_id: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false,
-        field: "order_status_code"
+        autoIncrement: true,
       },
-      datetime_order_placed: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      total_order_price: {
-        type: DataTypes.FLOAT,
-      },
-      order_notes: {
-        type: DataTypes.STRING,
-      },
+      ccc_timestamp: {
+        type: DataTypes.DATE
+      }
     },
     {
       createdAt: false,
@@ -41,6 +34,7 @@ module.exports = (sequelize, Sequelize) => {
       underscored: true,
     }
   );
+  
+  return product;
 
-  return order;
 };
