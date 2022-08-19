@@ -163,9 +163,21 @@ describe("testing product enpoints", function() {
       .expect(200, done);
   });
 
-  // it("updates product by ID", function(done) {
-  //   request(app)
-  //     .put("/api/products/1")
-
-  // })
+  it("updates product by ID", function(done) {
+    let product = {
+      //product_id:1,
+      product_SKU:123456,
+      product_price:7.99,
+      product_name:"Dove Soap",
+      product_quantity:100,
+      product_description:"Single bar of lavendar-scented soap",
+      product_image_url:null
+    };
+    request(app)
+      .put("/api/products/1")
+      .send({product})
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
 });
