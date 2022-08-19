@@ -5,8 +5,21 @@ import axios from "axios";
 
 const getData = async ({ condition, text }) => {
   // does api call gets data
-  const customers = await axios.get("https://localhost:8080/api/customers");
-  return customers;
+  console.log(condition);
+  switch (condition) {
+    case "Last Name":
+      const customer = await axios.get(
+        `http://localhost:8080/api/customers?last_name=${text}`
+      );
+      return customer;
+
+    default:
+      alert("No condition selected!");
+      return "empty";
+  }
+
+  //console.log(customers);
+  //return customers;
 };
 const CustomerPage = () => {
   const [tableData, setTableData] = useState("empty");

@@ -9,41 +9,6 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-const DUMMY_TABLE_DATA = [
-  {
-    id: 0,
-    firstName: "John",
-    middleName: "-",
-    lastName: "Bob",
-    phoneNumber: "12312435245",
-    email: "john@bob.com",
-  },
-  {
-    id: 1,
-    firstName: "Josh",
-    middleName: "Middle",
-    lastName: "Something",
-    phoneNumber: "23443543634",
-    email: "Josh@bob.com",
-  },
-  {
-    id: 2,
-    firstName: "Ryan",
-    middleName: "Simba",
-    lastName: "Last",
-    phoneNumber: "12125636345345",
-    email: "Ryan@bob.com",
-  },
-  {
-    id: 3,
-    firstName: "Kat",
-    middleName: "-",
-    lastName: "Someone",
-    phoneNumber: "1231245345",
-    email: "john@bob.com",
-  },
-];
-
 const SEARCH_OPTIONS = [
   "Last Name",
   "First Name",
@@ -73,8 +38,26 @@ const DropDownSelected = (props) => {
 };
 const apiCall = (event, getData, setTableData, searchCondition, text) => {
   event.preventDefault();
-  const info = { searchCondition, text };
-  getData(info).then((result) => setTableData(DUMMY_TABLE_DATA));
+  const info = { condition: searchCondition, text: text };
+  getData(info).then((result) => {
+    if (result === "empty" || result.data.length === 0) {
+      setTableData("empty");
+      return;
+    }
+    const tableData = result.data.map((entry) => {
+      return {
+        id: entry.customer_id,
+        firstName: entry.first_name,
+        middleName: entry.middle_name,
+        lastName: entry.last_name,
+        phone: entry.phone_number,
+        email: entry.email,
+        country: entry.country,
+        city: entry.city,
+      };
+    });
+    setTableData(tableData);
+  });
 };
 const Search = (props) => {
   const { getData, setTableData } = props;
