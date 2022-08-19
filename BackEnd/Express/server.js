@@ -5,13 +5,13 @@ const database = require("../SQL/connection");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8080",
+  origin: "http://localhost:8080", // server
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cors());
-// app.options("http://localhost:3000", cors()); // not needed apparently?
+// app.options("http://localhost:3000", cors()); // not needed apparently? //front end?
 app.use(express.urlencoded({ extended: true }));
 
 //init sequelize and run sync
@@ -38,6 +38,7 @@ app.get("/", (req, res) => {
 //include route
 require("../SQL/Routes/customer-routes")(app);
 require("../SQL/Routes/order-routes")(app);
+require("../SQL/Routes/product-routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
