@@ -69,6 +69,16 @@ CREATE TABLE `customers_connect_csr` (
   `ccc_timestamp` datetime NOT NULL
 );
 
+CREATE TABLE `users` (
+  `user_id` int PRIMARY KEY AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `access_level` int NOT NULL,
+  `csr_id` int NOT NULL
+);
+
+ALTER TABLE `users` ADD FOREIGN KEY (`csr_id`)REFERENCES `CSR` (`csr_id`);
+
 ALTER TABLE `orders` ADD FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`);
 
 ALTER TABLE `products_connect_orders` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`);
@@ -80,3 +90,5 @@ ALTER TABLE `orders` ADD FOREIGN KEY (`order_status_code`) REFERENCES `status` (
 ALTER TABLE `customers_connect_csr` ADD FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`);
 
 ALTER TABLE `customers_connect_csr` ADD FOREIGN KEY (`csr_id`) REFERENCES `CSR` (`csr_id`);
+
+
