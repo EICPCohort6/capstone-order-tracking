@@ -42,15 +42,33 @@
 }
 
 .User-image {
-  border-radius: 50%;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  width: 3.5vw;
+  height: 3.5vw;
+  margin-left: 1vw;
+  margin-top: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 1vw;
   object-fit: contain;
+  float: left;
 }
+ .User-nametitle {
+  font-size: 1.5vw;
+  margin-left: 1vw;
+  margin-top: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 1vw;
+  text-align: center;
+
+ }
+
  .User-name {
-  font-size: 2vw;
+  font-size: 16px;
+  font-size: 1vw;
+  text-align: center;
+  border-left: 1vw;
+  border-right: 1vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
  }
 
  .Color-nav {
@@ -59,4 +77,5 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  color:darkblue ;
  }
