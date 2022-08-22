@@ -3,7 +3,7 @@ const { Sequelize } = require("sequelize");
 const config = {
   database: process.env.mySqlHostName,
   username: process.env.mySqlUser,
-  password: process.enc.mySqlPass,
+  password: process.env.mySqlPass,
 };
 
 var connection = new Sequelize(
