@@ -8,6 +8,8 @@ const TABLE_HEADERS = [
   "Last Name",
   "Phone Number",
   "Email",
+  "Country",
+  "City",
 ];
 
 const CustomerTable = (props) => {
