@@ -71,6 +71,24 @@ paths:
           description: The specified customer ID is invalid (NaN)
         "404":
           description: A customer with the specified ID was not found.
+
+  /customers/{last_name}:
+    get:
+      summary: Return a customer by last name.
+      parameters:
+        - name: last_name
+          in: path
+          required: true
+          description: Last name of customer.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: The specified customer last name is invalid (Not a string)
+        "404":
+          description: A customer with the specified last name was not found.
   /orders:
     get:
       summary: Returns a list of all orders.
