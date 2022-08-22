@@ -6,7 +6,6 @@ import NavigationBar from "../components/navigation";
 const MainPage = () => {
   return (
     <>
-      <h1>header/logo</h1>
       <Container fluid>
         <Row>
           <Col xs="2" className="Navbar-background" style={{ height: "100vh" }}>
