@@ -7,7 +7,9 @@ const CustomerForm = () => {
     const [customerId, setCustomerId] = useState(null);
     const [total, setTotal] = useState(0);
     const [orderNotes, setOrderNotes] = useState(null);
+    const [customerOrders, setCustomerOrders ] = useState([]);
   
+   
     const handleSubmit = () => {
       const orderObject = {
         orderId,
@@ -17,11 +19,24 @@ const CustomerForm = () => {
         orderNotes,
         timestamp: Date.now()
       };
+
       console.log(orderObject);
       const orderString = JSON.stringify(orderObject);
       alert("Order was submitted with the following details: " + orderString);
-    };
-  
+
+      // setCustomerOrders.push(orderObject);
+      const currentCustomerOrders = customerOrders;
+      currentCustomerOrders.push(orderObject);
+      setCustomerOrders(currentCustomerOrders);
+      // reset inputs
+      setOrderId("")
+      setCustomerId("")
+      setTotal("")
+      setOrderNotes("")
+      setOrderStatus("")
+    }
+    console.log(customerOrders)
+ 
     return (
       <Form>
         <Row>
@@ -90,6 +105,7 @@ const CustomerForm = () => {
           <Button color="success" onClick={handleSubmit}>
             Submit
           </Button>
+          {customerOrders}
         </FormGroup>
       </Form>
     );
