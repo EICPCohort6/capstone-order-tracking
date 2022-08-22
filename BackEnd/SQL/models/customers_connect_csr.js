@@ -1,4 +1,6 @@
 const { DataTypes } = require("sequelize");
+const csr = require("./csr");
+const customer = require("./customer");
 
 module.exports = (sequelize, Sequelize) => {
   const customers_connect_csr = sequelize.define(
@@ -14,16 +16,19 @@ module.exports = (sequelize, Sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: Customer,
+          model: customer,
           key: "customer_id",
         },
       },
       csr_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        autoIncrement: true,
         // TODO
         // Add reference to csr_id from CSR table
+        references: {
+          model: csr,
+          key: "csr_id",
+        },
       },
       ccc_timestamp: {
         type: DataTypes.DATE,

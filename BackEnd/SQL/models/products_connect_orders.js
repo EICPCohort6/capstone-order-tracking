@@ -1,4 +1,5 @@
 const { DataTypes } = require("sequelize");
+const products = require("./products");
 
 module.exports = (sequelize, Sequelize) => {
   const products_connect_csr = sequelize.define(
@@ -20,6 +21,10 @@ module.exports = (sequelize, Sequelize) => {
       product_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: products,
+          key: "product_id",
+        },
       },
       order_quantity: {
         type: DataTypes.INTEGER,

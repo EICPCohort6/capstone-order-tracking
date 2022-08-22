@@ -9,6 +9,7 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+        field: "csr_id",
       },
       first_name: {
         type: DataTypes.STRING,
@@ -37,5 +38,5 @@ module.exports = (sequelize, Sequelize) => {
     }
   );
 
-  return customer;
+  return csr;
 };
