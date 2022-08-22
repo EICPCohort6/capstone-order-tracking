@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "reactstrap";
+import { Button, Table } from "reactstrap";
 
 const TABLE_HEADERS = [
   "ID",
@@ -25,6 +25,15 @@ const CustomerTable = (props) => {
         {Object.entries(person).map(
           ([key, value]) => key !== "id" && <td key={key}>{value}</td>
         )}
+        <td>
+          <Button>+</Button>
+        </td>
+        <td>
+          <Button>Edit</Button>
+        </td>
+        <td>
+          <Button>Delete</Button>
+        </td>
       </tr>
     );
   });
