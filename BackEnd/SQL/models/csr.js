@@ -32,6 +32,7 @@ module.exports = (sequelize, Sequelize) => {
       },
     },
     {
+      freezeTableName: true,
       createdAt: false,
       updatedAt: false,
       underscored: true,

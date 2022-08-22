@@ -59,3 +59,7 @@ Began writing unit tests for customer endpoints.
 Abdur, 19/08: Completed products model and routes for corresponding API endpoints
 
 Uzi, 19/08: Consulted with Front-end team to test retrieval of data using API, fixed errors and implemented additional configuration on server, result: retrieval successful
+
+------ WEEKEND -------
+
+Uzi & Abdur, 22/08: Implemented models corresponding to the rest of the tables, including CSR, customers_connect_csr table,
