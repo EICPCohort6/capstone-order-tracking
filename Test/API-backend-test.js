@@ -146,7 +146,7 @@ describe("Delete /api/orders/1", function () {
   });
 });
 
-describe("testing product enpoints", function () {
+describe("testing product endpoints", function () {
   it("gets all products", function (done) {
     request(app)
       .get("/api/products")
@@ -186,29 +186,29 @@ describe("POST /api/customers", function () {
   it("should create a new customer", function (done) {
     let customer = {
       first_name: "David",
-      middle_name: "John",
+      middle_name: "J",
       last_name: "Pax",
       phone_number: "617-543-2458",
       email: "David_Pax@tjx.com",
       customer_notes: "Don't call number",
-      street_number: 43,
+      street_number: 58,
       unit_number: "Apt 12",
       street_name: "42nd Street",
       city: "York",
       state: "NY",
       country: "US",
-      zipcode: "17403",
+      zipcode: "17405",
     };
     request(app)
-      .post("/api/orders")
+      .post("/api/customers")
       .send(customer)
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
-      .expect(200, done);
+      .expect(201, done);
   });
 });
 
-describe("Delete /api/customers/1", function () {
+describe("DELETE /api/customers/1", function () {
   it("deletes customer with id 1", function (done) {
     request(app)
       .delete("/api/customers/1")
@@ -218,7 +218,7 @@ describe("Delete /api/customers/1", function () {
   });
 });
 
-describe("Put /api/customers", function () {
+describe("PUT /api/customers/1", function () {
   it("updates customer with id 1", function (done) {
     let customer = {
       first_name: "David",
@@ -244,21 +244,21 @@ describe("Put /api/customers", function () {
   });
 });
 
-describe('PUT /api/orders/:id', function() {
-  it('Updates and order with id of 1', function(done) {
+describe("PUT /api/orders/:id", function () {
+  it("Updates and order with id of 1", function (done) {
     let order = {
       customer_id: 1,
       order_status_code: 2,
       datetime_order_placed: "2022-08-10 01:44:00",
       total_order_price: 14.99,
       order_notes: "no notes",
-    }
+    };
 
     request(app)
-      .put('/api/orders/1')
-      .send({order})
+      .put("/api/orders/1")
+      .send({ order })
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200, done);
-  })
-})
+  });
+});
