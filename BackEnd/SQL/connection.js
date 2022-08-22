@@ -54,51 +54,62 @@ database.orders.hasOne(database.status, {
   as: "status",
 });
 
-database.status.belongsTo(database.order, {
+database.status.belongsTo(database.orders, {
   foreignKey: "order_status_code",
   as: "orders",
 });
 
-// one to many relationship between csr and customers_connect_orders on csr_id
-database.csr.hasMany(database.customers_connect_csr, {
-  foreignKey: "csr_id",
-  as: "customers_connect_csr",
-});
+// // one to many relationship between csr and customers_connect_orders on csr_id
+// database.csr.hasMany(database.customers_connect_csr, {
+//   foreignKey: "csr_id",
+//   constraints: false,
+//   as: "customers_connect_csr",
+// });
 
-database.customers_connect_csr.belongsTo(database.csr, {
-  foreignKey: "csr_id",
-  as: "csr",
-});
+// database.customers_connect_csr.belongsTo(database.csr, {
+//   foreignKey: "csr_id",
+//   constraints: false,
+//   as: "csr",
+// });
 
-//one to many relationship between customers and customers_connect_orders on customer_id
-database.customers.hasMany(database.customers_connect_csr, {
-  foreignKey: "customer_id",
-  as: "customers_connect_csr",
-});
-database.customers_connect_csr.belongsTo(database.customers, {
-  foreignKey: "customer_id",
-  as: "customers",
-});
+// //one to many relationship between customers and customers_connect_orders on customer_id
+// database.customers.hasMany(database.customers_connect_csr, {
+//   foreignKey: "customer_id",
+//   constraints: false,
+//   as: "customers_connect_csr",
+// });
+// database.customers_connect_csr.belongsTo(database.customers, {
+//   foreignKey: "customer_id",
+//   constraints: false,
+//   as: "customers",
+// });
 
-// one to one relationships for between products and products_connect_orders on product_id
-database.products.hasOne(database.products_connect_orders, {
-  foreignKey: "product_id",
-  as: "products_connects_orders",
-});
 
-database.products_connect_orders.belongsTo(database.products, {
-  foreignKey: "product_id",
-  as: "products",
-});
+database.customers.belongsToMany(database.csr, {through: database.customers_connect_csr});
+database.csr.belongsToMany(database.customers, {through: database.customers_connect_csr});
 
-//one to many relationship between orders and product_connect_orders on order_id
-database.orders.hasMany(database.products_connect_orders, {
-  foreignKey: "order_id",
-  as: "products_connect_orders",
-});
-database.products_connect_orders.belongsTo(database.orders, {
-  foreignKey: "order_id",
-  as: "orders",
-});
+// // one to one relationships for between products and products_connect_orders on product_id
+// database.products.hasOne(database.products_connect_orders, {
+//   foreignKey: "product_id",
+//   as: "products_connects_orders",
+// });
+
+// database.products_connect_orders.belongsTo(database.products, {
+//   foreignKey: "product_id",
+//   as: "products",
+// });
+
+// //one to many relationship between orders and product_connect_orders on order_id
+// database.orders.hasMany(database.products_connect_orders, {
+//   foreignKey: "order_id",
+//   as: "products_connect_orders",
+// });
+// database.products_connect_orders.belongsTo(database.orders, {
+//   foreignKey: "order_id",
+//   as: "orders",
+// });
+
+database.products.belongsToMany(database.orders, {through: database.products_connect_orders});
+database.orders.belongsToMany(database.products, {through: database.products_connect_orders});
 
 module.exports = database;
