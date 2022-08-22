@@ -41,7 +41,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
   Products.update(req.body, {
-    where: { id: id },
+    where: { product_id: id },
   })
     .then((num) => {
       if (num == 1) {

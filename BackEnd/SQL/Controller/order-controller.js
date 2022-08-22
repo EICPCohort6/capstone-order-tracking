@@ -37,7 +37,6 @@ exports.create = (req, res) => {
 
   // if validaiton is successful, create new order
   const newOrder = {
-    // order_id: req.body.order_id,
     customer_id: req.body.customer_id,
     order_status_code: req.body.order_status_code,
     datetime_order_placed: req.body.datetime_order_placed,
@@ -82,12 +81,12 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
   Orders.update(req.body, {
-    where: { id: id },
+    where: { order_id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Customer was updated successfully.",
+          message: "Order was updated successfully.",
         });
       } else {
         res.send({
