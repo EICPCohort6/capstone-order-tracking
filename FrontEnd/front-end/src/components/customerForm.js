@@ -102,8 +102,8 @@ const CustomerForm = () => {
               }}
             />
           </div>
-          <Button color="success" onClick={handleSubmit}>
-            Submit
+          <Button color="danger" onClick={handleSubmit}>
+            Add New Order
           </Button>
           {customerOrders}
         </FormGroup>

@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { Row, Container, Col } from "reactstrap";
-import CustomerForm from "./customerForm";
 import NavigationBar from "../components/navigation";
 
 const MainPage = () => {
@@ -14,6 +13,8 @@ const MainPage = () => {
           </Col>
           <Col xs="10" md="8" className="p-3">
             <Outlet />
+          </Col>
+          <Col xs="10" md="8" className="p-3">
           </Col>
         </Row>
       </Container>
