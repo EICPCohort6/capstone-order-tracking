@@ -38,7 +38,7 @@
 }
 
 .Navbar-background {
-  background-color: #d3ccbd
+  background-color: #9b0c23
 }
 
 .User-image {
@@ -48,9 +48,11 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  padding-top: 2mm;
 }
  .User-name {
   font-size: 2vw;
+  color: rgb(255, 255, 255);
  }
 
  .Color-nav {
@@ -59,4 +61,5 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  text-align: center;
  }
