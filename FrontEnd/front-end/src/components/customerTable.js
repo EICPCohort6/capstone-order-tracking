@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Table } from "reactstrap";
+import ConfirmDialog from "./confirmDialog";
 
 const TABLE_HEADERS = [
   "ID",
@@ -13,7 +14,7 @@ const TABLE_HEADERS = [
 ];
 
 const CustomerTable = (props) => {
-  const { tableData } = props;
+  const { tableData, deleteItem } = props;
 
   const mappedHeaders = TABLE_HEADERS.map((header, index) => {
     return <th key={index}>{header}</th>;
@@ -32,14 +33,14 @@ const CustomerTable = (props) => {
           <Button>Edit</Button>
         </td>
         <td>
-          <Button>Delete</Button>
+          <ConfirmDialog deleteItem={deleteItem} id={person.id} />
         </td>
       </tr>
     );
   });
 
   return (
-    <Table striped>
+    <Table striped responsive>
       <thead>
         <tr>{mappedHeaders}</tr>
       </thead>
@@ -49,11 +50,12 @@ const CustomerTable = (props) => {
 };
 
 const CustomerTableDisplay = (props) => {
-  const { tableData } = props;
+  const { tableData, deleteItem } = props;
+
   return tableData === "empty" ? (
     <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>
   ) : (
-    <CustomerTable tableData={tableData} />
+    <CustomerTable tableData={tableData} deleteItem={deleteItem} />
   );
 };
 

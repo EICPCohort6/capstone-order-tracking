@@ -13,22 +13,28 @@ const getData = async ({ condition, text }) => {
         `http://localhost:8080/api/customers?last_name=${text}`
       );
       return customer;
-
     default:
       alert("No condition selected!");
       return "empty";
   }
-
-  //console.log(customers);
-  //return customers;
 };
+
 const CustomerPage = () => {
   const [tableData, setTableData] = useState("empty");
+
+  // Deletes a entry from the table
+  const deleteItem = async (id) => {
+    await axios.delete(`http://localhost:8080/api/customers/${id}`).then(() => {
+      const newTable = tableData.filter((row) => row.id !== id);
+      setTableData(newTable);
+    });
+  };
+
   return (
     <>
       <CustomerSearch getData={getData} setTableData={setTableData} />
       <AddCustomerButton />
-      <CustomerTableDisplay tableData={tableData} />
+      <CustomerTableDisplay tableData={tableData} deleteItem={deleteItem} />
     </>
   );
 };
