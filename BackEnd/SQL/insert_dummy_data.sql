@@ -161,3 +161,14 @@ VALUES
 (6, 3, 2, 1),
 (7, 3, 1, 1),
 (8, 4, 3, 1);
+
+---------------------------------
+-- PRODUCTS_CONNECT_ORDERS
+---------------------------------
+INSERT INTO capstone.users (username, password, access_level, csr_id)
+VALUES
+("John",   "Madden",  1, 1),
+("Kermit", "Frog",    2, 2),
+("Agent",  "Smith",   1, 3),
+("Saul",   "Goodman", 2, 4),
+("Walter", "White",   1, 5);
