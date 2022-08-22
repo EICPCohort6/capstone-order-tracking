@@ -2,7 +2,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { Row, Container, Col } from "reactstrap";
 import NavigationBar from "../components/navigation";
-import CustomerForm from "../components/create-customer";
 
 const MainPage = () => {
   return (

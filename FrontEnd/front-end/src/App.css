@@ -38,7 +38,7 @@
 }
 
 .Navbar-background {
-  background-color: #9b0c23
+  background-color: #d3ccbd
 }
 
 .User-image {
@@ -79,3 +79,27 @@
   object-fit: contain;
   color:darkblue ;
  }
+
+ .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;  
+}
+
+.login {
+  display: inline-flexbox;
+  flex-direction: column;
+  width: 50vw;
+  justify-content: center;
+  align-items: center;
+  height:100vh; 
+}
+
+.something {
+              object-fit: contain;
+              margin-left: auto;
+              margin-right: auto;
+              height: 15vh;
+              width: 25vw;
+}
