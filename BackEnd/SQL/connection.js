@@ -3,7 +3,7 @@ const { Sequelize } = require("sequelize");
 const config = {
   database: process.env.mySqlHostName,
   username: process.env.mySqlUser,
-  password: process.enc.mySqlPass,
+  password: process.env.mySqlPass,
 };
 
 var connection = new Sequelize(
@@ -95,9 +95,12 @@ database.status.belongsTo(database.orders, {
 //   as: "customers",
 // });
 
-
-database.customers.belongsToMany(database.csr, {through: database.customers_connect_csr});
-database.csr.belongsToMany(database.customers, {through: database.customers_connect_csr});
+database.customers.belongsToMany(database.csr, {
+  through: database.customers_connect_csr,
+});
+database.csr.belongsToMany(database.customers, {
+  through: database.customers_connect_csr,
+});
 
 // // one to one relationships for between products and products_connect_orders on product_id
 // database.products.hasOne(database.products_connect_orders, {
@@ -120,7 +123,11 @@ database.csr.belongsToMany(database.customers, {through: database.customers_conn
 //   as: "orders",
 // });
 
-database.products.belongsToMany(database.orders, {through: database.products_connect_orders});
-database.orders.belongsToMany(database.products, {through: database.products_connect_orders});
+database.products.belongsToMany(database.orders, {
+  through: database.products_connect_orders,
+});
+database.orders.belongsToMany(database.products, {
+  through: database.products_connect_orders,
+});
 
 module.exports = database;
