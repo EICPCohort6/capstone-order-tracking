@@ -7,11 +7,7 @@ const NavigationBar = () => {
   return (
     <>
       <Container className="row g-0">
-        <img
-          alt="main"
-          style={{ width: "100%" }}
-          src="/assets/placeholder_template.jpg"
-        />
+        <img style={{ width: "100%" }} src="/assets/placeholder_template.jpg" />
         <Row className="g-0">
           <Col xs="4">
             <img className="User-image" src="/assets/checkbox.png" />
@@ -55,7 +51,7 @@ const NavigationBar = () => {
             </NavItem>
           </Nav>
         </Row>
-        <Button variant="danger">Sign Out</Button>{" "}
+        <Button color="danger">Sign Out</Button>{" "}
       </Container>
     </>
   );
