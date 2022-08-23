@@ -46,14 +46,17 @@ const apiCall = (event, getData, setTableData, searchCondition, text) => {
     }
     const tableData = result.data.map((entry) => {
       return {
-        id: entry.customer_id,
-        firstName: entry.first_name,
-        middleName: entry.middle_name,
-        lastName: entry.last_name,
-        phone: entry.phone_number,
-        email: entry.email,
-        country: entry.country,
-        city: entry.city,
+        displayData: {
+          customer_id: entry.customer_id,
+          first_name: entry.first_name,
+          middle_name: entry.middle_name,
+          last_name: entry.last_name,
+          phone_number: entry.phone_number,
+          email: entry.email,
+          country: entry.country,
+          city: entry.city,
+        },
+        fullData: entry,
       };
     });
     setTableData(tableData);
