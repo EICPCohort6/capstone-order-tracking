@@ -6,6 +6,8 @@ const config = {
   password: process.env.mySqlPass,
 };
 
+console.log(config.database, config.password, config.username);
+
 var connection = new Sequelize(
   config.database,
   config.username,
