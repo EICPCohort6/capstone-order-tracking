@@ -4,7 +4,10 @@
   "description": "We want to increase the productivity of our customer service representatives (CSR). This app allow them to perform various store related operations including creating order, products, and customers as well as view and track an orders progress.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -15,15 +18,5 @@
   "bugs": {
     "url": "https://github.com/EICPCohort6/capstone-order-tracking/issues"
   },
-  "homepage": "https://github.com/EICPCohort6/capstone-order-tracking#readme",
-  "devDependencies": {
-    "mocha": "^10.0.0",
-    "supertest": "^6.2.4"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.1",
-    "mysql2": "^2.3.3",
-    "sequelize": "^6.21.4"
-  }
+  "homepage": "https://github.com/EICPCohort6/capstone-order-tracking#readme"
 }

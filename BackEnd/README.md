@@ -3,18 +3,17 @@
 ### Team Members
 
 #### Engineers
-
-- Abdur-rahman Tariq
-- Alexandra Brandl
-- Alexis Bagramian
-- Uzi Ahmad
+* Abdur-rahman Tariq
+* Alexandra Brandl
+* Alexis Bagramian
+* Uzi Ahmad
 
 #### Analysts
+* Alexander MacDowall
+* Alexandra Napoleon
+* Anna Truong
+* Baily McNeill
 
-- Alexander MacDowall
-- Alexandra Napoleon
-- Anna Truong
-- Baily McNeill
 
 ## How To Run
 
@@ -25,6 +24,7 @@
 5. Server should be running on port 8080. Visit `https://localhost:8080` to verify.
 
 ## Current Progress
+
 
 _Until we are all set up with JIRA, we will be using this README to keep track of current progress._
 
@@ -63,3 +63,4 @@ Uzi, 19/08: Consulted with Front-end team to test retrieval of data using API, f
 ------ WEEKEND -------
 
 Uzi & Abdur, 22/08: Implemented models corresponding to the rest of the tables, including CSR, customers_connect_csr table,
+

@@ -27,12 +27,14 @@ var connection = new Sequelize(
   }
 );
 
+
 const database = {
   Sequelize: Sequelize,
   connection: connection,
 
   // Link models with database connection here
   customers: require("./models/customer.js")(connection, Sequelize),
+
   orders: require("./models/orders.js")(connection, Sequelize),
   products: require("./models/products.js")(connection, Sequelize),
   status: require("./models/status.js")(connection, Sequelize),
@@ -95,9 +97,12 @@ database.status.belongsTo(database.orders, {
 //   as: "customers",
 // });
 
-
-database.customers.belongsToMany(database.csr, {through: database.customers_connect_csr});
-database.csr.belongsToMany(database.customers, {through: database.customers_connect_csr});
+database.customers.belongsToMany(database.csr, {
+  through: database.customers_connect_csr,
+});
+database.csr.belongsToMany(database.customers, {
+  through: database.customers_connect_csr,
+});
 
 // // one to one relationships for between products and products_connect_orders on product_id
 // database.products.hasOne(database.products_connect_orders, {
@@ -120,7 +125,12 @@ database.csr.belongsToMany(database.customers, {through: database.customers_conn
 //   as: "orders",
 // });
 
-database.products.belongsToMany(database.orders, {through: database.products_connect_orders});
-database.orders.belongsToMany(database.products, {through: database.products_connect_orders});
+database.products.belongsToMany(database.orders, {
+  through: database.products_connect_orders,
+});
+database.orders.belongsToMany(database.products, {
+  through: database.products_connect_orders,
+});
+
 
 module.exports = database;
