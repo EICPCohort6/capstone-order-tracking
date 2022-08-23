@@ -3,7 +3,6 @@ info:
   title: Order Tracker API
   description: |-
     This is an API for the EIC Cohort 6 Order Tracking Capstone project.
-
     Some useful links:
     - [The Order Tracker repository](https://github.com/EICPCohort6/capstone-order-tracking)
     - [The Capstone Project assignment](https://github.com/EICPCohort6/capstone-details)

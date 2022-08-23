@@ -3,26 +3,24 @@ import { Table } from "reactstrap";
 
 const TABLE_HEADERS = [
   "ID",
-  "First Name",
-  "Middle Name",
-  "Last Name",
-  "Phone Number",
-  "Email",
-  "Country",
-  "City",
+  "SKU",
+  "Price",
+  "Product Name",
+  "Quantity",
+  "Description",
 ];
 
-const CustomerTable = (props) => {
+const ProductTable = (props) => {
   const { tableData } = props;
 
   const mappedHeaders = TABLE_HEADERS.map((header, index) => {
     return <th key={index}>{header}</th>;
   });
-  const mappedRows = tableData.map((person, index) => {
+  const mappedRows = tableData.map((product, index) => {
     return (
       <tr key={index}>
-        <th scope="row">{person.id}</th>
-        {Object.entries(person).map(
+        <th scope="row">{product.id}</th>
+        {Object.entries(product).map(
           ([key, value]) => key !== "id" && <td key={key}>{value}</td>
         )}
       </tr>
@@ -39,13 +37,13 @@ const CustomerTable = (props) => {
   );
 };
 
-const CustomerTableDisplay = (props) => {
+const ProductTableDisplay = (props) => {
   const { tableData } = props;
   return tableData === "empty" ? (
     <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>
   ) : (
-    <CustomerTable tableData={tableData} />
+    <ProductTable tableData={tableData} />
   );
 };
 
-export default CustomerTableDisplay;
+export default ProductTableDisplay;
