@@ -7,10 +7,10 @@ const NavigationBar = () => {
   return (
     <>
       <Container className="containernav row g-0">
-        <img style={{ width: "100%" }} src="/assets/placeholder_template.jpg" />
+        <img style={{ width: "100%" }} src="/assets/placeholder_template.jpg" alt = "" />
         <Row className="g-0">
           <Col xs="4">
-            <img className="User-image" src="/assets/checkbox.png" />
+            <img className="User-image" src="/assets/checkbox.png" alt ="" />
           </Col>
           <Col xs="8" className="d-flex align-items-center">
             <h2 className="User-nametitle">(USER ID goes here)</h2>
