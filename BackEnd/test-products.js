@@ -44,7 +44,7 @@ describe("PRODUCTS ENDPOINTS", function () {
     expect(body).to.deep.include(product1);
   });
 
-  it("GET /products/8 : it should contain only product with id 7", async () => {
+  it("GET /products/7 : it should contain only product with id 7", async () => {
     const { body, status } = await request(app).get("/api/products/7");
     expect(body).to.deep.include(product2);
     expect(body.length).to.be.undefined; //undefined length means only one object was returned
