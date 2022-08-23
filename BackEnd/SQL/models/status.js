@@ -1,18 +1,14 @@
 const { DataTypes } = require("sequelize");
-let Order = require("./order")
+let Order = require("./orders");
 
 module.exports = (sequelize, Sequelize) => {
   const status = sequelize.define(
     "status",
     {
-     order_status_code: {
+      order_status_code: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
-        references: {
-            model: Order,
-            key: "order_status_code",
-          },
       },
       status_name: {
         type: DataTypes.STRING,
@@ -20,12 +16,12 @@ module.exports = (sequelize, Sequelize) => {
       },
     },
     {
+      freezeTableName: true,
       createdAt: false,
       updatedAt: false,
       underscored: true,
     }
   );
-  
-  return status;
 
+  return status;
 };

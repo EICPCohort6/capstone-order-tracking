@@ -9,6 +9,7 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+        field: "csr_id",
       },
       first_name: {
         type: DataTypes.STRING,
@@ -31,11 +32,12 @@ module.exports = (sequelize, Sequelize) => {
       },
     },
     {
+      freezeTableName: true,
       createdAt: false,
       updatedAt: false,
       underscored: true,
     }
   );
 
-  return customer;
+  return csr;
 };

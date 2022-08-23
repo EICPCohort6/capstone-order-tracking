@@ -9,6 +9,7 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+        field: "product_id",
       },
       product_SKU: {
         type: DataTypes.INTEGER,
@@ -35,9 +36,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     {
       createdAt: false,
-      updatedAt: false    }
+      updatedAt: false,
+    }
   );
-  
-  return product;
 
+  return product;
 };

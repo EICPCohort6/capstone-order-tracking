@@ -139,14 +139,15 @@ describe("GET /api/orders", function () {
 describe("Delete /api/orders/1", function () {
   it("deletes order with id 1", function (done) {
     request(app)
-      .delete("/api/orders/1")
+      .put("/api/orders/1")
+      .send({ order })
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200, done);
   });
 });
 
-describe("testing product endpoints", function () {
+describe("testing product enpoints", function () {
   it("gets all products", function (done) {
     request(app)
       .get("/api/products")
@@ -186,25 +187,25 @@ describe("POST /api/customers", function () {
   it("should create a new customer", function (done) {
     let customer = {
       first_name: "David",
-      middle_name: "J",
+      middle_name: "John",
       last_name: "Pax",
       phone_number: "617-543-2458",
       email: "David_Pax@tjx.com",
       customer_notes: "Don't call number",
-      street_number: 58,
+      street_number: 43,
       unit_number: "Apt 12",
       street_name: "42nd Street",
       city: "York",
       state: "NY",
       country: "US",
-      zipcode: "17405",
+      zipcode: "17403",
     };
     request(app)
-      .post("/api/customers")
+      .post("/api/orders")
       .send(customer)
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
-      .expect(201, done);
+      .expect(200, done);
   });
 });
 
