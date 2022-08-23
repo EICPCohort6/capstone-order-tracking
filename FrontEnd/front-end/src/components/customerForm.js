@@ -12,13 +12,16 @@ const CustomerForm = () => {
   
    
     const handleSubmit = () => {
+
+
       const orderObject = {
         orderId,
         orderStatus,
         customerId,
         total,
         orderNotes,
-        timestamp: Date.now()
+        timestamp: new Date().toLocaleString()
+        
       };
 
       console.log(orderObject);
@@ -67,7 +70,7 @@ const CustomerForm = () => {
           </Col>
           <Col md={4}>
             <FormGroup>
-              <Label for="orderStatus">Order Status</Label>
+              <Label for="orderStatus">Order Status Code</Label>
               <Input
                 id="orderStatus"
                 value={orderStatus}
@@ -79,7 +82,7 @@ const CustomerForm = () => {
           </Col>
           <Col md={4}>
             <FormGroup>
-              <Label for="lastName">Total</Label>
+              <Label for="lastName">Total Order Price</Label>
               <Input
                 id="lastName"
                 value={total}

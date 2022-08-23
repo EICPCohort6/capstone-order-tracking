@@ -14,8 +14,8 @@ const OrdersTable = (props) => {
             <th>#</th>
             <th>Customer Id</th>
             <th>Order Id</th>
-            <th>Order Status</th>
-            <th>Total</th>
+            <th>Order Status Code</th>
+            <th>Total Order Price</th>
             <th>Order Notes</th>
             <th>Time Stamp</th>
           </tr>
