@@ -23,9 +23,9 @@ const CustomerTable = (props) => {
   const mappedRows = tableData.map((person, index) => {
     return (
       <tr key={index}>
-        <th scope="row">{person.displayData.id}</th>
+        <th scope="row">{person.displayData.customer_id}</th>
         {Object.entries(person.displayData).map(
-          ([key, value]) => key !== "id" && <td key={key}>{value}</td>
+          ([key, value]) => key !== "customer_id" && <td key={key}>{value}</td>
         )}
         <td>
           <Button>+</Button>
@@ -38,7 +38,10 @@ const CustomerTable = (props) => {
           />
         </td>
         <td>
-          <ConfirmDialog deleteItem={deleteItem} id={person.id} />
+          <ConfirmDialog
+            deleteItem={deleteItem}
+            id={person.fullData.customer_id}
+          />
         </td>
       </tr>
     );
@@ -60,11 +63,13 @@ const CustomerTableDisplay = (props) => {
   return tableData === "empty" ? (
     <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>
   ) : (
-    <CustomerTable
-      tableData={tableData}
-      deleteItem={deleteItem}
-      updateItem={updateItem}
-    />
+    <div style={{ height: "800px", overflowY: "scroll" }}>
+      <CustomerTable
+        tableData={tableData}
+        deleteItem={deleteItem}
+        updateItem={updateItem}
+      />
+    </div>
   );
 };
 

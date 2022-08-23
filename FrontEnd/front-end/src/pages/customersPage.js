@@ -35,25 +35,25 @@ const CustomerPage = () => {
   };
 
   const updateItem = async (item) => {
-    const newTable = tableData.map((row) => {
-      if (row.displayData.customer_id !== item.customer_id) return row;
-      const newDisplayData = {
-        customer_id: item.customer_id,
-        first_name: item.first_name,
-        middle_name: item.middle_name,
-        last_name: item.last_name,
-        phone_number: item.phone_number,
-        email: item.email,
-        country: item.country,
-        city: item.city,
-      };
-      return { displayData: newDisplayData, fullData: item };
-    });
-    await axios.put(
-      `http://localhost:8080/api/customers/${item.customer_id}`,
-      item
-    );
-    setTableData(newTable);
+    await axios
+      .put(`http://localhost:8080/api/customers/${item.customer_id}`, item)
+      .then(() => {
+        const newTable = tableData.map((row) => {
+          if (row.displayData.customer_id !== item.customer_id) return row;
+          const newDisplayData = {
+            customer_id: item.customer_id,
+            first_name: item.first_name,
+            middle_name: item.middle_name,
+            last_name: item.last_name,
+            phone_number: item.phone_number,
+            email: item.email,
+            country: item.country,
+            city: item.city,
+          };
+          return { displayData: newDisplayData, fullData: item };
+        });
+        setTableData(newTable);
+      });
   };
 
   return (
