@@ -1,4 +1,5 @@
 import React, {useState } from "react";
+import OrdersTable from "./OrdersTable";
 import { Row, Form, Col, FormGroup, Label, Input, Button } from "reactstrap";
 
 const CustomerForm = () => {
@@ -105,9 +106,13 @@ const CustomerForm = () => {
           <Button color="danger" onClick={handleSubmit}>
             Add New Order
           </Button>
-          {customerOrders}
+          <OrdersTable customerOrders={customerOrders}/>
+        
         </FormGroup>
       </Form>
+
+
+
     );
   };
   
