@@ -110,7 +110,7 @@ To support the order tracking application, we built the following database struc
   </pre>
   
 - **Users:**
-  - Table that holdx information about people who log in to the website
+  - Table that holds information about people who log in to the website
   <pre>
     - <b>User_id:</b> A primary key of <b>int</b> datatype that represents a unique ID for each user. 
     - <b>Username:</b> A non nullable key of <b>varchar</b> datatype that represents usernames of users.
