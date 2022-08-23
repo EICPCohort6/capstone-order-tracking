@@ -5,7 +5,7 @@ const database = require("../SQL/connection");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8080", // server
+  origin: ["http://localhost:8080", "http://localhost:3000"], // server
 };
 
 app.use(cors(corsOptions));
