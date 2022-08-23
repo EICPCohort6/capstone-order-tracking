@@ -11,6 +11,7 @@ var connection = new Sequelize(
   config.username,
   config.password,
   {
+    logging: console.log,
     host: "capstone-customer-manager.mysql.database.azure.com",
     dialect: "mysql",
     pool: {

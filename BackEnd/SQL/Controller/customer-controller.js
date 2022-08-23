@@ -142,7 +142,19 @@ exports.delete = async(req,res) => {
   const id = req.params.id;
   const delete_trx = await database.connection.transaction();
   try {
-    const updCustID = await CustomersConnCSR.update({customer_id: 200}, {where: { ccc_timestamp: '2023-04-21 21:56:55' }, transaction: delete_trx}).then((num) => {res.send({message: num})});
+    /// THIS LINE: update is showing, but only because ccc_timestamp can be updated. customer_id and csr_id are both unable to be updated.
+    const updCustID = await CustomersConnCSR.update({customers_connect_csr_id: 100, customer_id: 200, csr_id: 42, ccc_timestamp: '2023-04-21 21:56:55'}, {where: { customer_id: 100 }, logging: console.log, transaction: delete_trx})
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Customer was updated successfully.",
+        });
+      } else {
+        res.send({
+          message: `Cannot update Customer with id=${id}. Maybe Customer was not found or req.body is empty!`,
+        });
+      }
+    });
     await delete_trx.commit();
     // const delete_trx = await database.connection.transaction(async (t) => {
 
