@@ -9,41 +9,6 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-const DUMMY_TABLE_DATA = [
-  {
-    id: 0,
-    firstName: "John",
-    middleName: "-",
-    lastName: "Bob",
-    phoneNumber: "12312435245",
-    email: "john@bob.com",
-  },
-  {
-    id: 1,
-    firstName: "Josh",
-    middleName: "Middle",
-    lastName: "Something",
-    phoneNumber: "23443543634",
-    email: "Josh@bob.com",
-  },
-  {
-    id: 2,
-    firstName: "Ryan",
-    middleName: "Simba",
-    lastName: "Last",
-    phoneNumber: "12125636345345",
-    email: "Ryan@bob.com",
-  },
-  {
-    id: 3,
-    firstName: "Kat",
-    middleName: "-",
-    lastName: "Someone",
-    phoneNumber: "1231245345",
-    email: "john@bob.com",
-  },
-];
-
 const SEARCH_OPTIONS = [
   "Last Name",
   "First Name",
@@ -71,23 +36,54 @@ const DropDownSelected = (props) => {
     </UncontrolledDropdown>
   );
 };
-const apiCall = (getData, setTableData) => {
-  //getData.then( settabledata)
-  setTableData(DUMMY_TABLE_DATA);
+const apiCall = (event, getData, setTableData, searchCondition, text) => {
+  event.preventDefault();
+  const info = { condition: searchCondition, text: text };
+  getData(info).then((result) => {
+    if (result === "empty" || result.data.length === 0) {
+      setTableData("empty");
+      return;
+    }
+    const tableData = result.data.map((entry) => {
+      return {
+        displayData: {
+          customer_id: entry.customer_id,
+          first_name: entry.first_name,
+          middle_name: entry.middle_name,
+          last_name: entry.last_name,
+          phone_number: entry.phone_number,
+          email: entry.email,
+          country: entry.country,
+          city: entry.city,
+        },
+        fullData: entry,
+      };
+    });
+    setTableData(tableData);
+  });
 };
 const Search = (props) => {
   const { getData, setTableData } = props;
   const [searchCondition, setSearchCondition] = useState("Last Name");
+  const [text, setText] = useState("");
 
   return (
-    <form>
+    <form
+      onSubmit={(event) =>
+        apiCall(event, getData, setTableData, searchCondition, text)
+      }
+    >
       <InputGroup>
-        <Input placeholder="Search" />
+        <Input
+          placeholder="Search"
+          onChange={(event) => setText(event.target.value)}
+          value={text}
+        />
         <DropDownSelected
           searchCondition={searchCondition}
           setSearchCondition={setSearchCondition}
         />
-        <Button onClick={() => apiCall(getData, setTableData)}>Search</Button>
+        <Button type="submit">Search</Button>
       </InputGroup>
     </form>
   );

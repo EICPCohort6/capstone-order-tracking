@@ -4,7 +4,10 @@
   "description": "Backend application for the capstone order tracking project",
   "main": "express/server.js",
   "scripts": {
+
+    "test": "echo \"Error: no test specified\" && exit 1"
     "test": "mocha test-orders.js --recursive"
+
   },
   "keywords": [
     "nodejs",
