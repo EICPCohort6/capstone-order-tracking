@@ -38,12 +38,12 @@ describe("ORDERS ENDPOINTS", function () {
 
   it("GET /orders : it should contain order with id 1", async () => {
     const { body, status } = await request(app).get("/api/orders/");
-    expect(body).to.deep.include(customer1);
+    expect(body).to.deep.include(order1);
   });
 
   it("GET /orders/8 : it should contain only order with id 8", async () => {
     const { body, status } = await request(app).get("/api/orders/8");
-    expect(body).to.deep.include(customer2);
+    expect(body).to.deep.include(order2);
     expect(body.length).to.be.undefined; //undefined length means only one object was returned
   });
 
