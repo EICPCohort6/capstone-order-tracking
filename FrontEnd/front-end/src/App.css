@@ -42,15 +42,33 @@
 }
 
 .User-image {
-  border-radius: 50%;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  width: 3.5vw;
+  height: 3.5vw;
+  margin-left: 1vw;
+  margin-top: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 1vw;
   object-fit: contain;
+  float: left;
 }
+ .User-nametitle {
+  font-size: 1.5vw;
+  margin-left: 1vw;
+  margin-top: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 1vw;
+  text-align: center;
+
+ }
+
  .User-name {
-  font-size: 2vw;
+  font-size: 16px;
+  font-size: 1vw;
+  text-align: center;
+  border-left: 1vw;
+  border-right: 1vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
  }
 
  .Color-nav {
@@ -59,4 +77,83 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+
  }
+
+ .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;  
+}
+
+.login {
+  display: inline-flexbox;
+  flex-direction: column;
+  width: 50vw;
+  justify-content: center;
+  align-items: center;
+  height:100vh; 
+}
+
+.something {
+              object-fit: contain;
+              margin-left: auto;
+              margin-right: auto;
+              height: 15vh;
+              width: 25vw;
+}
+
+a:link {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: black !important;
+  text-decoration: none;
+
+}
+
+a:active {
+  color: black;
+}
+
+.nav-link {
+  color:black
+}
+
+.logout {
+         
+}
+
+.containernav {
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  position: relative;
+  margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: inherit;
+}
+
+.nav>li>a.active {
+  background-color: #737271 !important;
+}
+.nav>li>a:hover {
+  background-color: #A3A2A1;
+}
+.nav>li>a:focus {
+   background-color: #838281;
+}
+.nav>li>a. { 
+  background-color: #838281;
+}
+
+

@@ -1,5 +1,7 @@
 import React from "react";
-import { Table } from "reactstrap";
+import { Button, Table } from "reactstrap";
+import ConfirmDialog from "./confirmDialog";
+import AddCustomerButton from "./add-customer-button";
 
 const TABLE_HEADERS = [
   "ID",
@@ -10,8 +12,9 @@ const TABLE_HEADERS = [
   "Description",
 ];
 
-const ProductTable = (props) => {
-  const { tableData } = props;
+
+const CustomerTable = (props) => {
+  const { tableData, deleteItem, updateItem } = props;
 
   const mappedHeaders = TABLE_HEADERS.map((header, index) => {
     return <th key={index}>{header}</th>;
@@ -19,16 +22,32 @@ const ProductTable = (props) => {
   const mappedRows = tableData.map((product, index) => {
     return (
       <tr key={index}>
-        <th scope="row">{product.id}</th>
-        {Object.entries(product).map(
-          ([key, value]) => key !== "id" && <td key={key}>{value}</td>
+        <th scope="row">{person.displayData.customer_id}</th>
+        {Object.entries(person.displayData).map(
+          ([key, value]) => key !== "customer_id" && <td key={key}>{value}</td>
         )}
+        <td>
+          <Button>+</Button>
+        </td>
+        <td>
+          <AddCustomerButton
+            text="Edit"
+            person={person.fullData}
+            customerFunction={updateItem}
+          />
+        </td>
+        <td>
+          <ConfirmDialog
+            deleteItem={deleteItem}
+            id={person.fullData.customer_id}
+          />
+        </td>
       </tr>
     );
   });
 
   return (
-    <Table striped>
+    <Table striped responsive>
       <thead>
         <tr>{mappedHeaders}</tr>
       </thead>
@@ -37,12 +56,19 @@ const ProductTable = (props) => {
   );
 };
 
-const ProductTableDisplay = (props) => {
-  const { tableData } = props;
+const CustomerTableDisplay = (props) => {
+  const { tableData, deleteItem, updateItem } = props;
+
   return tableData === "empty" ? (
     <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>
   ) : (
-    <ProductTable tableData={tableData} />
+    <div style={{ height: "800px", overflowY: "scroll" }}>
+      <CustomerTable
+        tableData={tableData}
+        deleteItem={deleteItem}
+        updateItem={updateItem}
+      />
+    </div>
   );
 };
 
