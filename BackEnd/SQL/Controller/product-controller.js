@@ -39,6 +39,18 @@ exports.findOne = (req, res) => {
 
 // Update a single Product with an id
 exports.update = (req, res) => {
+
+  if (!req.body.customer_id ||
+    !req.body.product_SKU ||
+    !req.body.product_price ||
+    !req.body.product_name ||
+    !req.body.product_quantity) {
+    res.status(400).send({
+    message: "Required fields can not be empty!",
+    });
+    return;
+  }
+
   const id = req.params.id;
   Products.update(req.body, {
     where: { product_id: id },
