@@ -17,7 +17,7 @@ const LoginPage = () => {
         }}
         className="border border-dark col-form-label-lg row g-0"
       >
-        <img className="something" src="/assets/placeholder_template.jpg" />
+        <img className="something" src="/assets/placeholder_template.jpg" alt = "" />
         <Login />
       </Container>
     </>
