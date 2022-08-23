@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false && react-scripts build",
+    "build": "set CI=false && react-scripts build",
     "test": "react-scripts test",
     "test2": "mocha",
     "eject": "react-scripts eject"
