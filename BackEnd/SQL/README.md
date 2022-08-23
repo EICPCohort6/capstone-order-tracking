@@ -5,7 +5,7 @@ To create the database locally, do the following:
   - Clone the repository to your local machine.
   - Open the SQL folder in a local instance of workbench.
   - Run the **capstone-project.sql** file to create the tables. 
-  - Next, run the **insert_dummy_data.sql** file to insert mock data for testing. 
+  - Next, run the **insert_dummy_dataV2.sql** file to insert mock data for testing. 
 
 
 ## Folder and File Structure:
@@ -107,4 +107,14 @@ To support the order tracking application, we built the following database struc
     - <b>Order_id:</b> A foreign key from <b>orders</b> table of <b>int</b> datatype that represents a unique ID for each order.
     - <b>Product_id:</b> A foreign key from <b>products</b> table of <b>int</b> datatype that represents a unique ID for each product.
     - <b>Order_quantity:</b> A non nullable key of <b>int</b> datatype that hold values for the quantity of products in each order. 
+  </pre>
+  
+- **Users:**
+  - Table that holdx information about people who log in to the website
+  <pre>
+    - <b>User_id:</b> A primary key of <b>int</b> datatype that represents a unique ID for each user. 
+    - <b>Username:</b> A non nullable key of <b>varchar</b> datatype that represents usernames of users.
+    - <b>Password:</b> A non nullable from key of <b>varchar</b> datatype that represents passwords of users.
+    - <b>Access_level:</b> A non nullable key of <b>int</b> datatype that represents access level of each user. 
+    - <b>Csr_id:</b> A non nullable foreign key of <b>int</b> datatype from <b>csr</b> table that represents a unique ID for each csr member. 
   </pre>
