@@ -6,9 +6,18 @@ const Op = database.Sequelize.Op;
 //create a new customer
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.last_name) {
+  if (!req.body.last_name || 
+      !req.body.first_name || 
+      !req.body.email || 
+      !req.body.date_of_birth || 
+      !req.body.street_number || 
+      !req.body.street_name || 
+      !req.body.city || 
+      !req.body.state || 
+      !req.body.country || 
+      !req.body.zipcode ) {
     res.status(400).send({
-      message: "Content can not be empty!",
+      message: "Required fields can not be empty!",
     });
     return;
   }
@@ -88,6 +97,23 @@ exports.findOne = (req, res) => {
 
 // Update a single Customer with an id
 exports.update = (req, res) => {
+
+  if (!req.body.last_name || 
+      !req.body.first_name || 
+      !req.body.email || 
+      !req.body.date_of_birth || 
+      !req.body.street_number || 
+      !req.body.street_name || 
+      !req.body.city || 
+      !req.body.state || 
+      !req.body.country || 
+      !req.body.zipcode ) {
+      res.status(400).send({
+      message: "Required fields can not be empty!",
+    });
+    return;
+  }
+
   const id = req.params.id;
   Customers.update(req.body, {
     where: { customer_id: id },
