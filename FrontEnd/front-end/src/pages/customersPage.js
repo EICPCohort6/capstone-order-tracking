@@ -20,6 +20,12 @@ const getData = async ({ condition, text }) => {
       return "empty";
   }
 };
+const createNewCustomer = async (person) => {
+  axios.post(`http://localhost:8080/api/customers`, person).then((result) => {
+    alert("Customer added!");
+    window.location.reload();
+  });
+};
 
 const CustomerPage = () => {
   const [tableData, setTableData] = useState("empty");
@@ -59,7 +65,7 @@ const CustomerPage = () => {
   return (
     <>
       <CustomerSearch getData={getData} setTableData={setTableData} />
-      <AddCustomerButton />
+      <AddCustomerButton customerFunction={createNewCustomer} />
       <CustomerTableDisplay
         tableData={tableData}
         deleteItem={deleteItem}

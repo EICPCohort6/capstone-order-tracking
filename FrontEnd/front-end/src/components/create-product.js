@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Form, Col, FormGroup, Label, Input, Button } from "reactstrap";
+import { Row, Form, Col, FormGroup, Label, Input } from "reactstrap";
 
 const ProductForm = () => {
   return (
