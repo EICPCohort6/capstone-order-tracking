@@ -77,7 +77,6 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  color:darkblue ;
  }
 
  .center {
@@ -103,3 +102,56 @@
               height: 15vh;
               width: 25vw;
 }
+
+a:link {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: black !important;
+  text-decoration: none;
+
+}
+
+a:active {
+  color: black;
+}
+
+.nav-link {
+  color:black
+}
+
+.logout {
+         
+}
+
+.containernav {
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  position: relative;
+  margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: inherit;
+}
+
+.nav>li>a.active {
+  background-color: #737271 !important;
+}
+.nav>li>a:hover {
+  background-color: #A3A2A1;
+}
+.nav>li>a:focus {
+   background-color: #838281;
+}
+.nav>li>a. {
+  background-color: #838281;
+}
+

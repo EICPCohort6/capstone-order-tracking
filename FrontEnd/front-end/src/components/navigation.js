@@ -6,7 +6,7 @@ const NavigationBar = () => {
   const [active, setActive] = useState("");
   return (
     <>
-      <Container className="row g-0">
+      <Container className="containernav row g-0">
         <img style={{ width: "100%" }} src="/assets/placeholder_template.jpg" />
         <Row className="g-0">
           <Col xs="4">
@@ -19,7 +19,7 @@ const NavigationBar = () => {
             <NavItem className="p-2">
               <NavLink
                 active={active === "Customers"}
-                className="nav-link"
+                className=" nav-link"
                 to="/"
               >
                 <Link onClick={() => setActive("Customers")} to={"/"}>
@@ -51,7 +51,10 @@ const NavigationBar = () => {
             </NavItem>
           </Nav>
         </Row>
-        <Button color="danger">Sign Out</Button>{" "}
+        <Button className="logout col p-2 g-3" color="danger">
+          Sign Out
+        </Button>
+        {""}
       </Container>
     </>
   );
