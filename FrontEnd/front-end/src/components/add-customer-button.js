@@ -2,29 +2,29 @@ import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import CustomerForm from "./create-customer";
 
-function AddCustomerButton(args) {
+function AddCustomerButton({
+  text = "Add New Customer",
+  person,
+  customerFunction,
+}) {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>
-        Add New Customer
+      <Button color="primary" onClick={toggle}>
+        {text}
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Create New Customer</ModalHeader>
         <ModalBody>
-          <CustomerForm />
+          <CustomerForm
+            toggle={toggle}
+            person={person}
+            customerFunction={customerFunction}
+          />
         </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggle}>
-            Add
-          </Button>{" "}
-          <Button color="secondary" onClick={toggle}>
-            Cancel
-          </Button>
-        </ModalFooter>
       </Modal>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Table } from "reactstrap";
 import ConfirmDialog from "./confirmDialog";
+import AddCustomerButton from "./add-customer-button";
 
 const TABLE_HEADERS = [
   "ID",
@@ -14,7 +15,7 @@ const TABLE_HEADERS = [
 ];
 
 const CustomerTable = (props) => {
-  const { tableData, deleteItem } = props;
+  const { tableData, deleteItem, updateItem } = props;
 
   const mappedHeaders = TABLE_HEADERS.map((header, index) => {
     return <th key={index}>{header}</th>;
@@ -22,15 +23,19 @@ const CustomerTable = (props) => {
   const mappedRows = tableData.map((person, index) => {
     return (
       <tr key={index}>
-        <th scope="row">{person.id}</th>
-        {Object.entries(person).map(
+        <th scope="row">{person.displayData.id}</th>
+        {Object.entries(person.displayData).map(
           ([key, value]) => key !== "id" && <td key={key}>{value}</td>
         )}
         <td>
           <Button>+</Button>
         </td>
         <td>
-          <Button>Edit</Button>
+          <AddCustomerButton
+            text="Edit"
+            person={person.fullData}
+            customerFunction={updateItem}
+          />
         </td>
         <td>
           <ConfirmDialog deleteItem={deleteItem} id={person.id} />
@@ -50,12 +55,16 @@ const CustomerTable = (props) => {
 };
 
 const CustomerTableDisplay = (props) => {
-  const { tableData, deleteItem } = props;
+  const { tableData, deleteItem, updateItem } = props;
 
   return tableData === "empty" ? (
     <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>
   ) : (
-    <CustomerTable tableData={tableData} deleteItem={deleteItem} />
+    <CustomerTable
+      tableData={tableData}
+      deleteItem={deleteItem}
+      updateItem={updateItem}
+    />
   );
 };
 

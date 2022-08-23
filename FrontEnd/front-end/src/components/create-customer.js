@@ -1,28 +1,38 @@
 import React, { useState } from "react";
 import { Row, Form, Col, FormGroup, Label, Input, Button } from "reactstrap";
-
 const template = {
-  firstName: "",
-  middleName: "",
-  lastName: "",
-  streetNumber: "",
-  streetName: "",
-  unitNumber: "",
+  first_name: "",
+  middle_name: "",
+  last_name: "",
+  street_number: "",
+  street_name: "",
+  unit_number: "",
   country: "",
   city: "",
   state: "",
-  zipCode: "",
+  zipcode: "",
   email: "",
-  phone: "",
-  birthDate: "",
-  customerNotes: "",
+  phone_number: "",
+  date_of_birth: "",
+  customer_notes: "",
 };
 
-const CustomerForm = ({ person = { ...template }, toggle }) => {
+const submitForm = (e, data, toggle, customerFunction) => {
+  e.preventDefault();
+  customerFunction(data);
+  toggle();
+};
+
+const CustomerForm = ({
+  person = { ...template },
+  toggle,
+  customerFunction,
+}) => {
+  person = { ...template, ...person };
   const [data, setData] = useState(person);
 
   return (
-    <Form>
+    <Form onSubmit={(e) => submitForm(e, data, toggle, customerFunction)}>
       <Row>
         <Col md={4}>
           <FormGroup>
@@ -30,8 +40,8 @@ const CustomerForm = ({ person = { ...template }, toggle }) => {
             <Input
               id="first_name"
               name="first_name"
-              value={data.firstName}
-              onChange={(e) => setData({ ...data, firstName: e.target.value })}
+              value={data.first_name}
+              onChange={(e) => setData({ ...data, first_name: e.target.value })}
             />
           </FormGroup>
         </Col>
@@ -41,8 +51,10 @@ const CustomerForm = ({ person = { ...template }, toggle }) => {
             <Input
               id="middle_name"
               name="middle_name"
-              value={data.middleName}
-              onChange={(e) => setData({ ...data, middleName: e.target.value })}
+              value={data.middle_name}
+              onChange={(e) =>
+                setData({ ...data, middle_name: e.target.value })
+              }
             />
           </FormGroup>
         </Col>
@@ -52,8 +64,8 @@ const CustomerForm = ({ person = { ...template }, toggle }) => {
             <Input
               id="last_name"
               name="last_name"
-              value={data.lastName}
-              onChange={(e) => setData({ ...data, lastName: e.target.value })}
+              value={data.last_name}
+              onChange={(e) => setData({ ...data, last_name: e.target.value })}
             />
           </FormGroup>
         </Col>
@@ -66,9 +78,9 @@ const CustomerForm = ({ person = { ...template }, toggle }) => {
               id="street_number"
               name="street_number"
               placeholder="123"
-              value={data.streetNumber}
+              value={data.street_number}
               onChange={(e) =>
-                setData({ ...data, streetNumber: e.target.value })
+                setData({ ...data, street_number: e.target.value })
               }
             />
           </FormGroup>
@@ -80,8 +92,10 @@ const CustomerForm = ({ person = { ...template }, toggle }) => {
               id="street_name"
               name="street_name"
               placeholder="Main St"
-              value={data.streetName}
-              onChange={(e) => setData({ ...data, streetName: e.target.value })}
+              value={data.street_name}
+              onChange={(e) =>
+                setData({ ...data, street_name: e.target.value })
+              }
             />
           </FormGroup>
         </Col>
@@ -94,8 +108,10 @@ const CustomerForm = ({ person = { ...template }, toggle }) => {
               id="unit_number"
               name="unit_number"
               placeholder="Apartment, studio, or floor"
-              value={data.unitNumber}
-              onChange={(e) => setData({ ...data, unitNumber: e.target.value })}
+              value={data.unit_number}
+              onChange={(e) =>
+                setData({ ...data, unit_number: e.target.value })
+              }
             />
           </FormGroup>
         </Col>
@@ -143,8 +159,8 @@ const CustomerForm = ({ person = { ...template }, toggle }) => {
             <Input
               id="zipcode"
               name="zipcode"
-              value={data.zipCode}
-              onChange={(e) => setData({ ...data, zipCode: e.target.value })}
+              value={data.zipcode}
+              onChange={(e) => setData({ ...data, zipcode: e.target.value })}
             />
           </FormGroup>
         </Col>
@@ -155,6 +171,7 @@ const CustomerForm = ({ person = { ...template }, toggle }) => {
               id="email"
               name="email"
               placeholder="example@gmail.com"
+              type="email"
               value={data.email}
               onChange={(e) => setData({ ...data, email: e.target.value })}
             />
@@ -168,8 +185,10 @@ const CustomerForm = ({ person = { ...template }, toggle }) => {
             <Input
               id="phone_number"
               name="phone_number"
-              value={data.phone}
-              onChange={(e) => setData({ ...data, phone: e.target.value })}
+              value={data.phone_number}
+              onChange={(e) =>
+                setData({ ...data, phone_number: e.target.value })
+              }
             />
           </FormGroup>
         </Col>
@@ -180,8 +199,10 @@ const CustomerForm = ({ person = { ...template }, toggle }) => {
               id="date_of_birth"
               name="date_of_birth"
               placeholder="MM/DD/YYYY"
-              value={data.birthDate}
-              onChange={(e) => setData({ ...data, birthDate: e.target.value })}
+              value={data.date_of_birth}
+              onChange={(e) =>
+                setData({ ...data, date_of_birth: e.target.value })
+              }
             />
           </FormGroup>
         </Col>
@@ -191,9 +212,17 @@ const CustomerForm = ({ person = { ...template }, toggle }) => {
         <Input
           id="customer_notes"
           name="customer_notes"
-          value={data.customerNotes}
-          onChange={(e) => setData({ ...data, customerNotes: e.target.value })}
+          value={data.customer_notes}
+          onChange={(e) => setData({ ...data, customer_notes: e.target.value })}
         />
+      </FormGroup>
+      <FormGroup>
+        <Button color="primary" type="submit">
+          Submit
+        </Button>{" "}
+        <Button color="secondary" onClick={toggle}>
+          Cancel
+        </Button>
       </FormGroup>
     </Form>
   );
