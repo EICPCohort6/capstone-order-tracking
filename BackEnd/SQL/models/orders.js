@@ -10,6 +10,7 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+        field: "order_id",
       },
       customer_id: {
         type: DataTypes.INTEGER,
@@ -22,6 +23,7 @@ module.exports = (sequelize, Sequelize) => {
       order_status_code: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        field: "order_status_code",
       },
       datetime_order_placed: {
         type: DataTypes.DATE,
@@ -29,6 +31,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       total_order_price: {
         type: DataTypes.FLOAT,
+        allowNull: false,
       },
       order_notes: {
         type: DataTypes.STRING,
