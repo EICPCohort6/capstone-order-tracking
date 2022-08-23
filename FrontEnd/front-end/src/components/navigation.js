@@ -19,7 +19,7 @@ const NavigationBar = () => {
             <NavItem className="p-2">
               <NavLink
                 active={active === "Customers"}
-                className="nav-link"
+                className=" nav-link"
                 to="/"
               >
                 <Link onClick={() => setActive("Customers")} to={"/"}>

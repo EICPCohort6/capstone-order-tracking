@@ -77,7 +77,6 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  color:darkblue ;
  }
 
  .center {
@@ -107,27 +106,29 @@
 a:link {
   color: black;
   text-decoration: none;
+  font-weight: bold;
 }
 
-/* visited link */
 a:visited {
   color: black;
 }
 
-/* mouse over link */
 a:hover {
-  color: black;
+  color: black !important;
+  text-decoration: none;
+
 }
 
-/* selected link */
 a:active {
   color: black;
 }
 
-.logout {
-  
-          
+.nav-link {
+  color:black
+}
 
+.logout {
+         
 }
 
 .containernav {
@@ -140,3 +141,17 @@ a:active {
   overflow-x: hidden;
   display: inherit;
 }
+
+.nav>li>a.active {
+  background-color: #737271 !important;
+}
+.nav>li>a:hover {
+  background-color: #A3A2A1;
+}
+.nav>li>a:focus {
+   background-color: #838281;
+}
+.nav>li>a. {
+  background-color: #838281;
+}
+
