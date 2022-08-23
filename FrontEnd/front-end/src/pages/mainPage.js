@@ -14,6 +14,8 @@ const MainPage = () => {
           <Col xs="10" md="8" className="p-3">
             <Outlet />
           </Col>
+          <Col xs="10" md="8" className="p-3">
+          </Col>
         </Row>
       </Container>
     </>
