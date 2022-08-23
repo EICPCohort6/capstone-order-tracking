@@ -103,3 +103,40 @@
               height: 15vh;
               width: 25vw;
 }
+
+a:link {
+  color: black;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: black;
+}
+
+/* mouse over link */
+a:hover {
+  color: black;
+}
+
+/* selected link */
+a:active {
+  color: black;
+}
+
+.logout {
+  
+          
+
+}
+
+.containernav {
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  position: relative;
+  margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: inherit;
+}
