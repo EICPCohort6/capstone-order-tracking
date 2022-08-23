@@ -30,7 +30,6 @@ jobs:
         #npm install react
         #npm install react-script
 
-        working-directory: ./FrontEnd/front-end/
 
       - name: Zip Artifact
         run: zip release.zip ./* -r
