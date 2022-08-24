@@ -8,21 +8,16 @@ const Op = database.Sequelize.Op;
 //create a new customer
 exports.create = (req, res) => {
   // Validate request
-<<<<<<< HEAD
-
-  if (!req.body.last_name) {
-=======
-  if (!req.body.last_name || 
-      !req.body.first_name || 
-      !req.body.email || 
-      !req.body.date_of_birth || 
-      !req.body.street_number || 
-      !req.body.street_name || 
-      !req.body.city || 
-      !req.body.state || 
-      !req.body.country || 
+  if (!req.body.last_name ||
+      !req.body.first_name ||
+      !req.body.email ||
+      !req.body.date_of_birth ||
+      !req.body.street_number ||
+      !req.body.street_name ||
+      !req.body.city ||
+      !req.body.state ||
+      !req.body.country ||
       !req.body.zipcode ) {
->>>>>>> back-end
     res.status(400).send({
       message: "Required fields can not be empty!",
     });
@@ -107,15 +102,15 @@ exports.findOne = (req, res) => {
 // Update a single Customer with an id
 exports.update = (req, res) => {
 
-  if (!req.body.last_name || 
-      !req.body.first_name || 
-      !req.body.email || 
-      !req.body.date_of_birth || 
-      !req.body.street_number || 
-      !req.body.street_name || 
-      !req.body.city || 
-      !req.body.state || 
-      !req.body.country || 
+  if (!req.body.last_name ||
+      !req.body.first_name ||
+      !req.body.email ||
+      !req.body.date_of_birth ||
+      !req.body.street_number ||
+      !req.body.street_name ||
+      !req.body.city ||
+      !req.body.state ||
+      !req.body.country ||
       !req.body.zipcode ) {
       res.status(400).send({
       message: "Required fields can not be empty!",

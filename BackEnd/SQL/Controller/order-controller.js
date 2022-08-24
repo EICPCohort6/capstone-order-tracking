@@ -29,15 +29,10 @@ function findByPKFunc(req, res, id) {
 //create a new order
 exports.create = (req, res) => {
   // Validate request
-<<<<<<< HEAD
-  if (!req.body.customer_id) {
-
-=======
   if (!req.body.customer_id ||
       !req.body.order_status_code ||
       !req.body.datetime_order_placed ||
       !req.body.total_order_price ) {
->>>>>>> back-end
     res.status(400).send({
       message: "Required fields can not be empty!",
     });
