@@ -25,7 +25,8 @@ jobs:
         working-directory: ./test-app/
 
       - name: Zip Artifact
-        run: zip release.zip ./test-app/* -r
+        run: zip release.zip ./* -r
+        working-directory: ./test-app/
      
 
       - name: Upload artifact for deployment job
