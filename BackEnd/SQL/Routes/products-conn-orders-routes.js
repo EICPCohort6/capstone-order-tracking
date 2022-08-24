@@ -8,7 +8,7 @@ module.exports = (app) => {
   
     //router.get("/:id", ProductsConnOrders.findOne);
   
-    router.put("/:id", ProductsConnOrders.update);
+    router.put("/", ProductsConnOrders.update);
   
     app.use("/api/products_connect_orders", router);
   };

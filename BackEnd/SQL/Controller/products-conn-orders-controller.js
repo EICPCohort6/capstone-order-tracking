@@ -170,44 +170,132 @@ exports.create = async(req,res) => {
 
 }
 
-//     ProductsConnOrders.create(newProductOrder)
-//     .then((data) => {
-//         res.status(201).send(data);
-//     })
-//     .catch((err) => {
-//         res.status(500).send({
-//           message:
-//             err.message ||
-//             "An unexpected error occured while creating new Customer",
-//         });
-//     });
-// }
-
-
 //TODO: Edit quantity of product in order. Need order_id, product_id and new quantity. If new quantity = 0, delete product from specified order_id
 
-exports.update = (req, res) => {
+exports.update = async(req,res) => {
 
-    // const id = req.params.id;
-    // ProductsConnOrders.update(req.body, {
-    //   where: { customer_id: id },
-    // })
-    //   .then((num) => {
-    //     if (num == 1) {
-    //       res.send({
-    //         message: "Product-Order record was updated successfully.",
-    //       });
-    //     } else {
-    //       res.send({
-    //         message: `Cannot update Product-Order record with id=${id}. Maybe Product-Order was not found or req.body is empty!`,
-    //       });
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     res.status(500).send({
-    //       message: "Error updating Product-Order record with id=" + id,
-    //     });
-    //   });
+    // 1. get original quantity for order and product
+    // 2.1 if new quantity = 0, delete record from products_conn_orders 
+    // 2.2 get difference between original and new quantity and update record from products_conn_orders with new quantity (CHECK IF NEW AMT IS AVAILABLE)
+    // 3. add difference to inventory
+    // 4. adjust order price by difference * individual price
+
+    const order_id = req.query.order_id;
+    const product_id = req.query.product_id;
+    const new_quantity = req.body.order_quantity;
+
+    const upd_trx = await database.connection.transaction();
+
+    try {
+        // Get number of product available and it's individual price
+        const checkProdInv = await Products.findAll({where: { product_id: product_id }, logging: console.log, transaction: upd_trx});
+
+        const quantityAvailable = checkProdInv[0].dataValues.product_quantity;
+        const costPerItem = checkProdInv[0].dataValues.product_price;
+
+        if (!quantityAvailable || !costPerItem) {
+            throw `Could not retrieve information about product_id ${product_id}`;
+        }
+
+        if (quantityAvailable < new_quantity) {
+            res.send({message: "Could not add product to order - not enough product in inventory"});
+            throw "Could not add product to order - not enough product in inventory";
+        }
+
+        // get original amt in order
+        const checkOrderQt = await ProductsConnOrders.findAll({where: { order_id: order_id, product_id: product_id }, logging: console.log, transaction: upd_trx});
+
+        const original_quantity = checkOrderQt[0] ? checkOrderQt[0].dataValues.order_quantity : null;
+
+        if (!original_quantity) {
+            res.send({message: `Product with product_id ${product_id} does not exist in order with order_id ${order_id}, please add it first.`})
+            throw `Product with product_id ${product_id} does not exist in order with order_id ${order_id}, please add it first.`;
+        } 
+
+        const prodDiff = original_quantity - new_quantity;
+
+        if (new_quantity == 0) {
+            // delete record from products_conn_orders
+            const delProdFromOrd = await ProductsConnOrders.destroy({where: { order_id: order_id, product_id: product_id }, logging: console.log, transaction: upd_trx})
+            .then((num) => {
+            if (num == 1) {
+                // product deleted from order successfully
+            } else {
+                res.send({
+                message: `Cannot delete product with product_id ${product_id} from order with order_id ${order_id} from products_connect_orders table.`,
+                });
+                throw `Cannot delete product with product_id ${product_id} from order with order_id ${order_id} from products_connect_orders table.`;
+            }
+            });
+        } else {
+            // update record from products_conn_orders
+            const updProdInOrd = await ProductsConnOrders.update({order_quantity: new_quantity}, {where: { order_id: order_id, product_id: product_id }, logging: console.log, transaction: upd_trx})
+            .then((num) => {
+            if (num == 1) {
+                // product updated in order successfully
+            } else {
+                res.send({
+                message: `Cannot update quantity for product with product_id ${product_id} from order with order_id ${order_id} from products_connect_orders table.`,
+                });
+                throw `Cannot update quantity for product_id ${product_id} from order with order_id ${order_id} from products_connect_orders table.`;
+            }
+            });
+        }
+
+        //add difference to products table
+        const updProdInv = await Products.update({product_quantity: quantityAvailable + prodDiff}, {where: { product_id: product_id }, logging: console.log, transaction: upd_trx})
+            .then((num) => {
+            if (num == 1) {
+                // product updated in order successfully
+            } else {
+                res.send({
+                message: `Cannot update inventory for product with product_id ${product_id} in products table.`,
+                });
+                throw `Cannot update inventory for product_id ${product_id}  in products table.`;
+            }
+            });
+
+        //get original total price of order
+        const checkOrigOrderPrice = await Orders.findAll({where: { order_id: order_id }, logging: console.log, transaction: upd_trx});
+
+        const totalOrigPrice = checkOrigOrderPrice[0].dataValues.total_order_price;
+
+        if (!totalOrigPrice) {
+            res.send({
+                message: `Could not retrieve information about order_id ${order_id}`,
+            });
+            throw `Could not retrieve information about order_id ${order_id}`;
+        }
+
+        //update order price
+        const priceDiff = prodDiff * costPerItem;
+
+        console.log(prodDiff);
+        console.log(totalOrigPrice);
+        console.log(priceDiff);
+        console.log(totalOrigPrice + priceDiff);
+
+        const updOrderPrice = await Orders.update({total_order_price: totalOrigPrice - priceDiff}, {where: { order_id: order_id }, logging: console.log, transaction: upd_trx})
+            .then((num) => {
+            if (num == 1) {
+                // price updated successfully
+                res.send({
+                    message: `Product quantity updated successfully. Product inventory and total order price adjusted accordingly.`
+                })
+            } else {
+                res.send({
+                    message: `Cannot update total_order_price for order with order_id ${order_id} in products table.`,
+                });
+                throw `Cannot update total_order_price for order with order_id ${order_id} in products table.`;
+            }
+        });
+
+        await upd_trx.commit();
+
+    } catch (err) {
+        console.log(err);
+        await upd_trx.rollback();
+    }
   };
 
 
