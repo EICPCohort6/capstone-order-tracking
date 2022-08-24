@@ -46,7 +46,7 @@ const database = {
     connection,
     Sequelize
   ),
-  user: require("./models/users.js")(connection, Sequelize)
+  users: require("./models/users.js")(connection, Sequelize),
 };
 
 // one to many relationship between customers and orders on customerid
@@ -92,14 +92,14 @@ database.orders.belongsToMany(database.products, {
 });
 
 // one to one relationships for between users and CSR
-database.csr.hasOne(database.user, {
+database.csr.hasOne(database.users, {
   foreignKey: "csr_id",
-  as: "csr",
+  as: "users",
 });
 
-database.user.belongsTo(database.csr, {
+database.users.belongsTo(database.csr, {
   foreignKey: "csr_id",
-  as: "user",
+  as: "csr",
 });
 
 module.exports = database;
