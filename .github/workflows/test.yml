@@ -26,5 +26,5 @@ jobs:
       - name: Run tests
         run: |
           npm install
-          npm run test3
+          npm mocha
           
