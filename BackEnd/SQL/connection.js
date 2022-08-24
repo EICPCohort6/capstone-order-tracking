@@ -131,12 +131,12 @@ database.orders.belongsToMany(database.products, {
 });
 
 // one to one relationships for between users and CSR
-database.user.hasOne(database.csr, {
+database.csr.hasOne(database.user, {
   foreignKey: "csr_id",
   as: "csr",
 });
 
-database.csr.belongsTo(database.user, {
+database.user.belongsTo(database.csr, {
   foreignKey: "csr_id",
   as: "user",
 });

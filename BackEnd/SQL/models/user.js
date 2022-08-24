@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         csr_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            
         },
     },
     {
