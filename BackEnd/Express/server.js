@@ -4,7 +4,7 @@ const database = require("../SQL/connection");
 
 const app = express();
 app.use(express.json());
-// app.options("http://localhost:3000", cors()); // not needed apparently? //front end?
+
 app.use(express.urlencoded({ extended: true }));
 
 //init sequelize and run sync
@@ -33,10 +33,11 @@ require("../SQL/Routes/customer-routes")(app);
 require("../SQL/Routes/order-routes")(app);
 require("../SQL/Routes/product-routes")(app);
 
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
-
 module.exports = app;
+

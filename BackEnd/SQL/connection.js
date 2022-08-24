@@ -27,12 +27,14 @@ var connection = new Sequelize(
   }
 );
 
+
 const database = {
   Sequelize: Sequelize,
   connection: connection,
 
   // Link models with database connection here
   customers: require("./models/customer.js")(connection, Sequelize),
+
   orders: require("./models/orders.js")(connection, Sequelize),
   products: require("./models/products.js")(connection, Sequelize),
   status: require("./models/status.js")(connection, Sequelize),
@@ -129,5 +131,6 @@ database.products.belongsToMany(database.orders, {
 database.orders.belongsToMany(database.products, {
   through: database.products_connect_orders,
 });
+
 
 module.exports = database;
