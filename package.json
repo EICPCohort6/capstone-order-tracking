@@ -29,6 +29,7 @@
     "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
     "test2": "mocha",
+    "test3": "node ./Test/API-backend-test.js"
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
