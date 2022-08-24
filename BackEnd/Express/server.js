@@ -5,7 +5,7 @@ const database = require("../SQL/connection");
 const app = express();
 
 var corsOptions = {
-  origin: ["http://localhost:8080", "http://localhost:3000"], // server
+  origin: ["https://capstone-csr-api.azurewebsites.net", "https://capstone-csr.azurewebsites.net"], // server
 };
 
 app.use(cors(corsOptions));
