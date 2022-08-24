@@ -9,13 +9,7 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-const SEARCH_OPTIONS = [
-  "Last Name",
-  "First Name",
-  "ID",
-  "Phone Number",
-  "Email",
-];
+const SEARCH_OPTIONS = ["Customer Id", "Order Id", "Order Status Code"];
 
 const DropDownSelected = (props) => {
   const { setSearchCondition, searchCondition } = props;
@@ -39,41 +33,25 @@ const DropDownSelected = (props) => {
 const apiCall = (event, getData, setTableData, searchCondition, text) => {
   event.preventDefault();
   const info = { condition: searchCondition, text: text };
+
   getData(info)
     .then((result) => {
       if (result === "empty" || result.data.length === 0) {
-        setTableData("empty");
+        setTableData([]);
         return;
       }
       let resultData = result.data;
-      if (!Array.isArray(resultData)) {
-        resultData = [{ ...resultData }]; //turn it into array if it's not one already so it could be mapped
-      }
-      const tableData = resultData.map((entry) => {
-        return {
-          displayData: {
-            customer_id: entry.customer_id,
-            first_name: entry.first_name,
-            middle_name: entry.middle_name,
-            last_name: entry.last_name,
-            phone_number: entry.phone_number,
-            email: entry.email,
-            country: entry.country,
-            city: entry.city,
-          },
-          fullData: entry,
-        };
-      });
-      setTableData(tableData);
+      if (!Array.isArray(resultData)) resultData = [{ ...resultData }];
+      setTableData(resultData);
     })
     .catch((error) => {
-      if (error.response.status === 404) alert("Unable to find Customer");
+      if (error.response.status === 404) alert("Unable to find Order");
       else alert("Error!");
     });
 };
-const Search = (props) => {
+const OrderSearch = (props) => {
   const { getData, setTableData } = props;
-  const [searchCondition, setSearchCondition] = useState("Last Name");
+  const [searchCondition, setSearchCondition] = useState("Order Id");
   const [text, setText] = useState("");
 
   return (
@@ -84,7 +62,7 @@ const Search = (props) => {
     >
       <InputGroup>
         <Input
-          placeholder="Search"
+          placeholder="Search Orders"
           onChange={(event) => setText(event.target.value)}
           value={text}
         />
@@ -97,4 +75,4 @@ const Search = (props) => {
     </form>
   );
 };
-export default Search;
+export default OrderSearch;

@@ -1,15 +1,30 @@
+const sequelize = require("sequelize");
 const database = require("../connection");
 
 const Customers = database.customers;
+const CustomersConnCSR = database.customers_connect_csr;
 const Op = database.Sequelize.Op;
 
 //create a new customer
 exports.create = (req, res) => {
   // Validate request
+<<<<<<< HEAD
 
   if (!req.body.last_name) {
+=======
+  if (!req.body.last_name || 
+      !req.body.first_name || 
+      !req.body.email || 
+      !req.body.date_of_birth || 
+      !req.body.street_number || 
+      !req.body.street_name || 
+      !req.body.city || 
+      !req.body.state || 
+      !req.body.country || 
+      !req.body.zipcode ) {
+>>>>>>> back-end
     res.status(400).send({
-      message: "Content can not be empty!",
+      message: "Required fields can not be empty!",
     });
     return;
   }
@@ -91,6 +106,23 @@ exports.findOne = (req, res) => {
 
 // Update a single Customer with an id
 exports.update = (req, res) => {
+
+  if (!req.body.last_name || 
+      !req.body.first_name || 
+      !req.body.email || 
+      !req.body.date_of_birth || 
+      !req.body.street_number || 
+      !req.body.street_name || 
+      !req.body.city || 
+      !req.body.state || 
+      !req.body.country || 
+      !req.body.zipcode ) {
+      res.status(400).send({
+      message: "Required fields can not be empty!",
+    });
+    return;
+  }
+
   const id = req.params.id;
   Customers.update(req.body, {
     where: { customer_id: id },
@@ -113,25 +145,51 @@ exports.update = (req, res) => {
     });
 };
 
-exports.delete = (req, res) => {
+exports.delete = async(req,res) => {
   const id = req.params.id;
-  Customers.destroy({
-    where: { customer_id: id },
-  })
+  const delete_trx = await database.connection.transaction();
+  try {
+    /// THIS LINE: update is showing, but only because ccc_timestamp can be updated. customer_id and csr_id are both unable to be updated.
+    const updCustID = await CustomersConnCSR.update({customers_connect_csr_id: 100, customer_id: 200, csr_id: 42, ccc_timestamp: '2023-04-21 21:56:55'}, {where: { customer_id: 100 }, logging: console.log, transaction: delete_trx})
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Customer was deleted successfully!",
+          message: `Customer ${id} was updated to null in customers_conn_csr successfully.`,
         });
       } else {
         res.send({
-          message: `Cannot delete Customer with id=${id}. Maybe Customer was not found!`,
+          message: `Cannot update Customer with id=${id} in customers_conn_csr. Maybe Customer was not found or req.body is empty!`,
         });
       }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err,
-      });
     });
+    await delete_trx.commit();
+    // const delete_trx = await database.connection.transaction(async (t) => {
+
+    //   consawait CustomersConnCSR.update({first_name: "NEW"}, {where: { customer_id: id }, transaction: t}).then((num) => {res.send({message: num})});
+    //   console.log("TRANSAC");
+    //   return;
+
+    // })
+  } catch (err) {
+    await delete_trx.rollback();
+  }
+  // Customers.destroy({
+  //   where: { customer_id: id },
+  // })
+  //   .then((num) => {
+  //     if (num == 1) {
+  //       res.send({
+  //         message: "Customer was deleted successfully!",
+  //       });
+  //     } else {
+  //       res.send({
+  //         message: `Cannot delete Customer with id=${id}. Maybe Customer was not found!`,
+  //       });
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).send({
+  //       message: err,
+  //     });
+  //   });
 };

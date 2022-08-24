@@ -29,10 +29,17 @@ function findByPKFunc(req, res, id) {
 //create a new order
 exports.create = (req, res) => {
   // Validate request
+<<<<<<< HEAD
   if (!req.body.customer_id) {
 
+=======
+  if (!req.body.customer_id ||
+      !req.body.order_status_code ||
+      !req.body.datetime_order_placed ||
+      !req.body.total_order_price ) {
+>>>>>>> back-end
     res.status(400).send({
-      message: "Content can not be empty!",
+      message: "Required fields can not be empty!",
     });
     return;
   }
@@ -83,6 +90,17 @@ exports.findOne = (req, res) => {
 
 // Update a single Order with an id
 exports.update = (req, res) => {
+
+  if (!req.body.customer_id ||
+      !req.body.order_status_code ||
+      !req.body.datetime_order_placed ||
+      !req.body.total_order_price ) {
+    res.status(400).send({
+    message: "Required fields can not be empty!",
+    });
+    return;
+  }
+
   const id = req.params.id;
   Orders.update(req.body, {
     where: { order_id: id },
