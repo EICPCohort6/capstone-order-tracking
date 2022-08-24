@@ -1,42 +1,40 @@
-
 import { Table } from "reactstrap";
 
 const OrdersTable = (props) => {
   const { customerOrders } = props;
-  console.log("hey", customerOrders);
+  if (customerOrders.length === 0)
+    return <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>;
   return (
-    <div>
+    <>
       <h1>Orders Table</h1>
-
-      <Table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Customer Id</th>
-            <th>Order Id</th>
-            <th>Order Status Code</th>
-            <th>Total Order Price</th>
-            <th>Order Notes</th>
-            <th>Time Stamp</th>
-          </tr>
-        </thead>
-        <tbody>
-          {customerOrders.map((order, index) => (
+      <div style={{ maxHeight: "700px", overflowY: "scroll" }}>
+        <Table striped>
+          <thead>
             <tr>
-              <th scope="row">{index}</th>
-              <td>{order.customerId}</td>
-              <td>{order.orderId}</td>
-              <td>{order.orderStatus}</td>
-              <td>{order.total}</td>
-              <td>{order.orderNotes}</td>
-              <td>{order.timestamp}</td>
+              <th>ID</th>
+              <th>Customer Id</th>
+              <th>Order Status</th>
+              <th>Total Price</th>
+              <th>Order Notes</th>
+              <th>Time Stamp</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-    </div>
+          </thead>
+          <tbody>
+            {customerOrders.map((order, index) => (
+              <tr key={order.order_id}>
+                <th scope="row">{order.order_id}</th>
+                <td>{order.customer_id}</td>
+                <td>{order.order_status_code}</td>
+                <td>{order.total_order_price}</td>
+                <td>{order.order_notes}</td>
+                <td>{order.datetime_order_placed}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    </>
   );
 };
-
 
 export default OrdersTable;

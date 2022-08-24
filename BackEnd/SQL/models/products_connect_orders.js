@@ -1,6 +1,4 @@
 const { DataTypes } = require("sequelize");
-const products = require("./products");
-let Order = require("./orders");
 
 module.exports = (sequelize, Sequelize) => {
   const products_connect_orders = sequelize.define(
@@ -10,29 +8,20 @@ module.exports = (sequelize, Sequelize) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
+        autoIncrement: true,
       },
-      // order_id: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: false,
-      //   references: {
-      //     model: Order,
-      //     key: "order_id",
-      //   },
-      // },
-      // product_id: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: false,
-      //   references: {
-      //     model: products,
-      //     key: "product_id",
-      //   },
-      // },
+
+      //order_id
+
+      //product_id
+
       order_quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
     {
+      freezeTableName: true,
       createdAt: false,
       updatedAt: false,
       underscored: true,
