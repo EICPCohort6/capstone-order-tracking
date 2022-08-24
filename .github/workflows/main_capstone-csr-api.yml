@@ -22,17 +22,19 @@ jobs:
         run: |
           npm install
 
-        working-directory: ./BackEnd/
+        working-directory: ./test-app/
 
       - name: Zip Artifact
-        run: zip release.zip ./BackEnd/* -r
+        run: zip release.zip ./* -r
+        working-directory: ./test-app/
      
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: release.zip
+          path: ./test-app/release.zip
+  
 
   deploy:
     runs-on: ubuntu-latest
