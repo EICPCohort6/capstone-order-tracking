@@ -2,18 +2,16 @@ import React, {useState } from "react";
 import OrdersTable from "./OrdersTable";
 import { Row, Form, Col, FormGroup, Label, Input, Button } from "reactstrap";
 
-const CustomerForm = () => {
+const OrderForm = ({ setCustomerOrdersTable, customerOrdersTable, onToggleModal }) => {
     const [orderId, setOrderId] = useState(null);
     const [orderStatus, setOrderStatus] = useState(null);
     const [customerId, setCustomerId] = useState(null);
     const [total, setTotal] = useState(0);
     const [orderNotes, setOrderNotes] = useState(null);
-    const [customerOrders, setCustomerOrders ] = useState([]);
+    const [customerOrders, setCustomerOrders ] = useState(customerOrdersTable);
   
    
     const handleSubmit = () => {
-
-
       const orderObject = {
         orderId,
         orderStatus,
@@ -29,9 +27,10 @@ const CustomerForm = () => {
       alert("Order was submitted with the following details: " + orderString);
 
       // setCustomerOrders.push(orderObject);
-      const currentCustomerOrders = customerOrders;
+      const currentCustomerOrders = customerOrdersTable;
       currentCustomerOrders.push(orderObject);
-      setCustomerOrders(currentCustomerOrders);
+      // setCustomerOrders(currentCustomerOrders);
+      setCustomerOrdersTable(currentCustomerOrders);
       // reset inputs
       setOrderId("")
       setCustomerId("")
@@ -42,9 +41,10 @@ const CustomerForm = () => {
     console.log(customerOrders)
  
     return (
+      <div>
       <Form>
         <Row>
-          <Col md={4}>
+          <Col md={6}>
             <FormGroup>
               <Label for="firstName">Order Id</Label>
               <Input
@@ -56,7 +56,7 @@ const CustomerForm = () => {
               />
             </FormGroup>
           </Col>
-          <Col md={4}>
+          <Col md={6}>
             <FormGroup>
               <Label for="customerId">Customer Id</Label>
               <Input
@@ -68,7 +68,7 @@ const CustomerForm = () => {
               />
             </FormGroup>
           </Col>
-          <Col md={4}>
+          <Col md={6}>
             <FormGroup>
               <Label for="orderStatus">Order Status Code</Label>
               <Input
@@ -80,7 +80,7 @@ const CustomerForm = () => {
               />
             </FormGroup>
           </Col>
-          <Col md={4}>
+          <Col md={6}>
             <FormGroup>
               <Label for="lastName">Total Order Price</Label>
               <Input
@@ -92,32 +92,39 @@ const CustomerForm = () => {
               />
             </FormGroup>
           </Col>
-        </Row>
-  
+        <Col md={12}>
         <FormGroup>
           <Label for="customerNotes">Order Notes</Label>
           <div className="control" style={{ marginBottom: "10px" }}>
-            <textarea
-              className="textarea"
-              placeholder="Enter order status"
-              value={orderNotes}
-              onChange={(event) => {
-                setOrderNotes(event.target.value);
-              }}
-            />
+              <Input
+                value={orderNotes}
+                onChange={(event) => {
+                  setOrderNotes(event.target.value);
+                }}
+              />
           </div>
-          <Button color="danger" onClick={handleSubmit}>
-            Add New Order
-          </Button>
-          <OrdersTable customerOrders={customerOrders}/>
-        
         </FormGroup>
+        </Col>
+        </Row>
       </Form>
+      <div style={{ marginTop: '15px'}}>
+
+      <Button color="primary" onClick={() => {
+        handleSubmit();
+        onToggleModal();
+      }}>
+            Add
+          </Button>{" "}
+          <Button color="secondary" onClick={onToggleModal}>
+            Cancel
+          </Button>
+      </div>
+      </div>
 
 
 
     );
   };
   
-  export default CustomerForm;
+  export default OrderForm;
   
