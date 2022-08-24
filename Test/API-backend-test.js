@@ -199,7 +199,7 @@ describe("tests for /api/orders", function () {
     // should delete order 2 bc order is a draft.
     // should only be allowed to delete draft orders
     request(app)
-      .delete("/api/orders/1")
+      .delete("/api/orders/2")
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200, done);
