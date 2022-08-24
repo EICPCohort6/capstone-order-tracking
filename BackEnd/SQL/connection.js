@@ -53,10 +53,12 @@ const database = {
 database.customers.hasMany(database.orders, {
   foreignKey: "customer_id",
   as: "orders",
+  allowNull: true,
 });
 database.orders.belongsTo(database.customers, {
   foreignKey: "customer_id",
   as: "customers",
+  allowNull: true,
 });
 
 //one to one relationship between orders and status on order_status_code
@@ -72,7 +74,8 @@ database.status.belongsTo(database.orders, {
 
 database.customers.belongsToMany(database.csr, {
   through: database.customers_connect_csr,
-  foreignKey: 'customer_id'
+  foreignKey: 'customer_id',
+  allowNull: true,
 });
 database.csr.belongsToMany(database.customers, {
   through: database.customers_connect_csr,

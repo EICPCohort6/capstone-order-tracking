@@ -63,13 +63,21 @@ exports.create = (req, res) => {
 
 //REVIEW THIS FUNCTION FOR ORDERS
 exports.findAll = (req, res) => {
-  Orders.findAll()
+  const query = req.query;
+  let condition = {};
+  for (const field in query) {
+    condition[field] = {[Op.like]: `%${query[field]}%`}
+  }
+
+  Orders.findAll({ where: condition })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving Order.",
+        message:
+          err.message ||
+          "An unexpected error occured while retrieving all orders.",
       });
     });
 };
