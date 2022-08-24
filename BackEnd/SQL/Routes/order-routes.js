@@ -17,6 +17,5 @@ module.exports = (app) => {
 
   //Delete a Order with id
   router.delete("/:id", Orders.delete);
-
   app.use("/api/orders", router);
 };

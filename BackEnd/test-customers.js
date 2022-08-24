@@ -79,4 +79,12 @@ describe("CUSTOMERS ENDPOINTS", function() {
       expect(body).to.deep.include(customer2);
       expect(body.length).to.equal(1); //undefined length means only one object was returned
     });
+
+    it('POST /customers : it should return status code 201', async() => {
+      const { body, status } = await request(app).post('/api/customers').send(newCustomer).expect(201);
+    });
+
+
+
+    
   });
