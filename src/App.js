@@ -1,3 +1,4 @@
+
 import "./App.css";
 import React from "react";
 import MainPage from "./pages/mainPage";
@@ -8,6 +9,7 @@ import NoPage from "./pages/noPage";
 import ProductPage from "./pages/productsPage";
 import LoginPage from "./pages/loginPage";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -16,7 +18,6 @@ function App() {
         <Route path="/" element={<MainPage />}>
           <Route index element={<CustomerPage />} />
           <Route path="order" element={<OrderPage />} />
-          <Route path="products" element={<ProductPage />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

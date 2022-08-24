@@ -1,28 +1,42 @@
 import React from "react";
+<<<<<<< HEAD
+import { Table } from "reactstrap";
+=======
 import { Button, Table } from "reactstrap";
 import ConfirmDialog from "./confirmDialog";
 import AddCustomerButton from "./add-customer-button";
+>>>>>>> 8a62cf4b46a51d486a00c66ac2e4a3fecdecef8f
 
 const TABLE_HEADERS = [
   "ID",
-  "First Name",
-  "Middle Name",
-  "Last Name",
-  "Phone Number",
-  "Email",
-  "Country",
-  "City",
+  "SKU",
+  "Price",
+  "Product Name",
+  "Quantity",
+  "Description",
 ];
+
+<<<<<<< HEAD
+const ProductTable = (props) => {
+  const { tableData } = props;
+=======
 
 const CustomerTable = (props) => {
   const { tableData, deleteItem, updateItem } = props;
+>>>>>>> 8a62cf4b46a51d486a00c66ac2e4a3fecdecef8f
 
   const mappedHeaders = TABLE_HEADERS.map((header, index) => {
     return <th key={index}>{header}</th>;
   });
-  const mappedRows = tableData.map((person, index) => {
+  const mappedRows = tableData.map((product, index) => {
     return (
       <tr key={index}>
+<<<<<<< HEAD
+        <th scope="row">{product.id}</th>
+        {Object.entries(product).map(
+          ([key, value]) => key !== "id" && <td key={key}>{value}</td>
+        )}
+=======
         <th scope="row">{person.displayData.customer_id}</th>
         {Object.entries(person.displayData).map(
           ([key, value]) => key !== "customer_id" && <td key={key}>{value}</td>
@@ -43,12 +57,17 @@ const CustomerTable = (props) => {
             id={person.fullData.customer_id}
           />
         </td>
+>>>>>>> 8a62cf4b46a51d486a00c66ac2e4a3fecdecef8f
       </tr>
     );
   });
 
   return (
+<<<<<<< HEAD
+    <Table striped>
+=======
     <Table striped responsive>
+>>>>>>> 8a62cf4b46a51d486a00c66ac2e4a3fecdecef8f
       <thead>
         <tr>{mappedHeaders}</tr>
       </thead>
@@ -57,6 +76,14 @@ const CustomerTable = (props) => {
   );
 };
 
+<<<<<<< HEAD
+const ProductTableDisplay = (props) => {
+  const { tableData } = props;
+  return tableData === "empty" ? (
+    <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>
+  ) : (
+    <ProductTable tableData={tableData} />
+=======
 const CustomerTableDisplay = (props) => {
   const { tableData, deleteItem, updateItem } = props;
 
@@ -70,7 +97,8 @@ const CustomerTableDisplay = (props) => {
         updateItem={updateItem}
       />
     </div>
+>>>>>>> 8a62cf4b46a51d486a00c66ac2e4a3fecdecef8f
   );
 };
 
-export default CustomerTableDisplay;
+export default ProductTableDisplay;

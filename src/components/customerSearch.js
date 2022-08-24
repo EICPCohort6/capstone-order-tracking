@@ -9,13 +9,42 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-const SEARCH_OPTIONS = [
-  "Last Name",
-  "First Name",
-  "ID",
-  "Phone Number",
-  "Email",
+const DUMMY_TABLE_DATA = [
+  {
+    id: 0,
+    productSku: "123ABC",
+    productPrice: "9.99",
+    productName: "Red Shirt",
+    productQuantity: "100",
+    productDescription: "A red shirt",
+  },
+  {
+    id: 1,
+    productSku: "456XYZ",
+    productPrice: "12.99",
+    productName: "Blue Shirt",
+    productQuantity: "123",
+    productDescription: "A blue shirt",
+  },
+  {
+    id: 2,
+    productSku: "789QWE",
+    productPrice: "5.00",
+    productName: "Green Shirt",
+    productQuantity: "345",
+    productDescription: "A green shirt",
+  },
+  {
+    id: 3,
+    productSku: "000JKL",
+    productPrice: "1000.00",
+    productName: "Gold Shirt",
+    productQuantity: "1",
+    productDescription: "An expensive gold shirt",
+  },
 ];
+
+const SEARCH_OPTIONS = ["Product ID", "SKU", "Product Name"];
 
 const DropDownSelected = (props) => {
   const { setSearchCondition, searchCondition } = props;
@@ -36,6 +65,11 @@ const DropDownSelected = (props) => {
     </UncontrolledDropdown>
   );
 };
+<<<<<<< HEAD
+const apiCall = (getData, setTableData) => {
+  //getData.then( settabledata)
+  setTableData(DUMMY_TABLE_DATA);
+=======
 const apiCall = (event, getData, setTableData, searchCondition, text) => {
   event.preventDefault();
   const info = { condition: searchCondition, text: text };
@@ -61,29 +95,21 @@ const apiCall = (event, getData, setTableData, searchCondition, text) => {
     });
     setTableData(tableData);
   });
+>>>>>>> 8a62cf4b46a51d486a00c66ac2e4a3fecdecef8f
 };
 const Search = (props) => {
   const { getData, setTableData } = props;
-  const [searchCondition, setSearchCondition] = useState("Last Name");
-  const [text, setText] = useState("");
+  const [searchCondition, setSearchCondition] = useState("SKU");
 
   return (
-    <form
-      onSubmit={(event) =>
-        apiCall(event, getData, setTableData, searchCondition, text)
-      }
-    >
+    <form>
       <InputGroup>
-        <Input
-          placeholder="Search"
-          onChange={(event) => setText(event.target.value)}
-          value={text}
-        />
+        <Input placeholder="Search" />
         <DropDownSelected
           searchCondition={searchCondition}
           setSearchCondition={setSearchCondition}
         />
-        <Button type="submit">Search</Button>
+        <Button onClick={() => apiCall(getData, setTableData)}>Search</Button>
       </InputGroup>
     </form>
   );
