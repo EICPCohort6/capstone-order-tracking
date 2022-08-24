@@ -2,13 +2,13 @@ module.exports = (app) => {
     const CustomersConnCSR = require("../Controller/customer-conn-csr-controller");
     let router = require("express").Router();
   
-    router.post("/", CustomersConnCSR.create);
+    // router.post("/", CustomersConnCSR.create);
   
     router.get("/", CustomersConnCSR.findAll);
   
-    router.get("/:id", CustomersConnCSR.findOne);
+    // router.get("/:id", CustomersConnCSR.findOne);
   
     router.put("/:id", CustomersConnCSR.update);
   
-    app.use("/api/customers", router);
+    app.use("/api/customers_connect_csr", router);
   };

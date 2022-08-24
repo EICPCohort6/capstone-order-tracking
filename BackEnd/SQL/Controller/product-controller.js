@@ -5,16 +5,25 @@ const Op = database.Sequelize.Op;
 
 // Retrieve all products from the database.
 exports.findAll = (req, res) => {
-  Products.findAll()
+
+  const query = req.query;
+  let condition = {};
+  for (const field in query) {
+    condition[field] = {[Op.like]: `%${query[field]}%`}
+  }
+
+  Products.findAll({ where: condition })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving Products.",
+          err.message ||
+          "An unexpected error occured while retrieving all products.",
       });
     });
+
 };
 
 // Find a single Product with an id

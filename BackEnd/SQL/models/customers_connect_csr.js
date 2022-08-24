@@ -12,26 +12,11 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         autoIncrement: true,
       },
-      // customer_id: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: false,
-      //   foreignKey: true,
-      //   references: {
-      //     model: customer,
-      //     key: "customer_id",
-      //   },
-      // },
-      // csr_id: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: false,
-      //   // TODO
-      //   // Add reference to csr_id from CSR table
-      //   foreignKey: true,
-      //   references: {
-      //     model: csr,
-      //     key: "csr_id",
-      //   },
-      // },
+
+      //customer_id
+
+      //csr_id
+
       ccc_timestamp: {
         type: DataTypes.DATE,
         allowNull: false,

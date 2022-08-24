@@ -147,11 +147,11 @@ exports.delete = async(req,res) => {
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Customer was updated successfully.",
+          message: `Customer ${id} was updated to null in customers_conn_csr successfully.`,
         });
       } else {
         res.send({
-          message: `Cannot update Customer with id=${id}. Maybe Customer was not found or req.body is empty!`,
+          message: `Cannot update Customer with id=${id} in customers_conn_csr. Maybe Customer was not found or req.body is empty!`,
         });
       }
     });

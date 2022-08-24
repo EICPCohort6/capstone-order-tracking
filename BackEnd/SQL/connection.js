@@ -72,16 +72,20 @@ database.status.belongsTo(database.orders, {
 
 database.customers.belongsToMany(database.csr, {
   through: database.customers_connect_csr,
+  foreignKey: 'customer_id'
 });
 database.csr.belongsToMany(database.customers, {
   through: database.customers_connect_csr,
+  foreignKey: 'csr_id'
 });
 
 database.products.belongsToMany(database.orders, {
   through: database.products_connect_orders,
+  foreignKey: 'product_id'
 });
 database.orders.belongsToMany(database.products, {
   through: database.products_connect_orders,
+  foreignKey: 'order_id'
 });
 
 // one to one relationships for between users and CSR
