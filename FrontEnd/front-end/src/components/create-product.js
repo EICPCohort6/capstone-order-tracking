@@ -3,6 +3,7 @@ import { Row, Form, Col, FormGroup, Label, Input, Button } from "reactstrap";
 
 const template = {
   product_SKU: "",
+  product_image_url: "",
   product_name: "",
   product_price: "",
   product_quantity: "",

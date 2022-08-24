@@ -5,6 +5,7 @@ import AddProductButton from "./add-product-button";
 
 const TABLE_HEADERS = [
   "ID",
+  "Image URL",
   "SKU",
   "Product Name",
   "Price",
@@ -31,9 +32,6 @@ const ProductTable = (props) => {
             product={product.fullData}
             productFunction={updateItem}
           />
-        </td>
-        <td>
-          <Button>Add to Order</Button>
         </td>
         {/*
         <td>
