@@ -4,6 +4,8 @@ const database = require("../connection");
 const CustomersConnCSR = database.customers_connect_csr;
 const Op = database.Sequelize.Op;
 
+//TODO: create
+
 exports.findAll = (req, res) => {
   
   const query = req.query;
