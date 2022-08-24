@@ -6,13 +6,30 @@ import AddCustomerButton from "../components/add-customer-button";
 
 const getData = async ({ condition, text }) => {
   // does api call gets data
-  console.log(condition);
+  let customer;
   switch (condition) {
     case "Last Name":
-      const customer = await axios.get(
+      customer = await axios.get(
         `http://localhost:8080/api/customers?last_name=${text}`
       );
-      console.log(customer);
+      return customer;
+    case "First Name":
+      customer = await axios.get(
+        `http://localhost:8080/api/customers?first_name=${text}`
+      );
+      return customer;
+    case "ID":
+      customer = await axios.get(`http://localhost:8080/api/customers/${text}`);
+      return customer;
+    case "Phone Number":
+      customer = await axios.get(
+        `http://localhost:8080/api/customers?phone_number=${text}`
+      );
+      return customer;
+    case "Email":
+      customer = await axios.get(
+        `http://localhost:8080/api/customers?email=${text}`
+      );
       return customer;
 
     default:
@@ -21,10 +38,16 @@ const getData = async ({ condition, text }) => {
   }
 };
 const createNewCustomer = async (person) => {
-  axios.post(`http://localhost:8080/api/customers`, person).then((result) => {
-    alert("Customer added!");
-    window.location.reload();
-  });
+  axios
+    .post(`http://localhost:8080/api/customers`, person)
+    .then((result) => {
+      alert("Customer added!");
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("Failed to add Customer!");
+    });
 };
 
 const CustomerPage = () => {
@@ -32,12 +55,18 @@ const CustomerPage = () => {
 
   // Deletes a entry from the table
   const deleteItem = async (id) => {
-    await axios.delete(`http://localhost:8080/api/customers/${id}`).then(() => {
-      const newTable = tableData.filter(
-        (row) => row.displayData.customer_id !== id
-      );
-      setTableData(newTable);
-    });
+    await axios
+      .delete(`http://localhost:8080/api/customers/${id}`)
+      .then(() => {
+        const newTable = tableData.filter(
+          (row) => row.displayData.customer_id !== id
+        );
+        setTableData(newTable);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Failed to delete item!");
+      });
   };
 
   const updateItem = async (item) => {
@@ -76,4 +105,3 @@ const CustomerPage = () => {
 };
 
 export default CustomerPage;
-

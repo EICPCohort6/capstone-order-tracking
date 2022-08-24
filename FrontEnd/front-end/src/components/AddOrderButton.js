@@ -6,7 +6,7 @@ import OrdersTable from "./OrdersTable";
 function AddOrderButton(props) {
   const [modal, setModal] = useState(false);
   const { setCustomerOrdersTable, customerOrdersTable } = props;
-console.log("current orders", customerOrdersTable)
+  console.log("current orders", customerOrdersTable);
   const toggle = () => setModal(!modal);
 
   return (
@@ -17,10 +17,14 @@ console.log("current orders", customerOrdersTable)
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Create New Order</ModalHeader>
         <ModalBody>
-          <OrderForm setCustomerOrdersTable={(incomingOrder) => {
-              console.log(incomingOrder)
-              setCustomerOrdersTable(incomingOrder)
-          }}  customerOrdersTable={customerOrdersTable} onToggleModal={toggle} />
+          <OrderForm
+            setCustomerOrdersTable={(incomingOrder) => {
+              console.log(incomingOrder);
+              setCustomerOrdersTable(incomingOrder);
+            }}
+            customerOrdersTable={customerOrdersTable}
+            onToggleModal={toggle}
+          />
         </ModalBody>
         {/* <ModalFooter>
           <Button color="primary" onClick={toggle}>
@@ -31,14 +35,6 @@ console.log("current orders", customerOrdersTable)
           </Button>
         </ModalFooter> */}
       </Modal>
-      <div>
-          {
-              customerOrdersTable.length > 0 && (
-
-                  <OrdersTable customerOrders={customerOrdersTable} />
-              )
-          }
-      </div>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Button,
@@ -40,28 +39,37 @@ const DropDownSelected = (props) => {
 const apiCall = (event, getData, setTableData, searchCondition, text) => {
   event.preventDefault();
   const info = { condition: searchCondition, text: text };
-  getData(info).then((result) => {
-    if (result === "empty" || result.data.length === 0) {
-      setTableData("empty");
-      return;
-    }
-    const tableData = result.data.map((entry) => {
-      return {
-        displayData: {
-          customer_id: entry.customer_id,
-          first_name: entry.first_name,
-          middle_name: entry.middle_name,
-          last_name: entry.last_name,
-          phone_number: entry.phone_number,
-          email: entry.email,
-          country: entry.country,
-          city: entry.city,
-        },
-        fullData: entry,
-      };
+  getData(info)
+    .then((result) => {
+      if (result === "empty" || result.data.length === 0) {
+        setTableData("empty");
+        return;
+      }
+      let resultData = result.data;
+      if (!Array.isArray(resultData)) {
+        resultData = [{ ...resultData }]; //turn it into array if it's not one already so it could be mapped
+      }
+      const tableData = resultData.map((entry) => {
+        return {
+          displayData: {
+            customer_id: entry.customer_id,
+            first_name: entry.first_name,
+            middle_name: entry.middle_name,
+            last_name: entry.last_name,
+            phone_number: entry.phone_number,
+            email: entry.email,
+            country: entry.country,
+            city: entry.city,
+          },
+          fullData: entry,
+        };
+      });
+      setTableData(tableData);
+    })
+    .catch((error) => {
+      if (error.response.status === 404) alert("Unable to find Customer");
+      else alert("Error!");
     });
-    setTableData(tableData);
-  });
 };
 const Search = (props) => {
   const { getData, setTableData } = props;
@@ -90,4 +98,3 @@ const Search = (props) => {
   );
 };
 export default Search;
-

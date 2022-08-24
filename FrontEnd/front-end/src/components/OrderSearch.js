@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Button,
@@ -10,14 +9,7 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-const SEARCH_OPTIONS = [
-  "Customer Id",
-  "Order Id",
-  "Order Status Code",
-  "Total Order Price",
-  "Order Notes",
-  "Timestamp"
-];
+const SEARCH_OPTIONS = ["Customer Id", "Order Id", "Order Status Code"];
 
 const DropDownSelected = (props) => {
   const { setSearchCondition, searchCondition } = props;
@@ -41,27 +33,21 @@ const DropDownSelected = (props) => {
 const apiCall = (event, getData, setTableData, searchCondition, text) => {
   event.preventDefault();
   const info = { condition: searchCondition, text: text };
-  console.log(getData, setTableData, searchCondition, text)
-  console.log(info)
-//   getData(info).then((result) => {
-//     if (result === "empty" || result.data.length === 0) {
-//       setTableData("empty");
-//       return;
-//     }
-//     const tableData = result.data.map((entry) => {
-//       return {
-//         id: entry.customer_id,
-//         firstName: entry.first_name,
-//         middleName: entry.middle_name,
-//         lastName: entry.last_name,
-//         phone: entry.phone_number,
-//         email: entry.email,
-//         country: entry.country,
-//         city: entry.city,
-//       };
-//     });
-//     setTableData(tableData);
-//   });
+
+  getData(info)
+    .then((result) => {
+      if (result === "empty" || result.data.length === 0) {
+        setTableData([]);
+        return;
+      }
+      let resultData = result.data;
+      if (!Array.isArray(resultData)) resultData = [{ ...resultData }];
+      setTableData(resultData);
+    })
+    .catch((error) => {
+      if (error.response.status === 404) alert("Unable to find Order");
+      else alert("Error!");
+    });
 };
 const OrderSearch = (props) => {
   const { getData, setTableData } = props;
@@ -70,7 +56,7 @@ const OrderSearch = (props) => {
 
   return (
     <form
-      onSubmit={(event) => 
+      onSubmit={(event) =>
         apiCall(event, getData, setTableData, searchCondition, text)
       }
     >
