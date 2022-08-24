@@ -8,10 +8,6 @@ const Op = database.Sequelize.Op;
 //create a new customer
 exports.create = (req, res) => {
   // Validate request
-<<<<<<< HEAD
-
-  if (!req.body.last_name) {
-=======
   if (!req.body.last_name || 
       !req.body.first_name || 
       !req.body.email || 
@@ -22,7 +18,6 @@ exports.create = (req, res) => {
       !req.body.state || 
       !req.body.country || 
       !req.body.zipcode ) {
->>>>>>> back-end
     res.status(400).send({
       message: "Required fields can not be empty!",
     });
