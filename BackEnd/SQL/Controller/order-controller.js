@@ -3,7 +3,6 @@ const database = require("../connection");
 const Orders = database.orders;
 const Op = database.Sequelize.Op;
 
-
 ///////////// Helper Functions /////////////////
 
 function findByPKFunc(req, res, id) {
@@ -29,15 +28,13 @@ function findByPKFunc(req, res, id) {
 //create a new order
 exports.create = (req, res) => {
   // Validate request
-<<<<<<< HEAD
-  if (!req.body.customer_id) {
 
-=======
-  if (!req.body.customer_id ||
-      !req.body.order_status_code ||
-      !req.body.datetime_order_placed ||
-      !req.body.total_order_price ) {
->>>>>>> back-end
+  if (
+    !req.body.customer_id ||
+    !req.body.order_status_code ||
+    !req.body.datetime_order_placed ||
+    !req.body.total_order_price
+  ) {
     res.status(400).send({
       message: "Required fields can not be empty!",
     });
@@ -56,7 +53,6 @@ exports.create = (req, res) => {
   Orders.create(newOrder)
     .then((data) => {
       res.status(201).send(data);
-
     })
     .catch((err) => {
       res.status(500).send({
@@ -90,13 +86,14 @@ exports.findOne = (req, res) => {
 
 // Update a single Order with an id
 exports.update = (req, res) => {
-
-  if (!req.body.customer_id ||
-      !req.body.order_status_code ||
-      !req.body.datetime_order_placed ||
-      !req.body.total_order_price ) {
+  if (
+    !req.body.customer_id ||
+    !req.body.order_status_code ||
+    !req.body.datetime_order_placed ||
+    !req.body.total_order_price
+  ) {
     res.status(400).send({
-    message: "Required fields can not be empty!",
+      message: "Required fields can not be empty!",
     });
     return;
   }
