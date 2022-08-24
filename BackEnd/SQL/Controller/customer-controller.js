@@ -6,6 +6,7 @@ const Op = database.Sequelize.Op;
 //create a new customer
 exports.create = (req, res) => {
   // Validate request
+
   if (!req.body.last_name) {
     res.status(400).send({
       message: "Content can not be empty!",
@@ -15,12 +16,14 @@ exports.create = (req, res) => {
 
   // if validaiton is successful, create customer
   const newCustomer = {
+
     first_name: req.body.first_name,
     middle_name: req.body.middle_name,
     last_name: req.body.last_name,
     phone_number: req.body.phone_number,
     email: req.body.email,
     customer_notes: req.body.customer_notes,
+
     date_of_birth: req.body.date_of_birth,
     street_number: req.body.street_number,
     unit_number: req.body.unit_number,
@@ -46,12 +49,12 @@ exports.create = (req, res) => {
 
 // Retrieve all customers from the database.
 exports.findAll = (req, res) => {
-  
-  const query = req.query;
+    const query = req.query;
   let condition = {};
   for (const field in query) {
     condition[field] = {[Op.like]: `%${query[field]}%`}
   }
+
 
   Customers.findAll({ where: condition })
     .then((data) => {
