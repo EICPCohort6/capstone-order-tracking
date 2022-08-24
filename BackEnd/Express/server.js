@@ -38,6 +38,8 @@ app.get("/", (req, res) => {
 require("../SQL/Routes/customer-routes")(app);
 require("../SQL/Routes/order-routes")(app);
 require("../SQL/Routes/product-routes")(app);
+require("../SQL/Routes/products-conn-orders-routes")(app);
+require("../SQL/Routes/customer-conn-csr-routes")(app);
 
 
 // set port, listen for requests

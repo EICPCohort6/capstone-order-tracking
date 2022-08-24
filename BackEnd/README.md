@@ -30,7 +30,7 @@ _Until we are all set up with JIRA, we will be using this README to keep track o
 
 Alexis, 8/16: Initialized node project within BackEnd directory so all packages can be accesed from sub folders. Set up skeleton for web server in express directory.
 
-Uzi & Abdur, 8/16: Configured server, database and sequelize on the back end with server running
+Uzi & Abdur, 8/16: Configured server, database and sequelize on the back end with server running on localhost:8080
 
 Alexis, 8/17: GET customers and GET customers with specified last name endpoints are working at `https://localhost:8080/api/customers` and `https://localhost:8080/api/customers?last_name="<last name here>"`, respectively.
 
@@ -62,5 +62,6 @@ Uzi, 19/08: Consulted with Front-end team to test retrieval of data using API, f
 
 ------ WEEKEND -------
 
-Uzi & Abdur, 22/08: Implemented models corresponding to the rest of the tables, including CSR, customers_connect_csr table,
+Uzi, 22/08: Checked if models for products, orders and customers are created with the right properties as detailed in database
 
+Uzi & Abdur, 22/08: Implemented models corresponding to the rest of the tables, including CSR, customers_connect_csr table,
