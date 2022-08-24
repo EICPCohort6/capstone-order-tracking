@@ -16,13 +16,17 @@ const NavigationBar = () => {
             <h2 className="User-nametitle">(USER ID goes here)</h2>
           </Col>
           <Nav justify pills vertical>
-            <NavItem className="p-2">
+            <NavItem className="p-2 pills">
               <NavLink
                 active={active === "Customers"}
                 className=" nav-link"
                 to="/"
               >
-                <Link onClick={() => setActive("Customers")} to={"/"}>
+                <Link
+                  className="nav"
+                  onClick={() => setActive("Customers")}
+                  to={"/"}
+                >
                   Customers
                 </Link>
               </NavLink>
@@ -32,18 +36,14 @@ const NavigationBar = () => {
                 <Link
                   onClick={() => setActive("Orders")}
                   to={"order"}
-                  className="Color-nav"
+                  className="nav"
                 >
                   Orders
                 </Link>
               </NavLink>
             </NavItem>
             <NavItem className="p-2">
-              <NavLink
-                active={active === "Products"}
-                className="nav-link"
-                to="/"
-              >
+              <NavLink active={active === "Products"} className="nav" to="/">
                 <Link onClick={() => setActive("Products")} to={"products"}>
                   Products
                 </Link>
