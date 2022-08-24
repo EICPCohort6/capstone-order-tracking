@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'capstone-csr-api'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_d610fcca11444c1ebf1eec856729e85d }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_10E89D70DC674669AA7237C9FF534F67 }}
           package: .
