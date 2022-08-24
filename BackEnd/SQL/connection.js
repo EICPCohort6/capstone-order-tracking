@@ -7,12 +7,12 @@ const config = {
 };
 
 var connection = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
   {
-    host: "capstone-customer-manager.mysql.database.azure.com",
     dialect: "mysql",
+    host: "capstone-customer-manager.mysql.database.azure.com",
+    username: "csr_root",
+    password: "Password1",
+    database: "capstone",
     pool: {
       max: 5,
       min: 0,
