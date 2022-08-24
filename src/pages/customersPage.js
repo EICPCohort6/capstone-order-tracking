@@ -10,7 +10,7 @@ const getData = async ({ condition, text }) => {
   switch (condition) {
     case "Last Name":
       const customer = await axios.get(
-        `http://localhost:8080/api/customers?last_name=${text}`
+        `http://localhost:3000/api/customers?last_name=${text}`
       );
       console.log(customer);
       return customer;
@@ -21,7 +21,7 @@ const getData = async ({ condition, text }) => {
   }
 };
 const createNewCustomer = async (person) => {
-  axios.post(`http://localhost:8080/api/customers`, person).then((result) => {
+  axios.post(`http://localhost:3000/api/customers`, person).then((result) => {
     alert("Customer added!");
     window.location.reload();
   });
@@ -32,7 +32,7 @@ const CustomerPage = () => {
 
   // Deletes a entry from the table
   const deleteItem = async (id) => {
-    await axios.delete(`http://localhost:8080/api/customers/${id}`).then(() => {
+    await axios.delete(`http://localhost:3000/api/customers/${id}`).then(() => {
       const newTable = tableData.filter(
         (row) => row.displayData.customer_id !== id
       );
@@ -42,7 +42,7 @@ const CustomerPage = () => {
 
   const updateItem = async (item) => {
     await axios
-      .put(`http://localhost:8080/api/customers/${item.customer_id}`, item)
+      .put(`http://localhost:3000/api/customers/${item.customer_id}`, item)
       .then(() => {
         const newTable = tableData.map((row) => {
           if (row.displayData.customer_id !== item.customer_id) return row;

@@ -4,11 +4,6 @@ const database = require("../SQL/connection");
 
 const app = express();
 
-var corsOptions = {
-  origin: ["http://localhost:8080", "http://localhost:3000"], // server
-};
-
-app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
@@ -41,7 +36,7 @@ require("../SQL/Routes/product-routes")(app);
 
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
