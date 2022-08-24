@@ -8,7 +8,6 @@ var corsOptions = {
   origin: '*',
   credentials:true,
   optionSuccessStatus:200, // server
-  Access-Control-Allow-Origin: *,
 };
 
 app.use(cors(corsOptions));
