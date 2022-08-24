@@ -46,6 +46,7 @@ const database = {
     connection,
     Sequelize
   ),
+  user: require("./models/users.js")(connection, Sequelize)
 };
 
 // one to many relationship between customers and orders on customerid
