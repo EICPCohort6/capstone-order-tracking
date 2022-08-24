@@ -26,5 +26,5 @@ jobs:
       - name: Run tests
         run: |
           npm install
-          npm run ./Test/API-backend-test.js
+          npm run ./Test/API-backend-test
           
