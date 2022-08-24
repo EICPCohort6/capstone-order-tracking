@@ -9,6 +9,7 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+        field: "customer_id"
       },
       first_name: {
         type: DataTypes.STRING,
@@ -26,30 +27,41 @@ module.exports = (sequelize, Sequelize) => {
       },
       email: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       customer_notes: {
         type: DataTypes.STRING,
       },
+      date_of_birth: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       street_number: {
         type: DataTypes.INTEGER,
+        allowNull: false,
       },
       unit_number: {
         type: DataTypes.STRING,
       },
       street_name: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       city: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       state: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       country: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       zipcode: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {

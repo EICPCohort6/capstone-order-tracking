@@ -18,6 +18,7 @@ const template = {
 };
 
 const submitForm = (e, data, toggle, customerFunction) => {
+  console.log(data);
   e.preventDefault();
   customerFunction(data);
   toggle();
@@ -198,7 +199,7 @@ const CustomerForm = ({
             <Input
               id="date_of_birth"
               name="date_of_birth"
-              placeholder="MM/DD/YYYY"
+              placeholder="YYYY-MM-DD"
               value={data.date_of_birth}
               onChange={(e) =>
                 setData({ ...data, date_of_birth: e.target.value })

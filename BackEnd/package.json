@@ -4,7 +4,10 @@
   "description": "Backend application for the capstone order tracking project",
   "main": "express/server.js",
   "scripts": {
+
     "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test-orders.js --recursive"
+
   },
   "keywords": [
     "nodejs",
@@ -17,9 +20,15 @@
   "author": "abagramian",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.3"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "supertest": "^6.2.4"
   }
 }
