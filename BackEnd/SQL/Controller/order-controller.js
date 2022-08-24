@@ -3,6 +3,7 @@ const database = require("../connection");
 const Orders = database.orders;
 const Op = database.Sequelize.Op;
 
+
 ///////////// Helper Functions /////////////////
 
 function findByPKFunc(req, res, id) {
@@ -29,6 +30,7 @@ function findByPKFunc(req, res, id) {
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.customer_id) {
+
     res.status(400).send({
       message: "Content can not be empty!",
     });
@@ -37,7 +39,6 @@ exports.create = (req, res) => {
 
   // if validaiton is successful, create new order
   const newOrder = {
-    // order_id: req.body.order_id,
     customer_id: req.body.customer_id,
     order_status_code: req.body.order_status_code,
     datetime_order_placed: req.body.datetime_order_placed,
@@ -48,6 +49,7 @@ exports.create = (req, res) => {
   Orders.create(newOrder)
     .then((data) => {
       res.status(201).send(data);
+
     })
     .catch((err) => {
       res.status(500).send({
@@ -75,6 +77,7 @@ exports.findAll = (req, res) => {
 // Find a single Order with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
+
   findByPKFunc(req, res, id);
 };
 
@@ -82,12 +85,12 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
   Orders.update(req.body, {
-    where: { id: id },
+    where: { order_id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Customer was updated successfully.",
+          message: "Order was updated successfully.",
         });
       } else {
         res.send({
@@ -104,7 +107,6 @@ exports.update = (req, res) => {
 
 exports.delete = (req, res) => {
   const id = req.params.id;
-
   Orders.destroy({
     where: { order_id: id, order_status_code: 1 },
   })
