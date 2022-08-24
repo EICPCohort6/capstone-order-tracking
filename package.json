@@ -28,7 +28,7 @@
     "start": "react-scripts start",
     "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
-    "test2": "mocha",
+    "test2": "mocha ./Test/API-backend-test.js",
     "test3": "node ./Test/API-backend-test.js",
     "eject": "react-scripts eject"
   },
