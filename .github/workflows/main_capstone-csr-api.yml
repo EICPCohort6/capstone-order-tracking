@@ -22,10 +22,10 @@ jobs:
         run: |
           npm install
 
-        working-directory: ./BackEnd/
+        working-directory: ./test-app/
 
       - name: Zip Artifact
-        run: zip release.zip ./BackEnd/* -r
+        run: zip release.zip ./test-app/* -r
      
 
       - name: Upload artifact for deployment job
