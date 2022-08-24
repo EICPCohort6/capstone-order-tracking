@@ -3,14 +3,7 @@ const cors = require("cors");
 const database = require("../SQL/connection");
 
 const app = express();
-
-var corsOptions = {
-  origin: ["http://localhost:8080", "http://localhost:3000"], // server
-};
-
-app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cors());
 // app.options("http://localhost:3000", cors()); // not needed apparently? //front end?
 app.use(express.urlencoded({ extended: true }));
 
