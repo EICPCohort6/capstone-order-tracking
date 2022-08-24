@@ -26,5 +26,5 @@ jobs:
       - name: Run tests
         run: |
           npm install
-          npm mocha
+          npm run ./Test/API-backend-test.js
           
