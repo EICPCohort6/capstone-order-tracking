@@ -8,7 +8,6 @@ const Op = database.Sequelize.Op;
 //create a new customer
 exports.create = (req, res) => {
   // Validate request
-
   if (
     !req.body.last_name ||
     !req.body.first_name ||

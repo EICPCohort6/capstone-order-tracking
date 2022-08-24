@@ -29,7 +29,7 @@
     "start": "react-scripts start",
     "build": "set CI=false && react-scripts build",
     "test": "react-scripts test",
-    "test2": "mocha",
+    "test2": "mocha --timeout 5000",
     "test3": "node ./Test/API-backend-test.js",
     "eject": "react-scripts eject"
   },

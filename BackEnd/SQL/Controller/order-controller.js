@@ -28,7 +28,6 @@ function findByPKFunc(req, res, id) {
 //create a new order
 exports.create = (req, res) => {
   // Validate request
-
   if (
     !req.body.customer_id ||
     !req.body.order_status_code ||
