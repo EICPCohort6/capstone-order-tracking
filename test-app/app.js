@@ -16,7 +16,7 @@ var app = express();
 
 var corsOptions = {
 
-  origin: false
+  origin: 'https://capstone-csr.azurewebsites.net'
 
 };
 
