@@ -4,9 +4,6 @@
 name: Deploy API to Azure Web App - capstone-csr-api
 
 on:
-    push:
-     branches:
-      - main
     workflow_dispatch:
 
 jobs:
