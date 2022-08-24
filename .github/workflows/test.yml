@@ -26,5 +26,5 @@ jobs:
       - name: Run tests
         run: |
           npm install
-          npm test3
+          npm run test3
           
