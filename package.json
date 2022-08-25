@@ -1,4 +1,12 @@
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1"
+=======
+>>>>>>> origin/back-end
   "name": "front-end",
   "version": "0.1.0",
   "private": true,
@@ -53,7 +61,13 @@
     ]
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@testing-library/jest-dom": "^5.16.5",
     "react-router-dom": "^6.3.0"
+=======
+    "react-router-dom": "^6.3.0",
+    "@testing-library/jest-dom": "^5.16.5"
+>>>>>>> origin/front-end
+>>>>>>> origin/back-end
   }
 }

@@ -66,8 +66,7 @@ Uzi, 22/08: Checked if models for products, orders and customers are created wit
 
 Uzi & Abdur, 22/08: Implemented models corresponding to the rest of the tables, including CSR, customers_connect_csr table,
 
-<<<<<<< HEAD
-=======
+
 Alexis & Uzi, 22/08: Set up local environment variables for hostname, password and user for connection to database and added the .env file to gitignore
 
 Alexis, 22/08: Merged back-end teams branch with main, cautious about errors and merge conflicts for merge with main to subsequently submit a pull request
@@ -75,4 +74,4 @@ Alexis, 22/08: Merged back-end teams branch with main, cautious about errors and
 All collectively, 23/08: Finished up writing and scripting tests for orders, customers and products, all test cases passed for all files
 
 Uzi 23/08: Added a fix to server.js that would prevent front end from accessing certain CRUD operations to retrieve data from database (CORS Issue fix)
->>>>>>> back-end
+
