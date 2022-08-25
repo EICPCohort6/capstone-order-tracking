@@ -26,15 +26,16 @@ function AddOrderButton(props) {
             onToggleModal={toggle}
           />
         </ModalBody>
-        {/* <ModalFooter>
-          <Button color="primary" onClick={toggle}>
-            Add
-          </Button>{" "}
-          <Button color="secondary" onClick={toggle}>
-            Cancel
-          </Button>
-        </ModalFooter> */}
+      
       </Modal>
+      <div style={{ marginTop: "10px"}}>
+          {
+              customerOrdersTable.length > 0 && (
+
+                  <OrdersTable customerOrders={customerOrdersTable} />
+              )
+          }
+      </div>
     </div>
   );
 }

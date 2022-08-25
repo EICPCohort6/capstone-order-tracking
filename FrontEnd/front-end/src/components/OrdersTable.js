@@ -6,6 +6,10 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 const OrdersTable = (props) => {
   const { customerOrders } = props;
+  const [modal, setModal] = useState(false);
+  const [editIndex, setEditIndex] = useState(0)
+console.log("orders table data", customerOrders)
+  const toggle = () => setModal(!modal);
   if (customerOrders.length === 0)
     return <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>;
   return (
@@ -21,6 +25,7 @@ const OrdersTable = (props) => {
               <th>Total Price</th>
               <th>Order Notes</th>
               <th>Time Stamp</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -32,10 +37,21 @@ const OrdersTable = (props) => {
                 <td>{order.total_order_price}</td>
                 <td>{order.order_notes}</td>
                 <td>{order.datetime_order_placed}</td>
+                <td><Button onClick={() => {
+                  setEditIndex(index)
+                  toggle()
+
+              }}>Edit</Button></td>
               </tr>
             ))}
           </tbody>
         </Table>
+        <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Edit Order</ModalHeader>
+        <ModalBody>
+          <OrderForm customerOrdersTable={customerOrders[editIndex]} onToggleModal={toggle} editMode={true} />
+        </ModalBody>
+      </Modal>
       </div>
     </>
   );
