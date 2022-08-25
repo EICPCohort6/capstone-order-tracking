@@ -4,7 +4,7 @@
   "description": "Backend application for the capstone order tracking project",
   "main": "express/server.js",
   "scripts": {
-    "test": "mocha test-orders.js --recursive"
+    "test": "mocha test-orders.js --recursive",
     "start": "node ./Express/server.js"
   },
   "keywords": [
