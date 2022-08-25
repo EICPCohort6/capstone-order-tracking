@@ -28,9 +28,6 @@ const CustomerTable = (props) => {
           ([key, value]) => key !== "customer_id" && <td key={key}>{value}</td>
         )}
         <td>
-          <Button>+</Button>
-        </td>
-        <td>
           <AddCustomerButton
             text="Edit"
             person={person.fullData}
@@ -74,4 +71,3 @@ const CustomerTableDisplay = (props) => {
 };
 
 export default CustomerTableDisplay;
-
