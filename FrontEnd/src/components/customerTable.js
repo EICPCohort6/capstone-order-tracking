@@ -5,11 +5,13 @@ import AddCustomerButton from "./add-customer-button";
 
 const TABLE_HEADERS = [
   "ID",
-  "SKU",
-  "Price",
-  "Product Name",
-  "Quantity",
-  "Description",
+  "First Name",
+  "Middle Name",
+  "Last Name",
+  "Phone Number",
+  "Email",
+  "Country",
+  "City",
 ];
 
 const CustomerTable = (props) => {
@@ -18,7 +20,7 @@ const CustomerTable = (props) => {
   const mappedHeaders = TABLE_HEADERS.map((header, index) => {
     return <th key={index}>{header}</th>;
   });
-  const mappedRows = tableData.map((product, index) => {
+  const mappedRows = tableData.map((person, index) => {
     return (
       <tr key={index}>
         <th scope="row">{person.displayData.customer_id}</th>

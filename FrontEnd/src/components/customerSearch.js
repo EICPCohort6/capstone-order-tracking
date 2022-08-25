@@ -9,42 +9,13 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-const DUMMY_TABLE_DATA = [
-  {
-    id: 0,
-    productSku: "123ABC",
-    productPrice: "9.99",
-    productName: "Red Shirt",
-    productQuantity: "100",
-    productDescription: "A red shirt",
-  },
-  {
-    id: 1,
-    productSku: "456XYZ",
-    productPrice: "12.99",
-    productName: "Blue Shirt",
-    productQuantity: "123",
-    productDescription: "A blue shirt",
-  },
-  {
-    id: 2,
-    productSku: "789QWE",
-    productPrice: "5.00",
-    productName: "Green Shirt",
-    productQuantity: "345",
-    productDescription: "A green shirt",
-  },
-  {
-    id: 3,
-    productSku: "000JKL",
-    productPrice: "1000.00",
-    productName: "Gold Shirt",
-    productQuantity: "1",
-    productDescription: "An expensive gold shirt",
-  },
+const SEARCH_OPTIONS = [
+  "Last Name",
+  "First Name",
+  "ID",
+  "Phone Number",
+  "Email",
 ];
-
-const SEARCH_OPTIONS = ["Product ID", "SKU", "Product Name"];
 
 const DropDownSelected = (props) => {
   const { setSearchCondition, searchCondition } = props;
@@ -93,17 +64,26 @@ const apiCall = (event, getData, setTableData, searchCondition, text) => {
 };
 const Search = (props) => {
   const { getData, setTableData } = props;
-  const [searchCondition, setSearchCondition] = useState("SKU");
+  const [searchCondition, setSearchCondition] = useState("Last Name");
+  const [text, setText] = useState("");
 
   return (
-    <form>
+    <form
+      onSubmit={(event) =>
+        apiCall(event, getData, setTableData, searchCondition, text)
+      }
+    >
       <InputGroup>
-        <Input placeholder="Search" />
+        <Input
+          placeholder="Search"
+          onChange={(event) => setText(event.target.value)}
+          value={text}
+        />
         <DropDownSelected
           searchCondition={searchCondition}
           setSearchCondition={setSearchCondition}
         />
-        <Button onClick={() => apiCall(getData, setTableData)}>Search</Button>
+        <Button type="submit">Search</Button>
       </InputGroup>
     </form>
   );

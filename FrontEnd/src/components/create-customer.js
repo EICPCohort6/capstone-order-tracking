@@ -141,7 +141,7 @@ const CustomerForm = ({
             />
           </FormGroup>
         </Col>
-        <Col md={4}>
+        <Col md={6}>
           <FormGroup>
             <Label for="state">State</Label>
             <Input
@@ -152,7 +152,9 @@ const CustomerForm = ({
             />
           </FormGroup>
         </Col>
-        <Col md={2}>
+      </Row>
+      <Row>
+        <Col md={4}>
           <FormGroup>
             <Label for="zipcode">Zip</Label>
             <Input
@@ -163,9 +165,7 @@ const CustomerForm = ({
             />
           </FormGroup>
         </Col>
-      </Row>
-      <Row>
-        <Col md={6}>
+        <Col md={8}>
           <FormGroup>
             <Label for="email">Email Address</Label>
             <Input
@@ -178,7 +178,9 @@ const CustomerForm = ({
             />
           </FormGroup>
         </Col>
-        <Col md={4}>
+      </Row>
+      <Row>
+        <Col md={6}>
           <FormGroup>
             <Label for="phone_number">Phone Number</Label>
             <Input
@@ -191,7 +193,7 @@ const CustomerForm = ({
             />
           </FormGroup>
         </Col>
-        <Col md={2}>
+        <Col md={6}>
           <FormGroup>
             <Label for="date_of_birth">Date of Birth</Label>
             <Input
@@ -223,7 +225,6 @@ const CustomerForm = ({
           Cancel
         </Button>
       </FormGroup>
-      <Button>Submit</Button>
     </Form>
   );
 };
