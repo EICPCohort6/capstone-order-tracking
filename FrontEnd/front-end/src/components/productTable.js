@@ -1,48 +1,48 @@
 import React from "react";
 import { Button, Table } from "reactstrap";
 import ConfirmDialog from "./confirmDialog";
-import AddCustomerButton from "./add-customer-button";
+import AddProductButton from "./add-product-button";
 
 const TABLE_HEADERS = [
   "ID",
-  "First Name",
-  "Middle Name",
-  "Last Name",
-  "Phone Number",
-  "Email",
-  "Country",
-  "City",
+  "SKU",
+  "Product Name",
+  "Price",
+  "Quantity",
+  "Description",
 ];
 
-const CustomerTable = (props) => {
+const ProductTable = (props) => {
   const { tableData, deleteItem, updateItem } = props;
 
   const mappedHeaders = TABLE_HEADERS.map((header, index) => {
     return <th key={index}>{header}</th>;
   });
-  const mappedRows = tableData.map((person, index) => {
+  const mappedRows = tableData.map((product, index) => {
     return (
       <tr key={index}>
-        <th scope="row">{person.displayData.customer_id}</th>
-        {Object.entries(person.displayData).map(
-          ([key, value]) => key !== "customer_id" && <td key={key}>{value}</td>
+        <th scope="row">{product.displayData.product_id}</th>
+        {Object.entries(product.displayData).map(
+          ([key, value]) => key !== "product_id" && <td key={key}>{value}</td>
         )}
         <td>
-          <Button>+</Button>
-        </td>
-        <td>
-          <AddCustomerButton
+          <AddProductButton
             text="Edit"
-            person={person.fullData}
-            customerFunction={updateItem}
+            product={product.fullData}
+            productFunction={updateItem}
           />
         </td>
+        <td>
+          <Button>Add to Order</Button>
+        </td>
+        {/*
         <td>
           <ConfirmDialog
             deleteItem={deleteItem}
-            id={person.fullData.customer_id}
+            id={product.fullData.product_id}
           />
         </td>
+        */}
       </tr>
     );
   });
@@ -57,14 +57,14 @@ const CustomerTable = (props) => {
   );
 };
 
-const CustomerTableDisplay = (props) => {
+const ProductTableDisplay = (props) => {
   const { tableData, deleteItem, updateItem } = props;
 
   return tableData === "empty" ? (
     <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>
   ) : (
     <div style={{ height: "800px", overflowY: "scroll" }}>
-      <CustomerTable
+      <ProductTable
         tableData={tableData}
         deleteItem={deleteItem}
         updateItem={updateItem}
@@ -73,5 +73,4 @@ const CustomerTableDisplay = (props) => {
   );
 };
 
-export default CustomerTableDisplay;
-
+export default ProductTableDisplay;

@@ -9,13 +9,7 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-const SEARCH_OPTIONS = [
-  "Last Name",
-  "First Name",
-  "ID",
-  "Phone Number",
-  "Email",
-];
+const SEARCH_OPTIONS = ["Product ID", "SKU", "Product Name"];
 
 const DropDownSelected = (props) => {
   const { setSearchCondition, searchCondition } = props;
@@ -39,41 +33,30 @@ const DropDownSelected = (props) => {
 const apiCall = (event, getData, setTableData, searchCondition, text) => {
   event.preventDefault();
   const info = { condition: searchCondition, text: text };
-  getData(info)
-    .then((result) => {
-      if (result === "empty" || result.data.length === 0) {
-        setTableData("empty");
-        return;
-      }
-      let resultData = result.data;
-      if (!Array.isArray(resultData)) {
-        resultData = [{ ...resultData }]; //turn it into array if it's not one already so it could be mapped
-      }
-      const tableData = resultData.map((entry) => {
-        return {
-          displayData: {
-            customer_id: entry.customer_id,
-            first_name: entry.first_name,
-            middle_name: entry.middle_name,
-            last_name: entry.last_name,
-            phone_number: entry.phone_number,
-            email: entry.email,
-            country: entry.country,
-            city: entry.city,
-          },
-          fullData: entry,
-        };
-      });
-      setTableData(tableData);
-    })
-    .catch((error) => {
-      if (error.response.status === 404) alert("Unable to find Customer");
-      else alert("Error!");
+  getData(info).then((result) => {
+    if (result === "empty" || result.data.length === 0) {
+      setTableData("empty");
+      return;
+    }
+    const tableData = result.data.map((entry) => {
+      return {
+        displayData: {
+          product_id: entry.product_id,
+          product_SKU: entry.product_SKU,
+          product_name: entry.product_name,
+          product_price: entry.product_price,
+          product_quantity: entry.product_quantity,
+          product_description: entry.product_description,
+        },
+        fullData: entry,
+      };
     });
+    setTableData(tableData);
+  });
 };
 const Search = (props) => {
   const { getData, setTableData } = props;
-  const [searchCondition, setSearchCondition] = useState("Last Name");
+  const [searchCondition, setSearchCondition] = useState("Product ID");
   const [text, setText] = useState("");
 
   return (

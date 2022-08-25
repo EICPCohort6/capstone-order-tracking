@@ -28,12 +28,14 @@ var connection = new Sequelize(
   }
 );
 
+
 const database = {
   Sequelize: Sequelize,
   connection: connection,
 
   // Link models with database connection here
   customers: require("./models/customer.js")(connection, Sequelize),
+
   orders: require("./models/orders.js")(connection, Sequelize),
   products: require("./models/products.js")(connection, Sequelize),
   status: require("./models/status.js")(connection, Sequelize),
@@ -101,5 +103,6 @@ database.users.belongsTo(database.csr, {
   foreignKey: "csr_id",
   as: "csr",
 });
+
 
 module.exports = database;

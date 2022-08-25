@@ -3,6 +3,7 @@ const database = require("../connection");
 const Orders = database.orders;
 const Op = database.Sequelize.Op;
 
+
 ///////////// Helper Functions /////////////////
 
 function findByPKFunc(req, res, id) {
@@ -28,10 +29,15 @@ function findByPKFunc(req, res, id) {
 //create a new order
 exports.create = (req, res) => {
   // Validate request
+<<<<<<< HEAD
   if (!req.body.customer_id ||
       !req.body.order_status_code ||
       !req.body.datetime_order_placed ||
       !req.body.total_order_price ) {
+=======
+  if (!req.body.customer_id) {
+
+>>>>>>> origin/front-end
     res.status(400).send({
       message: "Required fields can not be empty!",
     });
@@ -50,6 +56,7 @@ exports.create = (req, res) => {
   Orders.create(newOrder)
     .then((data) => {
       res.status(201).send(data);
+
     })
     .catch((err) => {
       res.status(500).send({
@@ -85,6 +92,7 @@ exports.findAll = (req, res) => {
 // Find a single Order with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
+
   findByPKFunc(req, res, id);
 };
 
@@ -125,7 +133,6 @@ exports.update = (req, res) => {
 
 exports.delete = (req, res) => {
   const id = req.params.id;
-
   Orders.destroy({
     where: { order_id: id, order_status_code: 1 },
   })
