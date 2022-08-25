@@ -14,29 +14,30 @@ describe("tests for /api/customers", function () {
       .expect(200, done);
   });
 
-  it("should get customer with ID 1", function (done) {
+  it("should get customer with ID 2", function (done) {
     request(app)
-      .get("/api/customers/1") // GET specific customer by ID
+      .get("/api/customers/2") // GET specific customer by ID
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(
         200,
         {
-          customer_id: 1,
-          first_name: 'Madeson',
-          middle_name: 'Yoshi',
-          last_name: 'Prince',
-          phone_number: '(757) 160-5368',
-          email: 'consequat@protonmail.com',
-          customer_notes: 'augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu.',
-          date_of_birth: '2019-12-22',
-          street_number: 79,
+          customer_id: 2,
+          first_name: "Jocelyn",
+          middle_name: "Angelica",
+          last_name: "Mendez",
+          phone_number: "(506) 380-6438",
+          email: "metus@outlook.ca",
+          customer_notes:
+            "laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in",
+          date_of_birth: "2009-07-07",
+          street_number: 68,
           unit_number: null,
-          street_name: 'lectus',
-          city: 'Lewiston',
-          state: 'Maine',
-          country: 'United States',
-          zipcode: '42372'
+          street_name: "interdum.",
+          city: "Nampa",
+          state: "Idaho",
+          country: "United States",
+          zipcode: "23351",
         },
         done
       );
@@ -113,21 +114,21 @@ describe("tests for /api/customers", function () {
   //tests for PUT requests
   it("updates customer with id 1", function (done) {
     let customer = {
-
-      first_name: 'Madeson',
-      middle_name: 'Yoshi',
-      last_name: 'Prince',
-      phone_number: '(757) 160-5368',
-      email: 'consequat@protonmail.com',
-      customer_notes: 'augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu.',
-      date_of_birth: '2019-12-22',
+      first_name: "Madeson",
+      middle_name: "Yoshi",
+      last_name: "Prince",
+      phone_number: "(757) 160-5368",
+      email: "consequat@protonmail.com",
+      customer_notes:
+        "augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu.",
+      date_of_birth: "2019-12-22",
       street_number: 79,
       unit_number: null,
-      street_name: 'lectus',
-      city: 'Lewiston',
-      state: 'Maine',
-      country: 'United States',
-      zipcode: '42372'
+      street_name: "lectus",
+      city: "Lewiston",
+      state: "Maine",
+      country: "United States",
+      zipcode: "42372",
     };
     request(app)
       .put("/api/customers/1") // Modify existing customer
@@ -148,9 +149,9 @@ describe("tests for /api/orders", function () {
       .expect(200, done);
   });
 
-  it("should get order with ID 1", function (done) {
+  it("should get order with ID 2", function (done) {
     request(app)
-      .get("/api/orders/1")
+      .get("/api/orders/2")
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(
@@ -186,7 +187,7 @@ describe("tests for /api/orders", function () {
   });
 
   //tests for DELETE requests
-  it("tries to deletes order with id 1", function (done) {
+  it("tries to deletes order with id 2", function (done) {
     // should NOT delete order 1 bc order is live.
     // should only be allowed to delete draft orders
     request(app)
@@ -267,6 +268,7 @@ describe("tests for /api/products", function () {
       .expect(200, done);
   });
 });
+
 /*
 it("responds with 404 not found", function (done) {
   request(app);
@@ -276,3 +278,61 @@ it("responds with 404 not found", function (done) {
     .expect(404, done);
 });
 */
+
+it("should create a new order", function (done) {
+  let order = {
+    customer_id: 2,
+    order_status_code: 2,
+    datetime_order_placed: "2022-08-10 01:44:00",
+    total_order_price: 14.99,
+    order_notes: "no notes",
+  };
+
+  request(app)
+    .post("/api/orders")
+    .send(order)
+    .set("Accept", "application/json")
+    .expect("Content-Type", /json/)
+    .expect(201, done);
+});
+
+describe("tests for POST and PUT for products within orders", function () {
+  it("should create a new product within an order", function (done) {
+    let product_in_order = {
+      order_id: 1,
+      product_id: 2,
+      order_quantity: 20,
+    };
+
+    request(app)
+      .post("/api/products_connect_orders")
+      .send(product_in_order)
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
+
+  it("Updates an order with id of 1", function (done) {
+    let order_update = {
+      order_quantity: 30,
+    };
+    request(app)
+      .put("/api/products_connect_orders?order_id=4&product_id=2")
+      .send(order_update)
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
+
+  it("Updates a products quantity within an order", function (done) {
+    let order_update = {
+      order_quantity: 6,
+    };
+    request(app)
+      .put("/api/products_connect_orders?order_id=17&product_id=72")
+      .send(order_update)
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
+});
