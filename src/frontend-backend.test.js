@@ -14,17 +14,25 @@ test('renders Search button', () => {
   expect(screen.getByText("Search")).toBeInTheDocument();
 });
 
-test('Searches customer by last name Prince', async () => {
+test('product sku', async () => {
   render(<App />);
   const searchButton = screen.getByText("Search"); //get search button
-  user.type(screen.getByPlaceholderText("Search"), "Prince"); //get search bar element & type "Prince"
-  expect(searchButton).toBeEnabled();
   user.click(searchButton);
 
-  expect(screen.getByText("First Name")).toBeInTheDocument();
-  expect(await screen.findByText("Yoshi")).toBeInTheDocument();
-  //expect(screen.getByText((content, element) => {
-  //  return element.tagName.toLowerCase() === 'td' && content.startsWith('M')})).toBeInTheDocument();
-  //expect(screen.getByText("Yoshi")).toBeInTheDocument();
-  //expect(screen.getByText("consequat@protonmail.com")).toBeInTheDocument();
+  expect(await screen.findByText("Quisque")).toBeInTheDocument();
 });
+
+// test('Searches customer by last name Prince', async () => {
+//   render(<App />);
+//   const searchButton = screen.getByText("Search"); //get search button
+//   user.type(screen.getByPlaceholderText("Search"), "Mendez"); //get search bar element & type "Prince"
+//   expect(searchButton).toBeEnabled();
+//   user.click(searchButton);
+
+//   expect(screen.getByText("First Name")).toBeInTheDocument();
+//   expect(await screen.findByText("Mendez")).toBeInTheDocument();
+//   //expect(screen.getByText((content, element) => {
+//   //  return element.tagName.toLowerCase() === 'td' && content.startsWith('M')})).toBeInTheDocument();
+//   //expect(screen.getByText("Yoshi")).toBeInTheDocument();
+//   //expect(screen.getByText("consequat@protonmail.com")).toBeInTheDocument();
+// });

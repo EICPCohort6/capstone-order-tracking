@@ -161,7 +161,7 @@ describe("tests for /api/orders", function () {
           order_status_code: 4,
           datetime_order_placed: "2021-08-04T00:46:10.000Z",
           total_order_price: 244.28,
-          order_notes: "enim nisl",
+          order_notes: "no notes",
         },
         done
       );
@@ -170,7 +170,7 @@ describe("tests for /api/orders", function () {
   //tests for POST requests --
   it("should create a new order", function (done) {
     let order = {
-      customer_id: 1,
+      customer_id: 2,
       order_status_code: 2,
       datetime_order_placed: "2022-08-10 01:44:00",
       total_order_price: 14.99,
