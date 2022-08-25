@@ -60,7 +60,7 @@ exports.signin = (req, res) => {
         });
       }
       var token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: 900, // 1 hour
+        expiresIn: 900, // 15 mins
       });
       //   var authorities = [];
       //user.getRoles().then((roles) => {
