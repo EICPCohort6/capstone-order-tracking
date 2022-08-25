@@ -6,15 +6,13 @@ import NavigationBar from "../components/navigation";
 const MainPage = () => {
   return (
     <>
-      <Container fluid>
-        <Row>
+      <Container fluid className="row g-0">
+        <Row className="row g-0">
           <Col xs="2" className="Navbar-background" style={{ height: "100vh" }}>
             <NavigationBar />
           </Col>
-          <Col xs="10" md="8" className="p-3">
+          <Col xs="10" className="p-3">
             <Outlet />
-          </Col>
-          <Col xs="10" md="8" className="p-3">
           </Col>
         </Row>
       </Container>

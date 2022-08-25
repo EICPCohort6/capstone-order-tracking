@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import CustomerForm from "./create-customer";
+import ProductForm from "./create-product";
 
-function AddCustomerButton({
-  text = "Add New Customer",
-  person,
-  customerFunction,
+function AddProductButton({
+  text = "Modify Product",
+  product,
+  productFunction,
 }) {
   const [modal, setModal] = useState(false);
 
@@ -17,12 +17,12 @@ function AddCustomerButton({
         {text}
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Create New Customer</ModalHeader>
+        <ModalHeader toggle={toggle}>Modify Product Details</ModalHeader>
         <ModalBody>
-          <CustomerForm
+          <ProductForm
             toggle={toggle}
-            person={person}
-            customerFunction={customerFunction}
+            product={product}
+            productFunction={productFunction}
           />
         </ModalBody>
       </Modal>
@@ -30,4 +30,4 @@ function AddCustomerButton({
   );
 }
 
-export default AddCustomerButton;
+export default AddProductButton;

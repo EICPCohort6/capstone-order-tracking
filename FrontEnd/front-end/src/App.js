@@ -6,11 +6,13 @@ import CustomerPage from "./pages/customersPage";
 import OrderPage from "./pages/ordersPage";
 import NoPage from "./pages/noPage";
 import ProductPage from "./pages/productsPage";
+import LoginPage from "./pages/loginPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="login" element={<LoginPage />} />
         <Route path="/" element={<MainPage />}>
           <Route index element={<CustomerPage />} />
           <Route path="order" element={<OrderPage />} />
