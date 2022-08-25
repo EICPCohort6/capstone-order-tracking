@@ -6,33 +6,30 @@ const OrderForm = ({
   setCustomerOrdersTable,
   customerOrdersTable,
   onToggleModal,
+  editMode
 }) => {
   const [orderId, setOrderId] = useState(
-    (customerOrdersTable && customerOrdersTable.orderId) || null
+    (customerOrdersTable && customerOrdersTable.order_id) || null
   );
   const [orderStatus, setOrderStatus] = useState(
-    (customerOrdersTable && customerOrdersTable.orderStatus) || null
+    (customerOrdersTable && customerOrdersTable.order_status_code) || null
   );
   const [customerId, setCustomerId] = useState(
-    (customerOrdersTable && customerOrdersTable.customerId) || null
+    (customerOrdersTable && customerOrdersTable.customer_id) || null
   );
   const [orderNotes, setOrderNotes] = useState(
-    (customerOrdersTable && customerOrdersTable.orderNotes) || null
+    (customerOrdersTable && customerOrdersTable.order_notes) || null
   );
   const [customerOrders, setCustomerOrders] = useState(customerOrdersTable);
 
   const handleSubmit = () => {
     const orderObject = {
-      orderId,
-      orderStatus,
-      customerId,
-      orderNotes,
-      timestamp: new Date().toLocaleString(),
+      order_id: orderId,
+      order_status_code: orderStatus,
+      customer_id: customerId,
+      order_notes: orderNotes,
+      datetime_order_placed: new Date().toLocaleString(),
     };
-
-    console.log(orderObject);
-    const orderString = JSON.stringify(orderObject);
-    alert("Order was submitted with the following details: " + orderString);
 
     // setCustomerOrders.push(orderObject);
     const currentCustomerOrders = customerOrdersTable;
@@ -46,12 +43,14 @@ const OrderForm = ({
     setOrderNotes("");
     setOrderStatus("");
   };
-  console.log(customerOrders);
 
   return (
     <div>
       <Form>
         <Row>
+          {
+            !editMode && (
+
           <Col md={6}>
             <FormGroup>
               <Label for="customerId">Customer Id</Label>
@@ -64,6 +63,9 @@ const OrderForm = ({
               />
             </FormGroup>
           </Col>
+            )
+          }
+
           <Col md={6}>
             <FormGroup>
               <Label for="orderStatus">Order Status Code</Label>

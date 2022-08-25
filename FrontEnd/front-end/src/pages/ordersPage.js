@@ -30,7 +30,7 @@ const OrderPage = () => {
           customerOrdersTable={customerOrdersTable}
         />
       </div>
-      <OrdersTable customerOrders={customerOrdersTable} />
+      {/* <OrdersTable customerOrders={customerOrdersTable} /> */}
     </div>
   );
 };
