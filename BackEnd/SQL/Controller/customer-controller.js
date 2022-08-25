@@ -8,16 +8,18 @@ const Op = database.Sequelize.Op;
 //create a new customer
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.last_name || 
-      !req.body.first_name || 
-      !req.body.email || 
-      !req.body.date_of_birth || 
-      !req.body.street_number || 
-      !req.body.street_name || 
-      !req.body.city || 
-      !req.body.state || 
-      !req.body.country || 
-      !req.body.zipcode ) {
+  if (
+    !req.body.last_name ||
+    !req.body.first_name ||
+    !req.body.email ||
+    !req.body.date_of_birth ||
+    !req.body.street_number ||
+    !req.body.street_name ||
+    !req.body.city ||
+    !req.body.state ||
+    !req.body.country ||
+    !req.body.zipcode
+  ) {
     res.status(400).send({
       message: "Required fields can not be empty!",
     });
@@ -26,7 +28,6 @@ exports.create = (req, res) => {
 
   // if validaiton is successful, create customer
   const newCustomer = {
-
     first_name: req.body.first_name,
     middle_name: req.body.middle_name,
     last_name: req.body.last_name,
@@ -59,12 +60,11 @@ exports.create = (req, res) => {
 
 // Retrieve all customers from the database.
 exports.findAll = (req, res) => {
-    const query = req.query;
+  const query = req.query;
   let condition = {};
   for (const field in query) {
-    condition[field] = {[Op.like]: `%${query[field]}%`}
+    condition[field] = { [Op.like]: `%${query[field]}%` };
   }
-
 
   Customers.findAll({ where: condition })
     .then((data) => {
@@ -101,18 +101,19 @@ exports.findOne = (req, res) => {
 
 // Update a single Customer with an id
 exports.update = (req, res) => {
-
-  if (!req.body.last_name || 
-      !req.body.first_name || 
-      !req.body.email || 
-      !req.body.date_of_birth || 
-      !req.body.street_number || 
-      !req.body.street_name || 
-      !req.body.city || 
-      !req.body.state || 
-      !req.body.country || 
-      !req.body.zipcode ) {
-      res.status(400).send({
+  if (
+    !req.body.last_name ||
+    !req.body.first_name ||
+    !req.body.email ||
+    !req.body.date_of_birth ||
+    !req.body.street_number ||
+    !req.body.street_name ||
+    !req.body.city ||
+    !req.body.state ||
+    !req.body.country ||
+    !req.body.zipcode
+  ) {
+    res.status(400).send({
       message: "Required fields can not be empty!",
     });
     return;
@@ -140,13 +141,24 @@ exports.update = (req, res) => {
     });
 };
 
-exports.delete = async(req,res) => {
+exports.delete = async (req, res) => {
   const id = req.params.id;
   const delete_trx = await database.connection.transaction();
   try {
     /// THIS LINE: update is showing, but only because ccc_timestamp can be updated. customer_id and csr_id are both unable to be updated.
-    const updCustID = await CustomersConnCSR.update({customers_connect_csr_id: 100, customer_id: 200, csr_id: 42, ccc_timestamp: '2023-04-21 21:56:55'}, {where: { customer_id: 100 }, logging: console.log, transaction: delete_trx})
-    .then((num) => {
+    const updCustID = await CustomersConnCSR.update(
+      {
+        customers_connect_csr_id: 100,
+        customer_id: 200,
+        csr_id: 42,
+        ccc_timestamp: "2023-04-21 21:56:55",
+      },
+      {
+        where: { customer_id: 100 },
+        logging: console.log,
+        transaction: delete_trx,
+      }
+    ).then((num) => {
       if (num == 1) {
         res.send({
           message: `Customer ${id} was updated to null in customers_conn_csr successfully.`,
