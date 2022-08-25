@@ -40,6 +40,8 @@ require("../SQL/Routes/order-routes")(app);
 require("../SQL/Routes/product-routes")(app);
 require("../SQL/Routes/products-conn-orders-routes")(app);
 require("../SQL/Routes/customer-conn-csr-routes")(app);
+require("../SQL/Routes/auth-routes")(app);
+require("../SQL/Routes/user-routes")(app);
 
 
 // set port, listen for requests
