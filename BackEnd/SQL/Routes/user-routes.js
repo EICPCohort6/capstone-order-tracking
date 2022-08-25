@@ -1,4 +1,4 @@
-const { authJwt } = require("../Controller/authJwt");
+const authJwt = require("../Controller/authJwt");
 const controller = require("../Controller/user-controller");
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -8,5 +8,7 @@ module.exports = function (app) {
     );
     next();
   });
+  // console.log("-----------", authJwt);
+  app.get("/api/test/user", authJwt.verifyToken, controller.userLoggedAccess);
   app.get("/api/test/access", controller.allAccess);
 };
