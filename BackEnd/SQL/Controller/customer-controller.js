@@ -146,26 +146,9 @@ exports.delete = async (req, res) => {
   const id = req.params.id;
   const delete_trx = await database.connection.transaction();
   try {
-<<<<<<< HEAD
-    /// THIS LINE: update is showing, but only because ccc_timestamp can be updated. customer_id and csr_id are both unable to be updated.
-    const updCustID = await CustomersConnCSR.update(
-      {
-        customers_connect_csr_id: 100,
-        customer_id: 200,
-        csr_id: 42,
-        ccc_timestamp: "2023-04-21 21:56:55",
-      },
-      {
-        where: { customer_id: 100 },
-        logging: console.log,
-        transaction: delete_trx,
-      }
-    ).then((num) => {
-=======
     /// Before deleting customer from customers table, first set customer_id in customers_connect_csr to null (as well as in orders table)
     const setNullCustConn = await CustomersConnCSR.update({customer_id: null}, {where: { customer_id: id }, logging: console.log, transaction: delete_trx})
     .then((num) => {
->>>>>>> back-end
       if (num == 1) {
         // res.status({
         //   message: `Customer ${id} was updated to null in customers_conn_csr successfully.`,

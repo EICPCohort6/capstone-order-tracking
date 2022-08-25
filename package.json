@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "front-end",
   "version": "0.1.0",
   "private": true,
@@ -24,7 +23,8 @@
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.3",
     "body-parser": "^1.20.0",
-    "cors": "^2.8.5"
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -55,10 +55,5 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "react-router-dom": "^6.3.0"
-=======
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^8.5.1"
->>>>>>> back-end
   }
 }
