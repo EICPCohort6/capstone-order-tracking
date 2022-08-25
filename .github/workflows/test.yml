@@ -16,3 +16,4 @@ jobs:
         run: |
           npm install
           npm run test2
+        working-directory: ./test-app/
