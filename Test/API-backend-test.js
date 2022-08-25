@@ -157,21 +157,12 @@ describe("tests for /api/orders", function () {
       .expect(
         200,
         {
-<<<<<<< HEAD
-          order_id: 2,
-          customer_id: 72,
-          order_status_code: 2,
-          datetime_order_placed: "2021-08-09T23:49:10.000Z",
-          total_order_price: 379.62,
-          order_notes: "mauris. Integer sem elit, pharetra ut,",
-=======
           order_id: 1,
           customer_id: 25,
           order_status_code: 4,
           datetime_order_placed: "2021-08-04T00:46:10.000Z",
           total_order_price: 244.28,
           order_notes: "no notes",
->>>>>>> 23c6c6a2006939a174f9cfd04bd476c0f02dcd10
         },
         done
       );
@@ -303,4 +294,45 @@ it("should create a new order", function (done) {
     .set("Accept", "application/json")
     .expect("Content-Type", /json/)
     .expect(201, done);
+});
+
+describe("tests for POST and PUT for products within orders", function () {
+  it("should create a new product within an order", function (done) {
+    let product_in_order = {
+      order_id: 1,
+      product_id: 2,
+      order_quantity: 20,
+    };
+
+    request(app)
+      .post("/api/products_connect_orders")
+      .send(product_in_order)
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
+
+  it("Updates an order with id of 1", function (done) {
+    let order_update = {
+      order_quantity: 30,
+    };
+    request(app)
+      .put("/api/products_connect_orders?order_id=4&product_id=2")
+      .send(order_update)
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
+
+  it("Updates a products quantity within an order", function (done) {
+    let order_update = {
+      order_quantity: 6,
+    };
+    request(app)
+      .put("/api/products_connect_orders?order_id=17&product_id=72")
+      .send(order_update)
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
 });
