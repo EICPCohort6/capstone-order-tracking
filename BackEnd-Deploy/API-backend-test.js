@@ -2,7 +2,7 @@ const request = require("supertest");
 const assert = require("assert");
 const express = require("express");
 
-const app = require("./app.js"); // express();
+const app = "https://capstone-csr-api.azurewebsites.net";
 
 describe("tests for /api/customers", function () {
   //tests for GET requests
