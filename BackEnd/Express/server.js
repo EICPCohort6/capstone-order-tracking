@@ -10,8 +10,7 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cors());
-// app.options("http://localhost:3000", cors()); // not needed apparently? //front end?
+
 app.use(express.urlencoded({ extended: true }));
 
 //init sequelize and run sync
@@ -44,10 +43,11 @@ require("../SQL/Routes/customer-conn-csr-routes")(app);
 require("../SQL/Routes/auth-routes")(app);
 require("../SQL/Routes/user-routes")(app);
 
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
-
 module.exports = app;
+

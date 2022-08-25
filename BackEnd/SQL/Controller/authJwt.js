@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
 const database = require("../connection");
 // const User = database.user;
-verifyToken = (req, res, next) => {
+let verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
   if (!token) {
     return res.status(403).send({
@@ -15,6 +15,8 @@ verifyToken = (req, res, next) => {
         message: "Unauthorized!",
       });
     }
+    console.log(req);
+    // console.log(req.userId, decoded);
     req.userId = decoded.id;
     next();
   });

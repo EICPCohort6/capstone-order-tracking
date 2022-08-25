@@ -5,6 +5,7 @@ const ProductsConnOrders = database.products_connect_orders;
 const Products = database.products;
 const Op = database.Sequelize.Op;
 
+
 ///////////// Helper Functions /////////////////
 
 function findByPKFunc(req, res, id) {
@@ -34,6 +35,7 @@ exports.create = (req, res) => {
       !req.body.order_status_code ||
       !req.body.datetime_order_placed ||
       !req.body.total_order_price ) {
+
     res.status(400).send({
       message: "Required fields can not be empty!",
     });
@@ -52,6 +54,7 @@ exports.create = (req, res) => {
   Orders.create(newOrder)
     .then((data) => {
       res.status(201).send(data);
+
     })
     .catch((err) => {
       res.status(500).send({
@@ -87,6 +90,7 @@ exports.findAll = (req, res) => {
 // Find a single Order with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
+
   findByPKFunc(req, res, id);
 };
 
@@ -189,13 +193,13 @@ exports.delete = async(req, res) => {
 
       const updProdInv = await Products.update({product_quantity: productInventory + products[q].order_quantity}, {where: { product_id: products[q].product_id }, logging: console.log, transaction: delete_trx})
       .then((num) => {
-      if (num == 1) {
-          // product inventory updated
-      } else {
-          res.send({
-          message: `Cannot update inventory for product with product_id ${product_id} in products table.`,
-          });
-          throw `Cannot update inventory for product_id ${product_id}  in products table.`;
+        if (num == 1) {
+            // product inventory updated
+        } else {
+            res.send({
+            message: `Cannot update inventory for product with product_id ${product_id} in products table.`,
+            });
+            throw `Cannot update inventory for product_id ${product_id}  in products table.`;
         }
       
       });
@@ -237,26 +241,4 @@ exports.delete = async(req, res) => {
     await delete_trx.rollback();
   }
 
-    // return products to inventory
-
- 
-  // Orders.destroy({
-  //   where: { order_id: id, order_status_code: 1 },
-  // })
-  //   .then((num) => {
-  //     if (num == 1) {
-  //       res.status(200).send({
-  //         message: "Order was deleted successfully!",
-  //       });
-  //     } else {
-  //       res.status(500).send({
-  //         message: `Cannot delete Order with id=${id}. Order was not found, or status code is not 'draft'.`,
-  //       });
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     res.status(500).send({
-  //       message: err,
-  //     });
-  //   });
 };
