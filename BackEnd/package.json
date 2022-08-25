@@ -5,6 +5,7 @@
   "main": "express/server.js",
   "scripts": {
     "test": "mocha test-orders.js --recursive"
+    "start": "node ./Express/server.js"
   },
   "keywords": [
     "nodejs",
