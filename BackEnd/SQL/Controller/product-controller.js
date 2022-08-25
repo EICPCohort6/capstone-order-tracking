@@ -9,7 +9,11 @@ exports.findAll = (req, res) => {
   const query = req.query;
   let condition = {};
   for (const field in query) {
-    condition[field] = {[Op.like]: `%${query[field]}%`}
+    if (field.indexOf('id') !== -1) {
+      condition[field] = {[Op.like]: `${query[field]}`}
+    } else {
+      condition[field] = {[Op.like]: `%${query[field]}%`}
+    }
   }
 
   Products.findAll({ where: condition })
@@ -25,6 +29,23 @@ exports.findAll = (req, res) => {
     });
 
 };
+
+exports.findAllBulk = (req, res) => {
+
+  const product_id_list = req.body.product_id;
+
+  Products.findAll({where: {product_id: {[Op.or]: product_id_list}}})
+  .then((data) => {
+    res.send(data);
+  })
+  .catch((err) => {
+    res.status(500).send({
+      message:
+        err.message ||
+        "An unexpected error occured while retrieving all products.",
+    });
+  });
+}
 
 // Find a single Product with an id
 exports.findOne = (req, res) => {

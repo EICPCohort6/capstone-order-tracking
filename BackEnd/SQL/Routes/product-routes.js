@@ -2,10 +2,13 @@ module.exports = (app) => {
     const Products = require("../Controller/product-controller");
     let router = require("express").Router();
 
-    // Get all Orders
+    // Get all products
     router.get("/", Products.findAll);
 
-    //Get specific order with id
+    // Get all products
+    router.get("/bulk", Products.findAllBulk);
+
+    //Get specific product with id
     router.get("/:id", Products.findOne);
 
     //Update a Product with id
