@@ -197,11 +197,11 @@ describe("tests for /api/orders", function () {
       .expect(500, done);
   });
 
-  it("deletes order with id 17", function (done) {
+  it("deletes order with id 35", function (done) {
     // should delete order 2 bc order is a draft.
     // should only be allowed to delete draft orders
     request(app)
-      .delete("/api/orders/17")
+      .delete("/api/orders/35")
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200, done);
@@ -243,6 +243,17 @@ describe("tests for /api/products", function () {
       .expect(200, done);
   });
 
+  it("gets products in bulk", function (done) {
+    let bulk = {
+      "product_id": [1,2,3,4,5]
+    };
+    request(app)
+      .get("/api/products/bulk")
+      .send(bulk)
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
   //tests for POST requests
 
   //tests for DELETE requests
@@ -278,23 +289,6 @@ it("responds with 404 not found", function (done) {
     .expect(404, done);
 });
 */
-
-it("should create a new order", function (done) {
-  let order = {
-    customer_id: 2,
-    order_status_code: 2,
-    datetime_order_placed: "2022-08-10 01:44:00",
-    total_order_price: 14.99,
-    order_notes: "no notes",
-  };
-
-  request(app)
-    .post("/api/orders")
-    .send(order)
-    .set("Accept", "application/json")
-    .expect("Content-Type", /json/)
-    .expect(201, done);
-});
 
 describe("tests for POST and PUT for products within orders", function () {
   it("should create a new product within an order", function (done) {
