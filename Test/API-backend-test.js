@@ -245,14 +245,33 @@ describe("tests for /api/products", function () {
 
   it("gets products in bulk", function (done) {
     let bulk = {
-      "product_id": [1,2,3,4,5]
+      "product_id": [1,2]
     };
     request(app)
       .get("/api/products/bulk")
       .send(bulk)
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
-      .expect(200, done);
+      .expect(200,[
+        {
+            "product_id": 1,
+            "product_SKU": 154388,
+            "product_price": 88.43,
+            "product_name": "Quisque",
+            "product_quantity": 95,
+            "product_description": "luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam",
+            "product_image_url": "https://nytimes.com/sub/cars"
+        },
+        {
+            "product_id": 2,
+            "product_SKU": 68077,
+            "product_price": 292.15,
+            "product_name": "orci.",
+            "product_quantity": 16,
+            "product_description": "auctor quis, tristique ac, eleifend vitae, erat. Vivamus nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat.",
+            "product_image_url": "http://ebay.com/en-ca"
+        }
+    ], done);
   });
   //tests for POST requests
 
