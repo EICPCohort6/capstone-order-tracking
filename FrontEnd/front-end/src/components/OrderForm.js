@@ -3,11 +3,10 @@ import OrdersTable from "./OrdersTable";
 import { Row, Form, Col, FormGroup, Label, Input, Button } from "reactstrap";
 
 const OrderForm = ({ setCustomerOrdersTable, customerOrdersTable, onToggleModal }) => {
-    const [orderId, setOrderId] = useState(null);
-    const [orderStatus, setOrderStatus] = useState(null);
-    const [customerId, setCustomerId] = useState(null);
-    const [total, setTotal] = useState(0);
-    const [orderNotes, setOrderNotes] = useState(null);
+    const [orderId, setOrderId] = useState((customerOrdersTable && customerOrdersTable.orderId) || null );
+    const [orderStatus, setOrderStatus] = useState((customerOrdersTable && customerOrdersTable.orderStatus) || null);
+    const [customerId, setCustomerId] = useState((customerOrdersTable && customerOrdersTable.customerId) || null);
+    const [orderNotes, setOrderNotes] = useState((customerOrdersTable && customerOrdersTable.orderNotes) || null);
     const [customerOrders, setCustomerOrders ] = useState(customerOrdersTable);
   
    
@@ -16,7 +15,6 @@ const OrderForm = ({ setCustomerOrdersTable, customerOrdersTable, onToggleModal 
         orderId,
         orderStatus,
         customerId,
-        total,
         orderNotes,
         timestamp: new Date().toLocaleString()
         
@@ -32,9 +30,9 @@ const OrderForm = ({ setCustomerOrdersTable, customerOrdersTable, onToggleModal 
       // setCustomerOrders(currentCustomerOrders);
       setCustomerOrdersTable(currentCustomerOrders);
       // reset inputs
-      setOrderId("")
+      // setOrderId("")
       setCustomerId("")
-      setTotal("")
+      // setTotal("")
       setOrderNotes("")
       setOrderStatus("")
     }
@@ -44,19 +42,7 @@ const OrderForm = ({ setCustomerOrdersTable, customerOrdersTable, onToggleModal 
       <div>
       <Form>
         <Row>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="firstName">Order Id</Label>
-              <Input
-                id="firstName"
-                value={orderId}
-                onChange={(event) => {
-                  setOrderId(event.target.value);
-                }}
-              />
-            </FormGroup>
-          </Col>
-          <Col md={6}>
+         <Col md={6}>
             <FormGroup>
               <Label for="customerId">Customer Id</Label>
               <Input
@@ -76,18 +62,6 @@ const OrderForm = ({ setCustomerOrdersTable, customerOrdersTable, onToggleModal 
                 value={orderStatus}
                 onChange={(event) => {
                   setOrderStatus(event.target.value);
-                }}
-              />
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="lastName">Total Order Price</Label>
-              <Input
-                id="lastName"
-                value={total}
-                onChange={(event) => {
-                  setTotal(event.target.value);
                 }}
               />
             </FormGroup>
