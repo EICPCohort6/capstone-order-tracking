@@ -1,12 +1,18 @@
 const { Sequelize } = require("sequelize");
 
+const config = {
+  database: process.env.mySqlHostName,
+  username: process.env.mySqlUser,
+  password: process.env.mySqlPass,
+};
+
 var connection = new Sequelize(
   {
     dialect: "mysql",
-    host: process.env.mySqlHostName,
-    username: process.env.mySqlUser,
-    password: process.env.mySqlPass,
-    database: process.env.mySqlSchema,
+    host: "capstone-customer-manager.mysql.database.azure.com",
+    username: "csr_root",
+    password: "Password1",
+    database: "capstone",
     pool: {
       max: 5,
       min: 0,

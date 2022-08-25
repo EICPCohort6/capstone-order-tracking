@@ -2059,11 +2059,11 @@ VALUES
 ---------------------------------
 INSERT INTO capstone.users (username, password, access_level, csr_id)
 VALUES
-("John",   "$2a$08$U64.HsfAv8ndG0aLC3Fm9uaUycgVYjgUr6ExPp4z/8jKhFV/dE0UG",  1, 1),
-("Kermit", "$2a$08$YCKyln5C/C1HqzWmKs1qV.2v8.GV/KoK58TqENFIeWIknKq.HyzzK",  2, 2),
-("Agent",  "$2a$08$tdva8RpDiTPwFsWGkhsf1uu3ycH.InR/zc5yTPMnxeldA28WNd4Fm",  1, 3),
-("Saul",   "$2a$08$Qs1TPbPlPHzXlLaZGebJAuI6v2.oYxQnjwmeItceL2nhYWtMM0aHy",  2, 4),
-("Walter", "$2a$08$qc6D4enW1YT16AQA7GhIk.CxF4urtVCUvmRqe3WxfWU5MJJDO3XX2",  1, 5);
+("John",   "Madden",  1, 1),
+("Kermit", "Frog",    2, 2),
+("Agent",  "Smith",   1, 3),
+("Saul",   "Goodman", 2, 4),
+("Walter", "White",   1, 5);
 
 -- If using Workbench... have to go to EDIT > PREFERENCES > SQL EDITOR > Scroll to the bottom and uncheck Safe Updates
 -- Total order price has to be calculated so do it here

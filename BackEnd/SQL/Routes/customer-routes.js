@@ -1,6 +1,6 @@
-
+module.exports = (app) => {
   const Customers = require("../Controller/customer-controller");
-  var router = require("express").Router();
+  let router = require("express").Router();
 
   //Create new customer
   router.post("/", Customers.create);
@@ -18,6 +18,5 @@
   //Delete a Customer with id
   router.delete("/:id", Customers.delete);
 
-  module.exports = router;
-
-  
+  app.use("/api/customers", router);
+};

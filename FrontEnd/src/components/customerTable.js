@@ -71,4 +71,4 @@ const CustomerTableDisplay = (props) => {
   );
 };
 
-export default ProductTableDisplay;
+export default CustomerTableDisplay;

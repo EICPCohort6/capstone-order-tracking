@@ -1,4 +1,4 @@
-
+module.exports = (app) => {
   const Orders = require("../Controller/order-controller");
   let router = require("express").Router();
 
@@ -17,6 +17,5 @@
 
   //Delete a Order with id
   router.delete("/:id", Orders.delete);
-  
-  module.exports = router;
-
+  app.use("/api/orders", router);
+};

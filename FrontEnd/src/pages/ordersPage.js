@@ -1,4 +1,5 @@
 import React from "react";
+import CustomerForm from "../components/customerForm";
 
 const OrderPage = () => {
   return (

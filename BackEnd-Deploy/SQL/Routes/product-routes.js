@@ -1,4 +1,4 @@
-module.exports = (app) => {
+
     const Products = require("../Controller/product-controller");
     let router = require("express").Router();
 
@@ -11,5 +11,4 @@ module.exports = (app) => {
     //Update a Product with id
     router.put("/:id", Products.update);
     
-    app.use("/api/products", router);
-  };
+    module.exports = router;
