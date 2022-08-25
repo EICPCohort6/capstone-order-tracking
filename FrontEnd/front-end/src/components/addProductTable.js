@@ -1,20 +1,11 @@
 import React from "react";
-import { Button, Table } from "reactstrap";
-import ConfirmDialog from "./confirmDialog";
-import EditProductButton from "./edit-product-button";
+import { Table } from "reactstrap";
+import AddProductButton from "./add-product-button";
 
-const TABLE_HEADERS = [
-  "ID",
-  "Image URL",
-  "SKU",
-  "Product Name",
-  "Price",
-  "Quantity",
-  "Description",
-];
+const TABLE_HEADERS = ["ID", "SKU", "Product Name", "Price"];
 
 const ProductTable = (props) => {
-  const { tableData, deleteItem, updateItem } = props;
+  const { tableData, updateItem } = props;
 
   const mappedHeaders = TABLE_HEADERS.map((header, index) => {
     return <th key={index}>{header}</th>;
@@ -27,20 +18,12 @@ const ProductTable = (props) => {
           ([key, value]) => key !== "product_id" && <td key={key}>{value}</td>
         )}
         <td>
-          <EditProductButton
-            text="Edit"
+          <AddProductButton
+            text="Add"
             product={product.fullData}
             productFunction={updateItem}
           />
         </td>
-        {/*
-        <td>
-          <ConfirmDialog
-            deleteItem={deleteItem}
-            id={product.fullData.product_id}
-          />
-        </td>
-        */}
       </tr>
     );
   });
@@ -55,20 +38,16 @@ const ProductTable = (props) => {
   );
 };
 
-const ProductTableDisplay = (props) => {
-  const { tableData, deleteItem, updateItem } = props;
+const AddProductTableDisplay = (props) => {
+  const { tableData, updateItem } = props;
 
   return tableData === "empty" ? (
     <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>
   ) : (
-    <div style={{ height: "800px", overflowY: "scroll" }}>
-      <ProductTable
-        tableData={tableData}
-        deleteItem={deleteItem}
-        updateItem={updateItem}
-      />
+    <div style={{ height: "600px", overflowY: "scroll" }}>
+      <ProductTable tableData={tableData} updateItem={updateItem} />
     </div>
   );
 };
 
-export default ProductTableDisplay;
+export default AddProductTableDisplay;

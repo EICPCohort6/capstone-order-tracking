@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
-import ProductsToOrderForm from "./add-to-order";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import ProductForm from "./create-product";
 
-function AddProductsToOrderButton({
-  text = "Add Products",
+function EditProductButton({
+  text = "Modify Product",
   product,
   productFunction,
 }) {
@@ -17,9 +17,9 @@ function AddProductsToOrderButton({
         {text}
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Select Product to Add</ModalHeader>
+        <ModalHeader toggle={toggle}>Modify Product Details</ModalHeader>
         <ModalBody>
-          <ProductsToOrderForm
+          <ProductForm
             toggle={toggle}
             product={product}
             productFunction={productFunction}
@@ -30,4 +30,4 @@ function AddProductsToOrderButton({
   );
 }
 
-export default AddProductsToOrderButton;
+export default EditProductButton;
