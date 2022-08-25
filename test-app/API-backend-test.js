@@ -44,32 +44,14 @@ describe("tests for /api/customers", function () {
 
   it("should get customer with last name Paxton", function (done) {
     request(app)
-      .get("/api/customers?last_name=Paxton") // GET customers by last name
+      .get("/api/customers?last_name=Pax") // GET customers by last name
       //.query('last_name=Paxton')
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(
         200,
         [
-          {
-            //brackets because since last name isn't unique, API
-            //returns a list instead of a single object like with ID
-            customer_id: 9,
-            first_name: "John",
-            middle_name: "JP",
-            last_name: "Paxton",
-            phone_number: "781-543-2367",
-            email: "john_paxton@tjx.com",
-            customer_notes: "Call before shipping",
-            date_of_birth: "1979-07-07",
-            street_number: 87,
-            unit_number: "Apt 16",
-            street_name: "1st Street",
-            city: "Lynn",
-            state: "MA",
-            country: "US",
-            zipcode: "01901",
-          },
+          {"customer_id":102,"first_name":"David","middle_name":"John","last_name":"Pax","phone_number":"617-543-2458","email":"David_Pax@tjx.com","customer_notes":"Don't call number","date_of_birth":"1979-07-07","street_number":43,"unit_number":"Apt 12","street_name":"42nd Street","city":"York","state":"NY","country":"US","zipcode":"17403"},
         ],
         done
       );
