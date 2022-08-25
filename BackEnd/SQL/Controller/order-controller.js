@@ -131,11 +131,11 @@ exports.delete = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.status(200).send({
           message: "Order was deleted successfully!",
         });
       } else {
-        res.send({
+        res.status(500).send({
           message: `Cannot delete Order with id=${id}. Order was not found, or status code is not 'draft'.`,
         });
       }
