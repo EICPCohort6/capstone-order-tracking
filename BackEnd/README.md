@@ -20,7 +20,7 @@
 1. Clone repository
 2. In BackEnd directory, run `npm install` to install all necessary packages
 3. Ensure no other application is running on port 8080.
-4. To run server, run `node express\server.js` from BackEnd directory.
+4. To run server, run `npm start` from BackEnd directory.
 5. Server should be running on port 8080. Visit `https://localhost:8080` to verify.
 
 ## Current Progress
