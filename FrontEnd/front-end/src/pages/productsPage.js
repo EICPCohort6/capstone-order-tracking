@@ -6,18 +6,18 @@ import axios from "axios";
 
 const getData = async ({ condition, text }) => {
   // does api call gets data
-  console.log(condition);
+  let product;
   switch (condition) {
     case "SKU":
-      const product = await axios.get(
+      product = await axios.get(
         `http://localhost:8080/api/products?product_SKU=${text}`
       );
       console.log(product);
       return product;
 
     default:
-      alert("No condition selected!");
-      return "empty";
+      product = await axios.get(`http://localhost:8080/api/products`);
+      return product;
   }
 };
 const ProductsPage = () => {

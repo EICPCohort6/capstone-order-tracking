@@ -33,6 +33,10 @@ const DropDownSelected = (props) => {
 const apiCall = (event, getData, setTableData, searchCondition, text) => {
   event.preventDefault();
   const info = { condition: searchCondition, text: text };
+  if (text === "") {
+    alert("Search field cannot be empty");
+    return;
+  }
 
   getData(info)
     .then((result) => {
@@ -66,6 +70,12 @@ const OrderSearch = (props) => {
           onChange={(event) => setText(event.target.value)}
           value={text}
         />
+        <Button
+          onClick={(event) => apiCall(event, getData, setTableData, "", "all")}
+          color="success"
+        >
+          Display all
+        </Button>
         <DropDownSelected
           searchCondition={searchCondition}
           setSearchCondition={setSearchCondition}

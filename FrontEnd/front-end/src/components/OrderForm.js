@@ -6,27 +6,30 @@ const OrderForm = ({
   setCustomerOrdersTable,
   customerOrdersTable,
   onToggleModal,
+  editMode
 }) => {
-  const [orderId, setOrderId] = useState(null);
-  const [orderStatus, setOrderStatus] = useState(null);
-  const [customerId, setCustomerId] = useState(null);
-  const [total, setTotal] = useState(0);
-  const [orderNotes, setOrderNotes] = useState(null);
+  const [orderId, setOrderId] = useState(
+    (customerOrdersTable && customerOrdersTable.order_id) || null
+  );
+  const [orderStatus, setOrderStatus] = useState(
+    (customerOrdersTable && customerOrdersTable.order_status_code) || null
+  );
+  const [customerId, setCustomerId] = useState(
+    (customerOrdersTable && customerOrdersTable.customer_id) || null
+  );
+  const [orderNotes, setOrderNotes] = useState(
+    (customerOrdersTable && customerOrdersTable.order_notes) || null
+  );
   const [customerOrders, setCustomerOrders] = useState(customerOrdersTable);
 
   const handleSubmit = () => {
     const orderObject = {
-      orderId,
-      orderStatus,
-      customerId,
-      total,
-      orderNotes,
-      timestamp: new Date().toLocaleString(),
+      order_id: orderId,
+      order_status_code: orderStatus,
+      customer_id: customerId,
+      order_notes: orderNotes,
+      datetime_order_placed: new Date().toLocaleString(),
     };
-
-    console.log(orderObject);
-    const orderString = JSON.stringify(orderObject);
-    alert("Order was submitted with the following details: " + orderString);
 
     // setCustomerOrders.push(orderObject);
     const currentCustomerOrders = customerOrdersTable;
@@ -34,30 +37,20 @@ const OrderForm = ({
     // setCustomerOrders(currentCustomerOrders);
     setCustomerOrdersTable(currentCustomerOrders);
     // reset inputs
-    setOrderId("");
+    // setOrderId("")
     setCustomerId("");
-    setTotal("");
+    // setTotal("")
     setOrderNotes("");
     setOrderStatus("");
   };
-  console.log(customerOrders);
 
   return (
     <div>
       <Form>
         <Row>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="firstName">Order Id</Label>
-              <Input
-                id="firstName"
-                value={orderId}
-                onChange={(event) => {
-                  setOrderId(event.target.value);
-                }}
-              />
-            </FormGroup>
-          </Col>
+          {
+            !editMode && (
+
           <Col md={6}>
             <FormGroup>
               <Label for="customerId">Customer Id</Label>
@@ -70,6 +63,9 @@ const OrderForm = ({
               />
             </FormGroup>
           </Col>
+            )
+          }
+
           <Col md={6}>
             <FormGroup>
               <Label for="orderStatus">Order Status Code</Label>
@@ -78,18 +74,6 @@ const OrderForm = ({
                 value={orderStatus}
                 onChange={(event) => {
                   setOrderStatus(event.target.value);
-                }}
-              />
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="lastName">Total Order Price</Label>
-              <Input
-                id="lastName"
-                value={total}
-                onChange={(event) => {
-                  setTotal(event.target.value);
                 }}
               />
             </FormGroup>

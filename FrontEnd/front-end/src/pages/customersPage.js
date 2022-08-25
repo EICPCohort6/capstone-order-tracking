@@ -3,6 +3,7 @@ import CustomerSearch from "../components/customerSearch";
 import CustomerTableDisplay from "../components/customerTable";
 import axios from "axios";
 import AddCustomerButton from "../components/add-customer-button";
+import { Button } from "reactstrap";
 
 const getData = async ({ condition, text }) => {
   // does api call gets data
@@ -33,8 +34,8 @@ const getData = async ({ condition, text }) => {
       return customer;
 
     default:
-      alert("No condition selected!");
-      return "empty";
+      customer = await axios.get(`http://localhost:8080/api/customers`);
+      return customer;
   }
 };
 const createNewCustomer = async (person) => {

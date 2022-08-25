@@ -12,8 +12,8 @@ const getData = async ({ condition, text }) => {
       order = await axios.get(`http://localhost:8080/api/orders/${text}`);
       return order;
     default:
-      alert("No condition selected!");
-      return [];
+      order = await axios.get(`http://localhost:8080/api/orders/`);
+      return order;
   }
 };
 
@@ -30,7 +30,7 @@ const OrderPage = () => {
           customerOrdersTable={customerOrdersTable}
         />
       </div>
-      <OrdersTable customerOrders={customerOrdersTable} />
+      {/* <OrdersTable customerOrders={customerOrdersTable} /> */}
     </div>
   );
 };
