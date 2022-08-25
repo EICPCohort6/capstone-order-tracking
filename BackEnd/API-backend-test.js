@@ -42,34 +42,16 @@ describe("tests for /api/customers", function () {
       );
   });
 
-  it("should get customer with last name Paxton", function (done) {
+  it("should get customer with last name Mendez", function (done) {
     request(app)
-      .get("/api/customers?last_name=Paxton") // GET customers by last name
+      .get("/api/customers?last_name=Mendez") // GET customers by last name
       //.query('last_name=Paxton')
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(
         200,
         [
-          {
-            //brackets because since last name isn't unique, API
-            //returns a list instead of a single object like with ID
-            customer_id: 9,
-            first_name: "John",
-            middle_name: "JP",
-            last_name: "Paxton",
-            phone_number: "781-543-2367",
-            email: "john_paxton@tjx.com",
-            customer_notes: "Call before shipping",
-            date_of_birth: "1979-07-07",
-            street_number: 87,
-            unit_number: "Apt 16",
-            street_name: "1st Street",
-            city: "Lynn",
-            state: "MA",
-            country: "US",
-            zipcode: "01901",
-          },
+          {"customer_id":2,"first_name":"Jocelyn","middle_name":"Angelica","last_name":"Mendez","phone_number":"(506) 380-6438","email":"metus@outlook.ca","customer_notes":"laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in","date_of_birth":"2009-07-07","street_number":68,"unit_number":null,"street_name":"interdum.","city":"Nampa","state":"Idaho","country":"United States","zipcode":"23351"}
         ],
         done
       );
