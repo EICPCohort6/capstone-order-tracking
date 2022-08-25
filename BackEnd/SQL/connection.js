@@ -48,17 +48,19 @@ const database = {
     connection,
     Sequelize
   ),
-  user: require("./models/users.js")(connection, Sequelize)
+  users: require("./models/users.js")(connection, Sequelize),
 };
 
 // one to many relationship between customers and orders on customerid
 database.customers.hasMany(database.orders, {
   foreignKey: "customer_id",
   as: "orders",
+  allowNull: true,
 });
 database.orders.belongsTo(database.customers, {
   foreignKey: "customer_id",
   as: "customers",
+  allowNull: true,
 });
 
 //one to one relationship between orders and status on order_status_code
@@ -74,7 +76,8 @@ database.status.belongsTo(database.orders, {
 
 database.customers.belongsToMany(database.csr, {
   through: database.customers_connect_csr,
-  foreignKey: 'customer_id'
+  foreignKey: 'customer_id',
+  allowNull: true,
 });
 database.csr.belongsToMany(database.customers, {
   through: database.customers_connect_csr,
@@ -91,14 +94,14 @@ database.orders.belongsToMany(database.products, {
 });
 
 // one to one relationships for between users and CSR
-database.csr.hasOne(database.user, {
+database.csr.hasOne(database.users, {
   foreignKey: "csr_id",
-  as: "csr",
+  as: "users",
 });
 
-database.user.belongsTo(database.csr, {
+database.users.belongsTo(database.csr, {
   foreignKey: "csr_id",
-  as: "user",
+  as: "csr",
 });
 
 

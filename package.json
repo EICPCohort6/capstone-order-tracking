@@ -23,7 +23,8 @@
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.3",
     "body-parser": "^1.20.0",
-    "cors": "^2.8.5"
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1"
   },
   "scripts": {
     "start": "react-scripts start",

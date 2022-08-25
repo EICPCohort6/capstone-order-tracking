@@ -157,12 +157,21 @@ describe("tests for /api/orders", function () {
       .expect(
         200,
         {
+<<<<<<< HEAD
           order_id: 2,
           customer_id: 72,
           order_status_code: 2,
           datetime_order_placed: "2021-08-09T23:49:10.000Z",
           total_order_price: 379.62,
           order_notes: "mauris. Integer sem elit, pharetra ut,",
+=======
+          order_id: 1,
+          customer_id: 25,
+          order_status_code: 4,
+          datetime_order_placed: "2021-08-04T00:46:10.000Z",
+          total_order_price: 244.28,
+          order_notes: "no notes",
+>>>>>>> 23c6c6a2006939a174f9cfd04bd476c0f02dcd10
         },
         done
       );
