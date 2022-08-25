@@ -190,8 +190,8 @@ exports.update = async(req,res) => {
         // Get number of product available and it's individual price
         const checkProdInv = await Products.findAll({where: { product_id: product_id }, logging: console.log, transaction: upd_trx});
 
-        const quantityAvailable = checkProdInv[0].dataValues.product_quantity;
-        const costPerItem = checkProdInv[0].dataValues.product_price;
+        const quantityAvailable = checkProdInv[0] ? checkProdInv[0].dataValues.product_quantity : null;
+        const costPerItem = checkProdInv[0] ? checkProdInv[0].dataValues.product_price : null;
 
         if (!quantityAvailable || !costPerItem) {
             throw `Could not retrieve information about product_id ${product_id}`;
@@ -297,6 +297,3 @@ exports.update = async(req,res) => {
         await upd_trx.rollback();
     }
   };
-
-
-  //TODO: destroy order from table entirely (remove every record with specified order_id)

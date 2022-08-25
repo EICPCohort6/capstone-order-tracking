@@ -84,6 +84,7 @@ database.csr.belongsToMany(database.customers, {
 
 database.products.belongsToMany(database.orders, {
   through: database.products_connect_orders,
+  allowNull: true,
   foreignKey: 'product_id'
 });
 database.orders.belongsToMany(database.products, {
