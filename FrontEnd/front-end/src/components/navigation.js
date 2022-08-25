@@ -15,7 +15,7 @@ const NavigationBar = () => {
           <Col xs="8" className="d-flex align-items-center">
             <h2 className="User-nametitle">(USER ID goes here)</h2>
           </Col>
-          <Nav justify pills vertical>
+          <Nav justified pills vertical>
             <NavItem className="p-2 pills">
               <NavLink
                 active={active === "Customers"}
@@ -51,7 +51,15 @@ const NavigationBar = () => {
             </NavItem>
           </Nav>
         </Row>
-        <Button className="logout col p-2 g-3" color="danger">
+        <Button
+          type="button"
+          className="logout col p-2 g-3"
+          color="danger"
+          onClick={function signOut() {
+            window.location = "http://localhost:3000/login";
+            window.location.href = "http://localhost:3000/login";
+          }}
+        >
           Sign Out
         </Button>
         {""}
