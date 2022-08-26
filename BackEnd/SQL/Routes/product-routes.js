@@ -6,7 +6,7 @@ module.exports = (app) => {
     router.get("/", Products.findAll);
 
     // Get all products
-    router.get("/bulk", Products.findAllBulk);
+    router.post("/bulk", Products.findAllBulk);
 
     //Get specific product with id
     router.get("/:id", Products.findOne);
