@@ -2,7 +2,7 @@ const request = require("supertest");
 const assert = require("assert");
 const express = require("express");
 
-const app = require("../BackEnd/Express/server"); // express();
+const app = require("../test-app/app.js"); // express();
 
 describe("tests for /api/customers", function () {
   //tests for GET requests
@@ -307,6 +307,7 @@ it("responds with 404 not found", function (done) {
     .set("Accept", "application/json")
     .expect(404, done);
 });
+<<<<<<< HEAD
 */
 
 describe("tests for POST and PUT for products within orders", function () {
@@ -349,3 +350,5 @@ describe("tests for POST and PUT for products within orders", function () {
       .expect(200, done);
   });
 });
+=======
+>>>>>>> origin/back-end

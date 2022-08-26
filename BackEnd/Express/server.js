@@ -5,7 +5,7 @@ const database = require("../SQL/connection");
 const app = express();
 
 var corsOptions = {
-  origin: ["http://localhost:8080", "http://localhost:3000"], // server
+  origin: 'https://capstone-csr.azurewebsites.net' // server
 };
 
 app.use(cors(corsOptions));
@@ -43,11 +43,11 @@ require("../SQL/Routes/customer-conn-csr-routes")(app);
 require("../SQL/Routes/auth-routes")(app);
 require("../SQL/Routes/user-routes")(app);
 
-
-// set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+
 module.exports = app;
 

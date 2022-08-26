@@ -9,8 +9,8 @@ const getData = async ({ condition, text }) => {
   let customer;
   switch (condition) {
     case "Last Name":
-      customer = await axios.get(
-        `http://localhost:8080/api/customers?last_name=${text}`
+      const customer = await axios.get(
+        `https://capstone-csr-api.azurewebsites.net/api/customers?last_name=${text}`
       );
       return customer;
     case "First Name":
@@ -38,16 +38,11 @@ const getData = async ({ condition, text }) => {
   }
 };
 const createNewCustomer = async (person) => {
-  axios
-    .post(`http://localhost:8080/api/customers`, person)
-    .then((result) => {
-      alert("Customer added!");
-      window.location.reload();
-    })
-    .catch((error) => {
-      console.log(error);
-      alert("Failed to add Customer!");
-    });
+  axios.post(`https://capstone-csr-api.azurewebsites.net/api/customers`, person).then((result) => {
+    alert("Customer added!");
+    window.location.reload();
+  });
+
 };
 
 const CustomerPage = () => {
@@ -55,23 +50,17 @@ const CustomerPage = () => {
 
   // Deletes a entry from the table
   const deleteItem = async (id) => {
-    await axios
-      .delete(`http://localhost:8080/api/customers/${id}`)
-      .then(() => {
-        const newTable = tableData.filter(
-          (row) => row.displayData.customer_id !== id
-        );
-        setTableData(newTable);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Failed to delete item!");
-      });
+    await axios.delete(`https://capstone-csr-api.azurewebsites.net/api/customers/${id}`).then(() => {
+      const newTable = tableData.filter(
+        (row) => row.displayData.customer_id !== id
+      );
+      setTableData(newTable);
+    });
   };
 
   const updateItem = async (item) => {
     await axios
-      .put(`http://localhost:8080/api/customers/${item.customer_id}`, item)
+      .put(`https://capstone-csr-api.azurewebsites.net/api/customers/${item.customer_id}`, item)
       .then(() => {
         const newTable = tableData.map((row) => {
           if (row.displayData.customer_id !== item.customer_id) return row;
