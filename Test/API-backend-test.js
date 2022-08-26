@@ -2,7 +2,7 @@ const request = require("supertest");
 const assert = require("assert");
 const express = require("express");
 
-const app = require("../test-app/app.js"); // express();
+const app = require("../BackEnd/Express/server.js"); // express();
 
 describe("tests for /api/customers", function () {
   //tests for GET requests
@@ -157,12 +157,12 @@ describe("tests for /api/orders", function () {
       .expect(
         200,
         {
-          order_id: 1,
-          customer_id: 25,
-          order_status_code: 4,
+          order_id: 2,
+          customer_id: 72,
+          order_status_code: 2,
           datetime_order_placed: "2021-08-04T00:46:10.000Z",
-          total_order_price: 244.28,
-          order_notes: "no notes",
+          total_order_price: 379.62,
+          order_notes: "mauris. Integer sem elit, pharetra ut",
         },
         done
       );
@@ -248,7 +248,7 @@ describe("tests for /api/products", function () {
       "product_id": [1,2]
     };
     request(app)
-      .get("/api/products/bulk")
+      .post("/api/products/bulk")
       .send(bulk)
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
@@ -258,7 +258,7 @@ describe("tests for /api/products", function () {
             "product_SKU": 154388,
             "product_price": 88.43,
             "product_name": "Quisque",
-            "product_quantity": 95,
+            "product_quantity": 83,
             "product_description": "luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam",
             "product_image_url": "https://nytimes.com/sub/cars"
         },
@@ -267,7 +267,7 @@ describe("tests for /api/products", function () {
             "product_SKU": 68077,
             "product_price": 292.15,
             "product_name": "orci.",
-            "product_quantity": 16,
+            "product_quantity": 16051,
             "product_description": "auctor quis, tristique ac, eleifend vitae, erat. Vivamus nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat.",
             "product_image_url": "http://ebay.com/en-ca"
         }
@@ -350,5 +350,4 @@ describe("tests for POST and PUT for products within orders", function () {
       .expect(200, done);
   });
 });
-=======
->>>>>>> origin/back-end
+
