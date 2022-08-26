@@ -34,7 +34,7 @@ exports.create = (req, res) => {
   if (!req.body.customer_id ||
       !req.body.order_status_code ||
       !req.body.datetime_order_placed ||
-      !req.body.total_order_price ) {
+      req.body.total_order_price == null) {
 
     res.status(400).send({
       message: "Required fields can not be empty!",
