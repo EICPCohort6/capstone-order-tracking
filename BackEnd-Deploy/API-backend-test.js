@@ -138,10 +138,10 @@ describe("tests for /api/orders", function () {
         200,
         {
           order_id: 1,
-          customer_id: 1,
-          order_status_code: 2,
-          datetime_order_placed: "2022-08-10T01:44:00.000Z",
-          total_order_price: 14.99,
+          customer_id: 25,
+          order_status_code: 4,
+          datetime_order_placed: "2021-08-04 00:46:10.00",
+          total_order_price: 6087.28,
           order_notes: "no notes",
         },
         done
