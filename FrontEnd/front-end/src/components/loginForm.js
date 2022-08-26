@@ -13,7 +13,7 @@ const Login = ({ userLogin }) => {
   return (
     <Form
       style={{
-        backgroundColor: "#d3ccbd",
+        backgroundColor: "#fff9f1",
         margin: "0",
         width: "25%",
       }}

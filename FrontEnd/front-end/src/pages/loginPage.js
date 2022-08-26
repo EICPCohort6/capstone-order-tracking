@@ -22,7 +22,7 @@ const LoginPage = () => {
       <Container
         fluid
         style={{
-          backgroundColor: "#d3ccbd",
+          backgroundColor: "#fff9f1",
           height: "100vh",
           alignItems: "center",
           flexDirection: "column",
