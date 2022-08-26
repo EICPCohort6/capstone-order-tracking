@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import OrderForm from "./OrderForm";
-import OrdersTable from "./OrdersTable";
 
 function AddOrderButton(props) {
   const [modal, setModal] = useState(false);
   const { setCustomerOrdersTable, customerOrdersTable } = props;
-  console.log("current orders", customerOrdersTable);
   const toggle = () => setModal(!modal);
 
   return (
@@ -19,7 +17,6 @@ function AddOrderButton(props) {
         <ModalBody>
           <OrderForm
             setCustomerOrdersTable={(incomingOrder) => {
-              console.log(incomingOrder);
               setCustomerOrdersTable(incomingOrder);
             }}
             customerOrdersTable={customerOrdersTable}

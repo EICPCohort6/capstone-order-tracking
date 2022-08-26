@@ -2,7 +2,7 @@ import { Table } from "reactstrap";
 import React, { useState } from "react";
 import OrderForm from "./OrderForm";
 
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const OrdersTable = (props) => {
   const { customerOrders } = props;

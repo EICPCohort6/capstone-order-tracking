@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Table } from "reactstrap";
+import { Table } from "reactstrap";
 import ConfirmDialog from "./confirmDialog";
 import AddCustomerButton from "./add-customer-button";
 

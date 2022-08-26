@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Table } from "reactstrap";
 import ConfirmDialog from "./confirmDialog";
-import axios from "axios";
 
 const TableDisplay = ({ products, deleteItem }) => {
   return (

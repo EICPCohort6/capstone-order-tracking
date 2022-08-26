@@ -3,37 +3,38 @@ import CustomerSearch from "../components/customerSearch";
 import CustomerTableDisplay from "../components/customerTable";
 import axios from "axios";
 import AddCustomerButton from "../components/add-customer-button";
-import { Button } from "reactstrap";
-import URL from "../API";
+import apiURL from "../API";
 
 const getData = async ({ condition, text }) => {
   // does api call gets data
   let customer;
   switch (condition) {
     case "Last Name":
-      customer = await axios.get(`${URL}/api/customers?last_name=${text}`);
+      customer = await axios.get(`${apiURL}/api/customers?last_name=${text}`);
       return customer;
     case "First Name":
-      customer = await axios.get(`${URL}/api/customers?first_name=${text}`);
+      customer = await axios.get(`${apiURL}/api/customers?first_name=${text}`);
       return customer;
     case "ID":
-      customer = await axios.get(`${URL}/api/customers/${text}`);
+      customer = await axios.get(`${apiURL}/api/customers/${text}`);
       return customer;
     case "Phone Number":
-      customer = await axios.get(`${URL}/api/customers?phone_number=${text}`);
+      customer = await axios.get(
+        `${apiURL}/api/customers?phone_number=${text}`
+      );
       return customer;
     case "Email":
-      customer = await axios.get(`${URL}/api/customers?email=${text}`);
+      customer = await axios.get(`${apiURL}/api/customers?email=${text}`);
       return customer;
 
     default:
-      customer = await axios.get(`${URL}/api/customers`);
+      customer = await axios.get(`${apiURL}/api/customers`);
       return customer;
   }
 };
 const createNewCustomer = async (person) => {
   axios
-    .post(`${URL}/api/customers`, person)
+    .post(`${apiURL}/api/customers`, person)
     .then((result) => {
       alert("Customer added!");
       window.location.reload();
@@ -50,7 +51,7 @@ const CustomerPage = () => {
   // Deletes a entry from the table
   const deleteItem = async (id) => {
     await axios
-      .delete(`${URL}/api/customers/${id}`)
+      .delete(`${apiURL}/api/customers/${id}`)
       .then(() => {
         const newTable = tableData.filter(
           (row) => row.displayData.customer_id !== id
@@ -65,7 +66,7 @@ const CustomerPage = () => {
 
   const updateItem = async (item) => {
     await axios
-      .put(`${URL}/api/customers/${item.customer_id}`, item)
+      .put(`${apiURL}/api/customers/${item.customer_id}`, item)
       .then(() => {
         const newTable = tableData.map((row) => {
           if (row.displayData.customer_id !== item.customer_id) return row;

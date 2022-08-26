@@ -3,7 +3,7 @@ import { Row, Form, Col, FormGroup, Label, Input, Button } from "reactstrap";
 import TableDisplay from "./orderProductTable";
 import AddProductsToOrderButton from "./add-products-to-order-button";
 import axios from "axios";
-import URL from "../API";
+import apiURL from "../API";
 const OrderForm = ({
   customerOrdersTable = null,
   onToggleModal,
@@ -16,22 +16,22 @@ const OrderForm = ({
     (customerOrdersTable && customerOrdersTable.order_id) || ""
   );
   const [orderStatus, setOrderStatus] = useState(
-    (customerOrdersTable && customerOrdersTable.order_status_code) || ""
+    (customerOrdersTable && customerOrdersTable.order_status_code) || 1
   );
   const [customerId, setCustomerId] = useState(
-    (customerOrdersTable && customerOrdersTable.customer_id) || ""
+    (customerOrdersTable && customerOrdersTable.customer_id) || 1
   );
   const [orderNotes, setOrderNotes] = useState(
     (customerOrdersTable && customerOrdersTable.order_notes) || ""
   );
   const [totalPrice, setTotal] = useState(
-    (customerOrdersTable && customerOrdersTable.total_order_price) || ""
+    (customerOrdersTable && customerOrdersTable.total_order_price) || 0
   );
   const [date, setDate] = useState("");
 
   useEffect(() => {
     const getOrderPrice = async () => {
-      const order = await axios.get(`${URL}/api/orders/${orderId}`);
+      const order = await axios.get(`${apiURL}/api/orders/${orderId}`);
       setTotal(order.data.total_order_price);
       setDate(order.data.datetime_order_placed);
     };
@@ -39,7 +39,7 @@ const OrderForm = ({
   }, [products, orderId]);
   const updateOrderProducts = async (product_id, quantity) => {
     axios
-      .post(`${URL}/api/products_connect_orders`, {
+      .post(`${apiURL}/api/products_connect_orders`, {
         order_quantity: parseInt(quantity),
         order_id: orderId,
         product_id: product_id,
@@ -56,12 +56,12 @@ const OrderForm = ({
   const getOrderDetails = async (id) => {
     let productInfo = [];
     await axios
-      .get(`${URL}/api/products_connect_orders?order_id=${id}`)
+      .get(`${apiURL}/api/products_connect_orders?order_id=${id}`)
       .then((result) => {
         productInfo = result.data.map((item) => {
           return { id: item.product_id, quantity: item.order_quantity };
         });
-        return axios.post(`${URL}/api/products/bulk`, {
+        return axios.post(`${apiURL}/api/products/bulk`, {
           product_id: productInfo.map((item) => item.id),
         });
       })
@@ -82,7 +82,7 @@ const OrderForm = ({
   const deleteProductFromOrder = async (id) => {
     await axios
       .put(
-        `${URL}/api/products_connect_orders?order_id=${orderId}&product_id=${id}`,
+        `${apiURL}/api/products_connect_orders?order_id=${orderId}&product_id=${id}`,
         { order_quantity: 0 }
       )
       .then(() => {
@@ -109,8 +109,9 @@ const OrderForm = ({
       datetime_order_placed: dateString,
       total_order_price: 0,
     };
-    if (editMode) updateItem(orderObject);
-    else createNewOrder(orderObject);
+    console.log(editMode);
+    console.log(orderObject);
+    createNewOrder(orderObject);
 
     setCustomerId("");
 

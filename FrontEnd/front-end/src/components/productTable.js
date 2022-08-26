@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Table } from "reactstrap";
-import ConfirmDialog from "./confirmDialog";
+import { Table } from "reactstrap";
 import EditProductButton from "./edit-product-button";
 
 const TABLE_HEADERS = [
@@ -14,7 +13,7 @@ const TABLE_HEADERS = [
 ];
 
 const ProductTable = (props) => {
-  const { tableData, deleteItem, updateItem } = props;
+  const { tableData, updateItem } = props;
 
   const mappedHeaders = TABLE_HEADERS.map((header, index) => {
     return <th key={index}>{header}</th>;
@@ -33,14 +32,6 @@ const ProductTable = (props) => {
             productFunction={updateItem}
           />
         </td>
-        {/*
-        <td>
-          <ConfirmDialog
-            deleteItem={deleteItem}
-            id={product.fullData.product_id}
-          />
-        </td>
-        */}
       </tr>
     );
   });
