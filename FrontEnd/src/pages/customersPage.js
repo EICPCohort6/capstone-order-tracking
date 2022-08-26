@@ -10,7 +10,7 @@ const getData = async ({ condition, text }) => {
   switch (condition) {
     case "Last Name":
       const customer = await axios.get(
-        `http://localhost:8080/api/customers?last_name=${text}`
+        `https://capstone-csr-api.azurewebsites.net/api/customers?last_name=${text}`
       );
       return customer;
     case "First Name":
@@ -38,10 +38,11 @@ const getData = async ({ condition, text }) => {
   }
 };
 const createNewCustomer = async (person) => {
-  axios.post(`http://localhost:8080/api/customers`, person).then((result) => {
+  axios.post(`https://capstone-csr-api.azurewebsites.net/api/customers`, person).then((result) => {
     alert("Customer added!");
     window.location.reload();
   });
+
 };
 
 const CustomerPage = () => {
@@ -49,7 +50,7 @@ const CustomerPage = () => {
 
   // Deletes a entry from the table
   const deleteItem = async (id) => {
-    await axios.delete(`http://localhost:8080/api/customers/${id}`).then(() => {
+    await axios.delete(`https://capstone-csr-api.azurewebsites.net/api/customers/${id}`).then(() => {
       const newTable = tableData.filter(
         (row) => row.displayData.customer_id !== id
       );
