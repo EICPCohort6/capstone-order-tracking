@@ -6,30 +6,13 @@ import AddCustomerButton from "../components/add-customer-button";
 
 const getData = async ({ condition, text }) => {
   // does api call gets data
-  let customer;
+  console.log(condition);
   switch (condition) {
     case "Last Name":
       const customer = await axios.get(
         `https://capstone-csr-api.azurewebsites.net/api/customers?last_name=${text}`
       );
-      return customer;
-    case "First Name":
-      customer = await axios.get(
-        `http://localhost:8080/api/customers?first_name=${text}`
-      );
-      return customer;
-    case "ID":
-      customer = await axios.get(`http://localhost:8080/api/customers/${text}`);
-      return customer;
-    case "Phone Number":
-      customer = await axios.get(
-        `http://localhost:8080/api/customers?phone_number=${text}`
-      );
-      return customer;
-    case "Email":
-      customer = await axios.get(
-        `http://localhost:8080/api/customers?email=${text}`
-      );
+      console.log(customer);
       return customer;
 
     default:
@@ -42,7 +25,6 @@ const createNewCustomer = async (person) => {
     alert("Customer added!");
     window.location.reload();
   });
-
 };
 
 const CustomerPage = () => {
