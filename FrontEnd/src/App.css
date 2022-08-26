@@ -1,0 +1,180 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Navbar-background {
+  background-color: #d3ccbd
+}
+
+.User-image {
+  width: 3.5vw;
+  height: 3.5vw;
+  margin-left: 1vw;
+  margin-top: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 1vw;
+  object-fit: contain;
+  float: left;
+}
+ .User-nametitle {
+  font-size: 1.5vw;
+  margin-left: 1vw;
+  margin-top: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 1vw;
+  text-align: center;
+
+ }
+
+ .User-name {
+  font-size: 16px;
+  font-size: 1vw;
+  text-align: center;
+  border-left: 1vw;
+  border-right: 1vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+ }
+
+ .Color-nav {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+ }
+
+ .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;  
+}
+
+.login {
+  display: inline-flexbox;
+  flex-direction: column;
+  width: 50vw;
+  justify-content: center;
+  align-items: center;
+  height:100vh; 
+}
+
+.something {
+              object-fit: contain;
+              margin-left: auto;
+              margin-right: auto;
+              height: 15vh;
+              width: 25vw;
+}
+
+a:link {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: black !important;
+  text-decoration: none;
+
+}
+
+a:active {
+  color: black;
+}
+
+.nav-link {
+  color:black;
+  padding: 0px;
+}
+
+.logout {
+         
+}
+
+.containernav {
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  position: relative;
+  margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: inherit;
+}
+
+.nav>li>a.active {
+  background-color: #737271 !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.nav>li>a:hover {
+  background-color: #A3A2A1;
+}
+.nav>li>a:focus {
+   background-color: #838281;
+}
+.nav>li>a. {
+  background-color: #838281;
+}
+
+.nav{
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.nav-pills .nav-link
+{
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}

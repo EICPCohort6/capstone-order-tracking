@@ -4,10 +4,7 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: ["DevSecOps"]
-  pull_request:
-    branches: ["DevSecOps"]
+  workflow_dispatch:
 
 jobs:
   build:
