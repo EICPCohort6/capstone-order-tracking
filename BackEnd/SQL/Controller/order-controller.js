@@ -169,11 +169,15 @@ exports.delete = async(req, res) => {
 
     const productsRaw = getProdInord[0] ? getProdInord : null;
 
+    let orderExistsInPCO = true;
     if (!productsRaw) {
-      res.status(500).send({
-        message: `Cannot retrieve products in order_id ${id}`,
-      });
-      throw `Cannot retrieve products in order_id ${id}`;
+      // res.status(500).send({
+      //   message: `Cannot retrieve products in order_id ${id}`,
+      // });
+      // throw `Cannot retrieve products in order_id ${id}`;
+
+      console.log(`No products assigned to order ${id}`);
+      orderExistsInPCO = false;
     }
 
     const products = [];
@@ -209,18 +213,23 @@ exports.delete = async(req, res) => {
       });
     }
 
+    //before deleting from products_connect_orders, check if it exists
+
+
     // delete order from products_connect_orders
-    const delOrdPCO = await ProductsConnOrders.destroy({where: { order_id: id }, logging: console.log, transaction: delete_trx})
-            .then((num) => {
-            if (num > 0) {
-                // order deleted from products_conn_orders
-            } else {
-                res.send({
-                message: `Cannot delete order with order_id ${id} from products_connect_orders table.`,
-                });
-                throw `Cannot delete order with order_id ${id} from products_connect_orders table.`;
-            }
-          });
+    if (orderExistsInPCO) {
+      const delOrdPCO = await ProductsConnOrders.destroy({where: { order_id: id }, logging: console.log, transaction: delete_trx})
+          .then((num) => {
+          if (num > 0) {
+              // order deleted from products_conn_orders
+          } else {
+              res.send({
+              message: `Cannot delete order with order_id ${id} from products_connect_orders table.`,
+              });
+              throw `Cannot delete order with order_id ${id} from products_connect_orders table.`;
+          }
+        });
+    }
 
     // delete order
     const delOrder = await Orders.destroy({where: { order_id: id }, logging: console.log, transaction: delete_trx})
