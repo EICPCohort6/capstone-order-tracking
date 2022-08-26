@@ -1,23 +1,25 @@
 {
-  "name": "test-app",
-  "version": "0.0.0",
+  "name": "BackEnd-App",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "test2": "mocha ./API-backend-test.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^10.0.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
-    "mysql2": "^2.3.3",
-    "sequelize": "^6.21.3",
-    "cors": "^2.8.5",
-    "mocha": "^10.0.0",
     "supertest": "^6.2.4"
   }
-  
 }

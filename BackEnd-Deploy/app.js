@@ -6,18 +6,17 @@ var logger = require('morgan');
 var cors = require('cors');
 const database = require("./SQL/connection");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-const customerRouter = require("./SQL/Routes/customer-routes");
+const customerRouter = require("./SQL/Routes/customer-routes.js");
 const orderRouter = require("./SQL/Routes/order-routes");
 const productRouter = require("./SQL/Routes/product-routes");
+const productConn = require("./SQL/Routes/products-conn-orders-routes");
+const customerConn = require("./SQL/Routes/customer-conn-csr-routes");
+
 
 var app = express();
 
 var corsOptions = {
-
   origin: 'https://capstone-csr.azurewebsites.net'
-
 };
 
 app.use(cors(corsOptions));
@@ -32,11 +31,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/api/customers', customerRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/products', productRouter);
+app.use("/api/products_connect_orders", productConn);
+app.use("/api/customers_connect_csr", customerConn);
+require("./SQL/Routes/auth-routes")(app);
+require("./SQL/Routes/user-routes")(app);
 
 
 (async function () {

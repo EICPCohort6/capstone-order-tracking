@@ -107,11 +107,6 @@ a:link {
   color: black;
   text-decoration: none;
   font-weight: bold;
-  display: block;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 8px;
-  padding-bottom: 8px;
 }
 
 a:visited {
@@ -129,8 +124,7 @@ a:active {
 }
 
 .nav-link {
-  color:black;
-  padding: 0px;
+  color:black
 }
 
 .logout {
@@ -150,10 +144,6 @@ a:active {
 
 .nav>li>a.active {
   background-color: #737271 !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-top: 0px;
-  padding-bottom: 0px;
 }
 .nav>li>a:hover {
   background-color: #A3A2A1;
@@ -165,16 +155,3 @@ a:active {
   background-color: #838281;
 }
 
-.nav{
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-.nav-pills .nav-link
-{
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
