@@ -71,7 +71,11 @@ exports.findAll = (req, res) => {
   const query = req.query;
   let condition = {};
   for (const field in query) {
-    condition[field] = {[Op.like]: `%${query[field]}%`}
+    if (field.indexOf('id') !== -1) {
+      condition[field] = {[Op.like]: `${query[field]}`}
+    } else {
+      condition[field] = {[Op.like]: `%${query[field]}%`}
+    }
   }
 
   Orders.findAll({ where: condition })
