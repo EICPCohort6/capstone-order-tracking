@@ -27,7 +27,7 @@ const Login = ({ userLogin }) => {
         </Label>
         <Input
           id="examplelanid"
-          placeholder="LAN ID"
+          placeholder="Username"
           type="lanid"
           value={loginInfo.username}
           onChange={(e) =>
