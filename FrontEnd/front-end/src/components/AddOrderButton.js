@@ -24,18 +24,10 @@ function AddOrderButton(props) {
             }}
             customerOrdersTable={customerOrdersTable}
             onToggleModal={toggle}
+            createNewOrder={props.createNewOrder}
           />
         </ModalBody>
-      
       </Modal>
-      <div style={{ marginTop: "10px"}}>
-          {
-              customerOrdersTable.length > 0 && (
-
-                  <OrdersTable customerOrders={customerOrdersTable} />
-              )
-          }
-      </div>
     </div>
   );
 }

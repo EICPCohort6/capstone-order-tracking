@@ -2,11 +2,12 @@ import React from "react";
 import { Row, Container, Col } from "reactstrap";
 import Login from "../components/loginForm";
 import axios from "axios";
+import URL from "../API";
 
 const loginUser = async (loginInfo) => {
   console.log(loginInfo);
   axios
-    .post(`http://localhost:8080/api/auth/signin`, loginInfo)
+    .post(`${URL}/api/auth/signin`, loginInfo)
     .then((result) => {
       console.log("Yes");
       window.location = "http://localhost:3000/order";

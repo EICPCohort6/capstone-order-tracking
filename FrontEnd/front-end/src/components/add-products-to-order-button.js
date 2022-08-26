@@ -22,7 +22,7 @@ function AddProductsToOrderButton({
           <ProductsToOrderForm
             toggle={toggle}
             product={product}
-            productFunction={productFunction}
+            updateFunction={productFunction}
           />
         </ModalBody>
       </Modal>

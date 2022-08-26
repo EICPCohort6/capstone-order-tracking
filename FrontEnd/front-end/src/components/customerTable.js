@@ -45,7 +45,7 @@ const CustomerTable = (props) => {
   });
 
   return (
-    <Table striped responsive>
+    <Table striped>
       <thead>
         <tr>{mappedHeaders}</tr>
       </thead>
@@ -60,7 +60,7 @@ const CustomerTableDisplay = (props) => {
   return tableData === "empty" ? (
     <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>
   ) : (
-    <div style={{ height: "800px", overflowY: "scroll" }}>
+    <div style={{ height: "800px", overflowY: "scroll", overflowX: "scroll" }}>
       <CustomerTable
         tableData={tableData}
         deleteItem={deleteItem}
