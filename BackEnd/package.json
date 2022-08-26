@@ -4,6 +4,7 @@
   "description": "Backend application for the capstone order tracking project",
   "main": "express/server.js",
   "scripts": {
+
     "test": "mocha test-orders.js --recursive"
   },
   "keywords": [
@@ -17,9 +18,11 @@
   "author": "abagramian",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
     "mocha": "^10.0.0",
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.3"

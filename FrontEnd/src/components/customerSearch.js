@@ -40,27 +40,27 @@ const apiCall = (event, getData, setTableData, searchCondition, text) => {
   event.preventDefault();
   const info = { condition: searchCondition, text: text };
   getData(info).then((result) => {
-    if (result === "empty" || result.data.length === 0) {
-      setTableData("empty");
-      return;
-    }
+      if (result === "empty" || result.data.length === 0) {
+        setTableData("empty");
+        return;
+      }
     const tableData = result.data.map((entry) => {
-      return {
-        displayData: {
-          customer_id: entry.customer_id,
-          first_name: entry.first_name,
-          middle_name: entry.middle_name,
-          last_name: entry.last_name,
-          phone_number: entry.phone_number,
-          email: entry.email,
-          country: entry.country,
-          city: entry.city,
-        },
-        fullData: entry,
-      };
+        return {
+          displayData: {
+            customer_id: entry.customer_id,
+            first_name: entry.first_name,
+            middle_name: entry.middle_name,
+            last_name: entry.last_name,
+            phone_number: entry.phone_number,
+            email: entry.email,
+            country: entry.country,
+            city: entry.city,
+          },
+          fullData: entry,
+        };
+      });
+      setTableData(tableData);
     });
-    setTableData(tableData);
-  });
 };
 const Search = (props) => {
   const { getData, setTableData } = props;

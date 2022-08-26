@@ -1,29 +1,38 @@
+const sequelize = require("sequelize");
 const database = require("../connection");
 
 const Customers = database.customers;
+const CustomersConnCSR = database.customers_connect_csr;
+const Orders = database.orders;
 const Op = database.Sequelize.Op;
 
 //create a new customer
 exports.create = (req, res) => {
   // Validate request
-
-  if (!req.body.last_name) {
+  if (!req.body.last_name || 
+      !req.body.first_name || 
+      !req.body.email || 
+      !req.body.date_of_birth || 
+      !req.body.street_number || 
+      !req.body.street_name || 
+      !req.body.city || 
+      !req.body.state || 
+      !req.body.country || 
+      !req.body.zipcode ) {
     res.status(400).send({
-      message: "Content can not be empty!",
+      message: "Required fields can not be empty!",
     });
     return;
   }
 
   // if validaiton is successful, create customer
   const newCustomer = {
-
     first_name: req.body.first_name,
     middle_name: req.body.middle_name,
     last_name: req.body.last_name,
     phone_number: req.body.phone_number,
     email: req.body.email,
     customer_notes: req.body.customer_notes,
-
     date_of_birth: req.body.date_of_birth,
     street_number: req.body.street_number,
     unit_number: req.body.unit_number,
@@ -49,12 +58,12 @@ exports.create = (req, res) => {
 
 // Retrieve all customers from the database.
 exports.findAll = (req, res) => {
-    const query = req.query;
+  
+  const query = req.query;
   let condition = {};
   for (const field in query) {
     condition[field] = {[Op.like]: `%${query[field]}%`}
   }
-
 
   Customers.findAll({ where: condition })
     .then((data) => {
@@ -91,6 +100,23 @@ exports.findOne = (req, res) => {
 
 // Update a single Customer with an id
 exports.update = (req, res) => {
+
+  if (!req.body.last_name || 
+      !req.body.first_name || 
+      !req.body.email || 
+      !req.body.date_of_birth || 
+      !req.body.street_number || 
+      !req.body.street_name || 
+      !req.body.city || 
+      !req.body.state || 
+      !req.body.country || 
+      !req.body.zipcode ) {
+      res.status(400).send({
+      message: "Required fields can not be empty!",
+    });
+    return;
+  }
+
   const id = req.params.id;
   Customers.update(req.body, {
     where: { customer_id: id },
@@ -113,25 +139,79 @@ exports.update = (req, res) => {
     });
 };
 
-exports.delete = (req, res) => {
+exports.delete = async(req,res) => {
   const id = req.params.id;
-  Customers.destroy({
-    where: { customer_id: id },
-  })
+  const delete_trx = await database.connection.transaction();
+  try {
+    /// Before deleting customer from customers table, first set customer_id in customers_connect_csr to null (as well as in orders table)
+    const setNullCustConn = await CustomersConnCSR.update({customer_id: null}, {where: { customer_id: id }, logging: console.log, transaction: delete_trx})
+    .then((num) => {
+      if (num == 1) {
+        // res.status({
+        //   message: `Customer ${id} was updated to null in customers_conn_csr successfully.`,
+        // });
+      } else {
+        res.send({
+          message: `Cannot update Customer with id=${id} in customers_conn_csr. Maybe Customer was not found or req.body is empty!`,
+        });
+        throw `Cannot update Customer with id=${id} in customers_conn_csr. Maybe Customer was not found or req.body is empty!`;
+        
+      }
+    });
+
+    const setNullOrders = await Orders.update({customer_id: null}, {where: { customer_id: id }, logging: console.log, transaction: delete_trx})
+    .then((num) => {
+      if (num > 0) {
+        // res.status({
+        //   message: `Customer ${id} was updated to null in customers_conn_csr successfully.`,
+        // });
+      } else {
+        res.send({
+          message: `Cannot update Customer with id=${id} in orders table. Maybe Customer was not found or req.body is empty!`,
+        });
+        throw `Cannot update Customer with id=${id} in orders table. Maybe Customer was not found or req.body is empty!`;
+      }
+    });
+    
+    //after all tables that may reference this customer_id have been updated to customer_id = null, we can now delete
+    //the customer from the customers table
+   const delCust = await Customers.destroy({where: { customer_id: id }, logging: console.log, transaction: delete_trx})
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Customer was deleted successfully!",
+          message: `Customer ${id} was deleted from customers table successfully, and all associated record have been updated with customer_id = null.`,
         });
       } else {
         res.send({
-          message: `Cannot delete Customer with id=${id}. Maybe Customer was not found!`,
+          message: `Cannot delete Customer with id=${id} from customers table.`,
         });
+        throw `Cannot delete Customer with id=${id} from customers table.`;
       }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err,
-      });
     });
+    await delete_trx.commit();
+
+    // })
+  } catch (err) {
+    console.log(err);
+    await delete_trx.rollback();
+  }
+  // Customers.destroy({
+  //   where: { customer_id: id },
+  // })
+  //   .then((num) => {
+  //     if (num == 1) {
+  //       res.send({
+  //         message: "Customer was deleted successfully!",
+  //       });
+  //     } else {
+  //       res.send({
+  //         message: `Cannot delete Customer with id=${id}. Maybe Customer was not found!`,
+  //       });
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).send({
+  //       message: err,
+  //     });
+  //   });
 };

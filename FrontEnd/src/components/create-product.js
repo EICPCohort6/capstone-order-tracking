@@ -1,5 +1,5 @@
-import React from "react";
-import { Row, Form, Col, FormGroup, Label, Input } from "reactstrap";
+import React, { useState } from "react";
+import { Row, Form, Col, FormGroup, Label, Input, Button } from "reactstrap";
 
 const ProductForm = () => {
   return (
@@ -37,27 +37,27 @@ const ProductForm = () => {
         </Col>
       </Row>
       <Row>
-        <Col md={12}>
-          <FormGroup>
+      <Col md={12}>
+        <FormGroup>
             <Label for="product_description">Product Description</Label>
-            <Input
-              id="product_description"
-              name="product_description"
-              placeholder=""
-            />
-          </FormGroup>
-        </Col>
+          <Input
+            id="product_description"
+            name="product_description"
+            placeholder=""
+          />
+        </FormGroup>
+      </Col>
       </Row>
       <Row>
         <Col md={12}>
-          <FormGroup>
+      <FormGroup>
             <Label for="product_image_url">Product Image URL</Label>
             <Input
               id="product_image_url"
               name="product_image_url"
               placeholder=""
             />
-          </FormGroup>
+      </FormGroup>
         </Col>
       </Row>
     </Form>

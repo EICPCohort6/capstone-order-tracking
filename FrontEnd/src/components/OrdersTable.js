@@ -1,4 +1,3 @@
-
 import { Table } from "reactstrap";
 
 const OrdersTable = (props) => {
@@ -9,19 +8,19 @@ const OrdersTable = (props) => {
       <h1>Orders Table</h1>
 
       <Table>
-        <thead>
-          <tr>
+          <thead>
+            <tr>
             <th>#</th>
-            <th>Customer Id</th>
+              <th>Customer Id</th>
             <th>Order Id</th>
             <th>Order Status Code</th>
             <th>Total Order Price</th>
-            <th>Order Notes</th>
-            <th>Time Stamp</th>
-          </tr>
-        </thead>
-        <tbody>
-          {customerOrders.map((order, index) => (
+              <th>Order Notes</th>
+              <th>Time Stamp</th>
+            </tr>
+          </thead>
+          <tbody>
+            {customerOrders.map((order, index) => (
             <tr>
               <th scope="row">{index}</th>
               <td>{order.customerId}</td>
@@ -30,11 +29,11 @@ const OrdersTable = (props) => {
               <td>{order.total}</td>
               <td>{order.orderNotes}</td>
               <td>{order.timestamp}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </div>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
   );
 };
 
