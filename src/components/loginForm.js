@@ -1,15 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Form, Col, FormGroup, Label, Input, Button } from "reactstrap";
 
-const handleSubmit = (event, userLogin, loginInfo) => {
-  event.preventDefault();
-  console.log("helloo");
-  userLogin(loginInfo);
-};
-
-const Login = ({ userLogin }) => {
-  const [loginInfo, setLoginInfo] = useState({ username: "", password: "" });
-
+const Login = () => {
   return (
     <Form
       style={{
@@ -19,7 +11,6 @@ const Login = ({ userLogin }) => {
         width: "25%",
       }}
       className="align-self-center"
-      onSubmit={(event) => handleSubmit(event, userLogin, loginInfo)}
     >
       <FormGroup className="col-auto">
         {"Username"}
@@ -28,12 +19,9 @@ const Login = ({ userLogin }) => {
         </Label>
         <Input
           id="examplelanid"
+          name="lanid"
           placeholder="LAN ID"
           type="lanid"
-          value={loginInfo.username}
-          onChange={(e) =>
-            setLoginInfo({ ...loginInfo, username: e.target.value })
-          }
         />
       </FormGroup>
       {"Password"}
@@ -43,17 +31,12 @@ const Login = ({ userLogin }) => {
         </Label>
         <Input
           id="examplePassword"
+          name="password"
           placeholder="Password"
           type="password"
-          value={loginInfo.password}
-          onChange={(e) =>
-            setLoginInfo({ ...loginInfo, password: e.target.value })
-          }
         />
       </FormGroup>{" "}
-      <Button type="submit" style={{ backgroundColor: "#434241" }}>
-        Log In
-      </Button>
+      <Button style={{ backgroundColor: "#434241" }}>Log In</Button>
     </Form>
   );
 };

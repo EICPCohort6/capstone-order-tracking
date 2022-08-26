@@ -1,21 +1,6 @@
 import React from "react";
 import { Row, Container, Col } from "reactstrap";
 import Login from "../components/loginForm";
-import axios from "axios";
-
-const loginUser = async (loginInfo) => {
-  console.log(loginInfo);
-  axios
-    .post(`http://localhost:8080/api/auth/signin`, loginInfo)
-    .then((result) => {
-      console.log("Yes");
-      window.location = "http://localhost:3000/order";
-    })
-    .catch((error) => {
-      console.log(error);
-      alert("Incorrect Username or Password. Please try again");
-    });
-};
 
 const LoginPage = () => {
   return (
@@ -32,8 +17,8 @@ const LoginPage = () => {
         }}
         className="border border-dark col-form-label-lg row g-0"
       >
-        <img className="something" src="/assets/placeholder_template.jpg" />
-        <Login userLogin={loginUser} />
+        <img className="something" src="/assets/placeholder_template.jpg" alt = "" />
+        <Login />
       </Container>
     </>
   );

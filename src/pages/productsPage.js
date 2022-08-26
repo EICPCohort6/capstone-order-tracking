@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ProductTableDisplay from "../components/productTable";
 import ProductSearch from "../components/productSearch";
+import AddProductButton from "../components/add-product-button";
 import axios from "axios";
 
 const getData = async ({ condition, text }) => {
   // does api call gets data
   let product;
+  console.log(condition);
   switch (condition) {
     case "SKU":
       product = await axios.get(
@@ -24,8 +26,8 @@ const getData = async ({ condition, text }) => {
       return product;
 
     default:
-      product = await axios.get(`http://localhost:8080/api/products`);
-      return product;
+      alert("No condition selected!");
+      return "empty";
   }
 };
 const ProductsPage = () => {
@@ -49,7 +51,6 @@ const ProductsPage = () => {
           if (row.displayData.product_id !== item.product_id) return row;
           const newDisplayData = {
             product_id: item.product_id,
-            product_image_url: item.product_image_url,
             product_SKU: item.product_SKU,
             product_name: item.product_name,
             product_price: item.product_price,
