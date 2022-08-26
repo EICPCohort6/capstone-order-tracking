@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Form, Col, FormGroup, Label, Input, Button } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 const handleSubmit = (event, userLogin, loginInfo) => {
   event.preventDefault();
@@ -13,8 +13,7 @@ const Login = ({ userLogin }) => {
   return (
     <Form
       style={{
-        backgroundColor: "#9b0c23",
-        color: "#ffffff",
+        backgroundColor: "#d3ccbd",
         margin: "0",
         width: "25%",
       }}
