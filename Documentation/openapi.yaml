@@ -21,6 +21,8 @@ paths:
       responses:
         "201":
           description: Created
+        "500":
+          description: Internal Server Error
   /customers/{id}:
     get:
       summary: Return a customer by ID.
@@ -34,8 +36,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified customer ID is invalid (NaN)
+        "500":
+          description: Internal Server Error
         "404":
           description: A customer with the specified ID was not found.
     put:
@@ -50,8 +52,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified customer ID is invalid (NaN)
+        "500":
+          description: Internal Server Error
         "404":
           description: A customer with the specified ID was not found.
     delete:
@@ -66,8 +68,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified customer ID is invalid (NaN)
+        "500":
+          description: Internal Server Error
         "404":
           description: A customer with the specified ID was not found.
 
@@ -84,8 +86,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified customer last name is invalid (Not a string)
+        "500":
+          description: Internal Server Error
         "404":
           description: A customer with the specified last name was not found.
   /orders:
@@ -99,6 +101,8 @@ paths:
       responses:
         "201":
           description: Created
+        "500":
+          description: Internal Server Error
   /orders/{id}:
     get:
       summary: Return an order by ID.
@@ -112,8 +116,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified order ID is invalid (NaN)
+        "500":
+          description: Internal Server Error
         "404":
           description: An order with the specified ID was not found.
     put:
@@ -128,8 +132,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified order ID is invalid (NaN)
+        "500":
+          description: Internal Server Error
         "404":
           description: An order with the specified ID was not found.
     delete:
@@ -144,8 +148,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified order ID is invalid (NaN)
+        "500":
+          description: Internal Server Error
         "404":
           description: An order with the specified ID was not found.
   /products:
@@ -154,14 +158,20 @@ paths:
       responses:
         "200":
           description: A JSON array of all products.
-  # /products/bulk:
-  #   get:
-  #     summary: Returns a list of select products.
-  #     requestBody:
-  #       required: false
-  #     responses:
-  #       "200":
-  #         description: A JSON array of products.
+  /products/bulk:
+    post:
+      summary: Returns a list of select products.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: A JSON array of products.
+        "500":
+          description: Internal Server Error
   /products/{id}:
     get:
       summary: Get a specific product.
@@ -175,8 +185,8 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified product ID is invalid (NaN)
+        "500":
+          description: Internal Server Error
         "404":
           description: A product with the specified ID was not found
     put:
@@ -191,7 +201,44 @@ paths:
       responses:
         "200":
           description: OK
-        "400":
-          description: The specified product ID is invalid (NaN)
+        "500":
+          description: Internal Server Error
         "404":
           description: A product with the specified ID was not found.
+  /products_connect_orders:
+    get:
+      summary: Get a list of all connections between products and orders.
+      responses:
+        "200":
+          description: OK
+  /products_connect_orders/{id}:
+    post:
+      summary: Creates a new connection between products and orders.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique ID of a connection.
+          schema:
+            type: integer
+      responses:
+        "201":
+          description: Created
+        "500":
+          description: Internal Server Error
+    put:
+      summary: Modify a connection between products and orders.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique ID of a connection.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+        "404":
+          description: A connection with specified ID was not found.
