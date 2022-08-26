@@ -49,11 +49,4 @@ describe("PRODUCTS ENDPOINTS", function () {
     expect(body).to.deep.include(product2);
     expect(body.length).to.be.undefined; //undefined length means only one object was returned
   });
-
-  it("POST /products : it should return status code 201", async () => {
-    const { body, status } = await request(app)
-      .post("/api/products")
-      .send(newProduct)
-      .expect(201);
-  });
 });

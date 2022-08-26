@@ -3,7 +3,6 @@ import OrderSearch from "../components/OrderSearch";
 import AddOrderButton from "../components/AddOrderButton";
 import OrdersTable from "../components/OrdersTable";
 import axios from "axios";
-import AddProductsToOrderButton from "../components/add-products-to-order-button";
 
 const getData = async ({ condition, text }) => {
   // does api call gets data
@@ -30,9 +29,6 @@ const OrderPage = () => {
           setCustomerOrdersTable={setCustomerOrdersTable}
           customerOrdersTable={customerOrdersTable}
         />
-      </div>
-      <div style={{ marginTop: "10px" }}>
-        <AddProductsToOrderButton />
       </div>
       <OrdersTable customerOrders={customerOrdersTable} />
     </div>
