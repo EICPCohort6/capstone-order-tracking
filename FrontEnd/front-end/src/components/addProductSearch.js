@@ -42,12 +42,9 @@ const apiCall = (event, getData, setTableData, searchCondition, text) => {
       return {
         displayData: {
           product_id: entry.product_id,
-          product_image_url: entry.product_image_url,
           product_SKU: entry.product_SKU,
           product_name: entry.product_name,
           product_price: entry.product_price,
-          product_quantity: entry.product_quantity,
-          product_description: entry.product_description,
         },
         fullData: entry,
       };

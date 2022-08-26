@@ -42,7 +42,6 @@ const apiCall = (event, getData, setTableData, searchCondition, text) => {
       return {
         displayData: {
           product_id: entry.product_id,
-          product_image_url: entry.product_image_url,
           product_SKU: entry.product_SKU,
           product_name: entry.product_name,
           product_price: entry.product_price,
@@ -57,7 +56,7 @@ const apiCall = (event, getData, setTableData, searchCondition, text) => {
 };
 const Search = (props) => {
   const { getData, setTableData } = props;
-  const [searchCondition, setSearchCondition] = useState("SKU");
+  const [searchCondition, setSearchCondition] = useState("Product ID");
   const [text, setText] = useState("");
 
   return (

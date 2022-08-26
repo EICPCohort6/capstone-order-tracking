@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProductTableDisplay from "../components/productTable";
 import ProductSearch from "../components/productSearch";
+import AddProductButton from "../components/add-product-button";
 import axios from "axios";
 
 const getData = async ({ condition, text }) => {
@@ -50,7 +51,6 @@ const ProductsPage = () => {
           if (row.displayData.product_id !== item.product_id) return row;
           const newDisplayData = {
             product_id: item.product_id,
-            product_image_url: item.product_image_url,
             product_SKU: item.product_SKU,
             product_name: item.product_name,
             product_price: item.product_price,
