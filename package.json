@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
 "name": "front-end",
   "version": "0.1.0",
   "private": true,
@@ -57,9 +56,5 @@
 
     "@testing-library/jest-dom": "^5.16.5",
     "react-router-dom": "^6.3.0"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^8.5.1"
   }
 }
