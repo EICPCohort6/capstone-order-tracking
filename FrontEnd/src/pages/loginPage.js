@@ -34,7 +34,6 @@ const LoginPage = () => {
         <img className="tjxlogo" src="/assets/TJX.png" alt="TJX Logo" />
         <h1 className="texttag">Order Tracking System</h1>
         <Login userLogin={loginUser} className="yes" />
-
       </Container>
     </>
   );

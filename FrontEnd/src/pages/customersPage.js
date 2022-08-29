@@ -5,10 +5,8 @@ import axios from "axios";
 import AddCustomerButton from "../components/add-customer-button";
 import apiURL from "../API";
 
-
 const getData = async ({ condition, text }) => {
   // does api call gets data
-  console.log(condition);
   let customer;
   switch (condition) {
     case "Last Name":
@@ -27,7 +25,6 @@ const getData = async ({ condition, text }) => {
       return customer;
     case "Email":
       customer = await axios.get(`${apiURL}/api/customers?email=${text}`);
-
       return customer;
 
     default:
@@ -46,7 +43,6 @@ const createNewCustomer = async (person) => {
       console.log(error);
       alert("Failed to add Customer!");
     });
-
 };
 
 const CustomerPage = () => {
@@ -66,13 +62,11 @@ const CustomerPage = () => {
         console.log(error);
         alert("Failed to delete item!");
       });
-
   };
 
   const updateItem = async (item) => {
     await axios
       .put(`${apiURL}/api/customers/${item.customer_id}`, item)
-
       .then(() => {
         const newTable = tableData.map((row) => {
           if (row.displayData.customer_id !== item.customer_id) return row;

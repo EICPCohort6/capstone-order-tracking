@@ -16,20 +16,12 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "reactstrap": "^9.1.3",
-    "supertest": "^6.2.4",
-    "web-vitals": "^2.1.4",
-    "express": "^4.18.1",
-    "mysql2": "^2.3.3",
-    "sequelize": "^6.21.3",
-    "body-parser": "^1.20.0",
-    "cors": "^2.8.5"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
-    "test2": "mocha ./Test/API-backend-test.js",
-    "test3": "node ./Test/API-backend-test.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -51,7 +43,6 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
     "react-router-dom": "^6.3.0"
   }
 }

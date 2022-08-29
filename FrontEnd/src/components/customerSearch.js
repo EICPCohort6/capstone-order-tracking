@@ -43,12 +43,17 @@ const apiCall = (event, getData, setTableData, searchCondition, text) => {
     return;
   }
   const info = { condition: searchCondition, text: text };
-  getData(info).then((result) => {
+  getData(info)
+    .then((result) => {
       if (result === "empty" || result.data.length === 0) {
         setTableData("empty");
         return;
       }
-    const tableData = result.data.map((entry) => {
+      let resultData = result.data;
+      if (!Array.isArray(resultData)) {
+        resultData = [{ ...resultData }]; //turn it into array if it's not one already so it could be mapped
+      }
+      const tableData = resultData.map((entry) => {
         return {
           displayData: {
             customer_id: entry.customer_id,
@@ -64,6 +69,10 @@ const apiCall = (event, getData, setTableData, searchCondition, text) => {
         };
       });
       setTableData(tableData);
+    })
+    .catch((error) => {
+      if (error.response.status === 404) alert("Unable to find Customer");
+      else alert("Error!");
     });
 };
 const Search = (props) => {

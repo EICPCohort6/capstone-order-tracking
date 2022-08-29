@@ -1,3 +1,3 @@
-const apiURL = "https://capstone-csr-api.azurewebsites.net";
+const apiURL = "https://capstone-csr.azurewebsites.net";
 
 export default apiURL;
