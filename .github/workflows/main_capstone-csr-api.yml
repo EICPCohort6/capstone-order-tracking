@@ -1,14 +1,10 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - capstone-csr
+name: Deploy API to Azure Web App - capstone-csr-api
 
 on:
-  #  push:
-  #    branches:
-  #  - main
-
-  workflow_dispatch:
+    workflow_dispatch:
 
 jobs:
   build:
@@ -25,22 +21,20 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          npm run build --if-present
-        working-directory: ./FrontEnd/
 
-        #npm install react
-        #npm install react-script
-
+        working-directory: ./BackEnd-Deploy/
 
       - name: Zip Artifact
         run: zip release.zip ./* -r
-        working-directory: ./FrontEnd/
+        working-directory: ./BackEnd-Deploy/
+     
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: ./FrontEnd/release.zip
+          path: ./BackEnd-Deploy/release.zip
+  
 
   deploy:
     runs-on: ubuntu-latest
@@ -58,11 +52,11 @@ jobs:
       - name: Unzip Artifact
         run: unzip release.zip
 
-      - name: "Deploy to Azure Web App"
+      - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "capstone-csr"
-          slot-name: "Production"
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B19E41D3ED5D4908B123F716FBEFA3E3 }}
+          app-name: 'capstone-csr-api'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_10E89D70DC674669AA7237C9FF534F67 }}
           package: .
