@@ -5,9 +5,11 @@ import axios from "axios";
 import AddCustomerButton from "../components/add-customer-button";
 import apiURL from "../API";
 
+
 const getData = async ({ condition, text }) => {
   // does api call gets data
   console.log(condition);
+  let customer;
   switch (condition) {
     case "Last Name":
       customer = await axios.get(`${apiURL}/api/customers?last_name=${text}`);
