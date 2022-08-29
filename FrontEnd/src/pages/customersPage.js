@@ -3,28 +3,48 @@ import CustomerSearch from "../components/customerSearch";
 import CustomerTableDisplay from "../components/customerTable";
 import axios from "axios";
 import AddCustomerButton from "../components/add-customer-button";
+import apiURL from "../API";
 
 const getData = async ({ condition, text }) => {
   // does api call gets data
   console.log(condition);
   switch (condition) {
     case "Last Name":
-      const customer = await axios.get(
-        `https://capstone-csr-api.azurewebsites.net/api/customers?last_name=${text}`
+      customer = await axios.get(`${apiURL}/api/customers?last_name=${text}`);
+      return customer;
+    case "First Name":
+      customer = await axios.get(`${apiURL}/api/customers?first_name=${text}`);
+      return customer;
+    case "ID":
+      customer = await axios.get(`${apiURL}/api/customers/${text}`);
+      return customer;
+    case "Phone Number":
+      customer = await axios.get(
+        `${apiURL}/api/customers?phone_number=${text}`
       );
-      console.log(customer);
+      return customer;
+    case "Email":
+      customer = await axios.get(`${apiURL}/api/customers?email=${text}`);
+
       return customer;
 
     default:
-      alert("No condition selected!");
-      return "empty";
+      customer = await axios.get(`${apiURL}/api/customers`);
+      return customer;
   }
 };
 const createNewCustomer = async (person) => {
-  axios.post(`https://capstone-csr-api.azurewebsites.net/api/customers`, person).then((result) => {
-    alert("Customer added!");
-    window.location.reload();
-  });
+  axios
+    .post(`${apiURL}/api/customers`, person)
+    .then((result) => {
+      alert("Customer added!");
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("Failed to add Customer!");
+    });
+
 };
 
 const CustomerPage = () => {
@@ -32,17 +52,25 @@ const CustomerPage = () => {
 
   // Deletes a entry from the table
   const deleteItem = async (id) => {
-    await axios.delete(`https://capstone-csr-api.azurewebsites.net/api/customers/${id}`).then(() => {
-      const newTable = tableData.filter(
-        (row) => row.displayData.customer_id !== id
-      );
-      setTableData(newTable);
-    });
+    await axios
+      .delete(`${apiURL}/api/customers/${id}`)
+      .then(() => {
+        const newTable = tableData.filter(
+          (row) => row.displayData.customer_id !== id
+        );
+        setTableData(newTable);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Failed to delete item!");
+      });
+
   };
 
   const updateItem = async (item) => {
     await axios
-      .put(`https://capstone-csr-api.azurewebsites.net/api/customers/${item.customer_id}`, item)
+      .put(`${apiURL}/api/customers/${item.customer_id}`, item)
+
       .then(() => {
         const newTable = tableData.map((row) => {
           if (row.displayData.customer_id !== item.customer_id) return row;

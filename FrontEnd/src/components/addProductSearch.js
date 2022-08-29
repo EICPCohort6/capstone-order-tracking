@@ -9,13 +9,7 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-const SEARCH_OPTIONS = [
-  "Last Name",
-  "First Name",
-  "ID",
-  "Phone Number",
-  "Email",
-];
+const SEARCH_OPTIONS = ["Product ID", "SKU", "Product Name"];
 
 const DropDownSelected = (props) => {
   const { setSearchCondition, searchCondition } = props;
@@ -38,37 +32,29 @@ const DropDownSelected = (props) => {
 };
 const apiCall = (event, getData, setTableData, searchCondition, text) => {
   event.preventDefault();
-  if (text === "") {
-    alert("Search field cannot be empty");
-    return;
-  }
   const info = { condition: searchCondition, text: text };
   getData(info).then((result) => {
-      if (result === "empty" || result.data.length === 0) {
-        setTableData("empty");
-        return;
-      }
+    if (result === "empty" || result.data.length === 0) {
+      setTableData("empty");
+      return;
+    }
     const tableData = result.data.map((entry) => {
-        return {
-          displayData: {
-            customer_id: entry.customer_id,
-            first_name: entry.first_name,
-            middle_name: entry.middle_name,
-            last_name: entry.last_name,
-            phone_number: entry.phone_number,
-            email: entry.email,
-            country: entry.country,
-            city: entry.city,
-          },
-          fullData: entry,
-        };
-      });
-      setTableData(tableData);
+      return {
+        displayData: {
+          product_id: entry.product_id,
+          product_SKU: entry.product_SKU,
+          product_name: entry.product_name,
+          product_price: entry.product_price,
+        },
+        fullData: entry,
+      };
     });
+    setTableData(tableData);
+  });
 };
 const Search = (props) => {
   const { getData, setTableData } = props;
-  const [searchCondition, setSearchCondition] = useState("Last Name");
+  const [searchCondition, setSearchCondition] = useState("SKU");
   const [text, setText] = useState("");
 
   return (
@@ -83,12 +69,6 @@ const Search = (props) => {
           onChange={(event) => setText(event.target.value)}
           value={text}
         />
-        <Button
-          onClick={(event) => apiCall(event, getData, setTableData, "", "all")}
-          color="success"
-        >
-          Display all
-        </Button>
         <DropDownSelected
           searchCondition={searchCondition}
           setSearchCondition={setSearchCondition}

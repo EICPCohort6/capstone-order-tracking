@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Table } from "reactstrap";
+import { Table } from "reactstrap";
 import ConfirmDialog from "./confirmDialog";
 import AddCustomerButton from "./add-customer-button";
 
@@ -28,9 +28,6 @@ const CustomerTable = (props) => {
           ([key, value]) => key !== "customer_id" && <td key={key}>{value}</td>
         )}
         <td>
-          <Button>+</Button>
-        </td>
-        <td>
           <AddCustomerButton
             text="Edit"
             person={person.fullData}
@@ -48,7 +45,7 @@ const CustomerTable = (props) => {
   });
 
   return (
-    <Table striped responsive>
+    <Table striped>
       <thead>
         <tr>{mappedHeaders}</tr>
       </thead>
@@ -63,7 +60,7 @@ const CustomerTableDisplay = (props) => {
   return tableData === "empty" ? (
     <p style={{ textAlign: "center", fontStyle: "italic" }}>Empty</p>
   ) : (
-    <div style={{ height: "800px", overflowY: "scroll" }}>
+    <div style={{ height: "800px", overflowY: "scroll", overflowX: "scroll" }}>
       <CustomerTable
         tableData={tableData}
         deleteItem={deleteItem}
@@ -74,4 +71,3 @@ const CustomerTableDisplay = (props) => {
 };
 
 export default CustomerTableDisplay;
-

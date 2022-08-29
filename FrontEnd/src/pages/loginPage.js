@@ -1,6 +1,21 @@
 import React from "react";
-import { Row, Container, Col } from "reactstrap";
+import { Container } from "reactstrap";
 import Login from "../components/loginForm";
+import axios from "axios";
+import apiURL from "../API";
+
+const loginUser = async (loginInfo) => {
+  console.log(loginInfo);
+  axios
+    .post(`${apiURL}/api/auth/signin`, loginInfo)
+    .then((result) => {
+      console.log("Yes");
+      window.location = "https://capstone-csr.azurewebsites.net/order";
+    })
+    .catch(() => {
+      alert("Incorrect Username or Password. Please try again");
+    });
+};
 
 const LoginPage = () => {
   return (
@@ -8,17 +23,18 @@ const LoginPage = () => {
       <Container
         fluid
         style={{
-          backgroundColor: "#9b0c23",
+          backgroundColor: "#fff9f1",
           height: "100vh",
           alignItems: "center",
           flexDirection: "column",
-          rowGap: "25%",
           display: "flex",
         }}
         className="border border-dark col-form-label-lg row g-0"
       >
-        <img className="something" src="/assets/placeholder_template.jpg" alt = "" />
-        <Login />
+        <img className="tjxlogo" src="/assets/TJX.png" alt="TJX Logo" />
+        <h1 className="texttag">Order Tracking System</h1>
+        <Login userLogin={loginUser} className="yes" />
+
       </Container>
     </>
   );

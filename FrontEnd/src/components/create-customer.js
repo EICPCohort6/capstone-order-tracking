@@ -18,7 +18,6 @@ const template = {
 };
 
 const submitForm = (e, data, toggle, customerFunction) => {
-  console.log(data);
   e.preventDefault();
   customerFunction(data);
   toggle();

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import ProductForm from "./create-product";
+import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import AddProductForm from "./create-add-product";
 
-function AddProductButton(args) {
+
+function AddProductButton({ text, product, productFunction }) {
+
+
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -13,9 +16,16 @@ function AddProductButton(args) {
         Add New Product
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Create New Product</ModalHeader>
+
+        <ModalHeader toggle={toggle}>Add Product</ModalHeader>
         <ModalBody>
-          <ProductForm />
+          Max Quantity: {product.product_quantity}
+          <AddProductForm
+            toggle={toggle}
+            product={product}
+            productFunction={productFunction}
+          />
+
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>
